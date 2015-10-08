@@ -3,3 +3,4 @@ env:
   global:
   - REPO="themanwhosold/notenrechner/Notenrechner"
   - CI_HOME=`pwd`/$REPO
+before_install: ls -la & cd Notenrechner
