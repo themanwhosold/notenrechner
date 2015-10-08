@@ -5,7 +5,11 @@ Anforderungsliste an das Projekt "Notenrechner":
 - Authentifizierung notwendig
 - Desktop Client mit JavaFX (optional?)
 - Umsetzung in "gesprochene Noten"
- 
+- Technologie fuer die Abhaengigkeitsverwaltung?
+	- Ant
+	- Maven
+	- Gradle
+- Mobile Devices über App oder AngularJS? Wenn App, welche Plattformen?
 
 
 eingesetzte Technologien:
