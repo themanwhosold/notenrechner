@@ -5,7 +5,7 @@ Anforderungsliste an das Projekt "Notenrechner":
 - Authentifizierung notwendig
 - Desktop Client mit JavaFX (optional?)
 - Umsetzung in "gesprochene Noten"
-- 
+ 
 
 
 eingesetzte Technologien:
