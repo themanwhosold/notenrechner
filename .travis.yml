@@ -1,1 +1,5 @@
 language: java
+env:
+  global:
+  - REPO="themanwhosold/Notenrechner"
+  - CI_HOME=`pwd`/$REPO
