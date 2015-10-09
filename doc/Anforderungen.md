@@ -2,7 +2,7 @@ Anforderungsliste an das Projekt "Notenrechner":
 - 2 Frontends (Verwaltung & Studierende)
 - individualisierbare Notenliste/-berechnung pro Jahrgang
 - Ablage der Noten in einer Datenbank -> Diskussionsbedarf, SQL oder NoSQL
-- Authentifizierung notwendig
+- Authentifizierung notwendig über JAAS
 - Desktop Client mit JavaFX (optional?)
 - Umsetzung in "gesprochene Noten"
 - Technologie fuer die Abhaengigkeitsverwaltung?
@@ -13,7 +13,7 @@ Anforderungsliste an das Projekt "Notenrechner":
 
 
 eingesetzte Technologien:
-- Java 8 (Update )
+- Java 8 (Update 60) -> neueste Version
 - Java EE 7
 - Netbeans 8.0.2 oder 8.1.0 als IDE
 - Glassfish oder Wildfly als Application Server
