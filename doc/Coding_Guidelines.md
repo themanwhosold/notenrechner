@@ -6,3 +6,5 @@
 - Lieber ein Kommentar zuviel, als einer zu wenig...
 - Sprechende Commit Nachrichten erleichtern die Übersicht
 - Sprechende Variablennamen (Methoden- und Klassennamen), unter a_temp kann sich niemand was vorstellen, besser wäre wenn der Variablenname aussagt was die Vaiable enthält bspw. grundstudium_sql_query für eine Variable in der die Query zur Abfrage der Grundstudiumsergebnisse enthalten ist.
+- Variablen- und Methodennamen erster Buchstabe klein, Klassennamen groß, zusammengesetzte Namen werden in camel case geschrieben 
+- Vereinbarung einer einheitlichen Paketstruktur notwendig
