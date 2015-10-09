@@ -1,7 +1,7 @@
 Anforderungsliste an das Projekt "Notenrechner":
 - 2 Frontends (Verwaltung & Studierende)
 - individualisierbare Notenliste/-berechnung pro Jahrgang
-- Studienganspezifisch, d.h. Programm nur für Vinf oder allgemeingültig?
+- Studiengangspezifisch, d.h. Programm nur für Vinf oder allgemeingültig?
 - Wenn allgemeingültig müsste der Administrator in der Lage sein Studiengänge mit Spezifikation zu erstellen - kann schwierig werden
 - Ablage der Noten in einer Datenbank -> Diskussionsbedarf, SQL oder NoSQL
 - Generierung von Testdaten (Mock data) für die Datenbank
