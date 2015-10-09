@@ -1,10 +1,19 @@
 Anforderungsliste an das Projekt "Notenrechner":
 - 2 Frontends (Verwaltung & Studierende)
 - individualisierbare Notenliste/-berechnung pro Jahrgang
+- Studienganspezifisch, d.h. Programm nur für Vinf oder allgemeingültig?
+- Wenn allgemeingültig müsste der Administrator in der Lage sein Studiengänge mit Spezifikation zu erstellen - kann schwierig werden
 - Ablage der Noten in einer Datenbank -> Diskussionsbedarf, SQL oder NoSQL
+- Generierung von Testdaten (Mock data) für die Datenbank
+- Ablage der Noten kann nur durch den Administrator/Dozenten erfolgen
+- graphische Aufbereitung der Noten in Diagrammen
+- statistische Kennzahlen berechen (Standartabweichung, Durchschnittsnote,...)
+- Farbliche Abhebung der Noten, ob durchgefallen (rot), über- (grün)/unterdurchschnittlich (gelb) usw...
+- Durchschnittsnote für alle sichtbar (kann bedenklich sein wenn nur zwei Studenten das Fach geschrieben haben)
 - Authentifizierung notwendig über JAAS
 - Desktop Client mit JavaFX (optional?)
 - Umsetzung in "gesprochene Noten"
+- Eintragung von "Traumnoten" der Studenten und anschließende Berechnung der "resultierenden/prognostizierenden" Endnote, die überschrieben werden durch Eintragung der echten Note durch den Dozenten
 - Technologie fuer die Abhaengigkeitsverwaltung?
 	- Ant
 	- Maven
