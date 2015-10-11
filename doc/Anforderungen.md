@@ -30,5 +30,6 @@ eingesetzte Technologien:
 - Angular.JS als Framework (?)
 - MySQL oder MongoDB/CouchDB oder whatever (?)
 - Authentifizierung mit JAAS und DB als Backend (später evtl. LDAP)
-
+- Welches Tool für UML?
+	- Star UML?
 
