@@ -4,12 +4,13 @@
  */
 package de.hof.se2;
 
-import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 
 /**
- *
- * @author martin
+ * Testklasse
+ * @author Markus
+ * @version 0.1
  */
 @Stateless
 @LocalBean
