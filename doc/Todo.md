@@ -11,6 +11,8 @@ Stand:   2015-10-08
 	- Bibliotheksverwaltung?
 	- Umgebung für die Tests?
 		- virtueller Server?
+	- andere Tools
+		- Tool zur UML Modellierung?
 	
 - Anwendungsaufbau
 - Masken & Funktionalitäten
