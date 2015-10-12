@@ -20,7 +20,6 @@ Anforderungsliste an das Projekt "Notenrechner":
 	- Maven
 	- Gradle
 - Mobile Devices über App oder AngularJS? Wenn App, welche Plattformen?
-- kot. halt so.
 
 
 eingesetzte Technologien:
