@@ -8,6 +8,7 @@ Anforderungsliste an das Projekt "Notenrechner":
 - Ablage der Noten kann nur durch den Administrator/Dozenten erfolgen
 - graphische Aufbereitung der Noten in Diagrammen
 - statistische Kennzahlen berechen (Standartabweichung, Durchschnittsnote,...)
+- Statistikfunktionen für den Jahrgang
 - Farbliche Abhebung der Noten, ob durchgefallen (rot), über- (grün)/unterdurchschnittlich (gelb) usw...
 - Durchschnittsnote für alle sichtbar (kann bedenklich sein wenn nur zwei Studenten das Fach geschrieben haben)
 - Authentifizierung notwendig über JAAS
@@ -19,6 +20,7 @@ Anforderungsliste an das Projekt "Notenrechner":
 	- Maven
 	- Gradle
 - Mobile Devices über App oder AngularJS? Wenn App, welche Plattformen?
+- kot. halt so.
 
 
 eingesetzte Technologien:
