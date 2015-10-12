@@ -1,0 +1,9 @@
+language: java
+env:
+  global:
+  - REPO="themanwhosold/notenrechner"
+  - CI_HOME=`pwd`/$REPO
+before_install: 
+jdk:
+  - oraclejdk8
+  - oraclejdk7
