@@ -10,4 +10,5 @@ Stand: 2015-10-08
 	- https://help.github.com/articles/configuring-a-remote-for-a-fork/
 	- https://help.github.com/articles/syncing-a-fork/
 
-- 
+###Markdown (wie schreibe ich eine *.md-Datei):
+- http://markdown.de/
