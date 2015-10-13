@@ -68,6 +68,7 @@ III.) Aufgaben
 - UML-Diagramme: Stefan
 - Test Hibernate mit Maven (Markus)
 - Anleitung zur Benutzung von Github (Markus)
+- Datengenerator schreiben, der Datengenerator soll ein executable JAR sein, der die Tabellen per JDBC befüllt
 
 IV.) Programmtechnische Umsetzung
 - Admin kann komplett neue Studiengänge erstellen
@@ -80,4 +81,4 @@ V.) Datenbankmodell
 	- 	 
 
 VI.) nächstes Treffen
-- 
+- Dienstag, 20.10.2015 14:00 Christoph gibt kleine Fanta ohne Eis aus...
