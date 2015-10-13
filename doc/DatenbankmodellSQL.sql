@@ -15,7 +15,7 @@ matrikelnummer INT not null
 ,nachname nvarchar(100) not null
 ,geburtsdatum date not null
 ,geschlecht bit not null
-,addresse nvarchar(100)
+,addresse nvarchar(100) -- Warum? Wenn ja dann eigene Tabelle oder PLZ und Adresse getrennt
 ,studiengangID int not null
 ,primary key(matrikelnummer)
 ,foreign key (studiengangID) references studiengang(id)
@@ -35,10 +35,10 @@ create table studienfaecher (
 id int not null
 ,studiengangID int not null
 ,bezeichnung nvarchar(100) not null
-,ort nvarchar(100)
-,zeit time
-,dozent nvarchar(100)
-,gewichtung int not null
+,ort nvarchar(100) -- Obsolet?
+,zeit time -- Ersatz durch Semeseter
+,dozent nvarchar(100) -- Wichtig für Schreibrechte der Administratoren
+,gewichtung int not null -- Wenn verrechnung von Leistungsnachweisen Wie?
 ,primary key(id)
 ,foreign key (studiengangID) references studiengang(id)
 );
