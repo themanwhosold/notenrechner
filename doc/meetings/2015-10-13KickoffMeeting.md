@@ -50,7 +50,7 @@ I.) Diskussion über Grundlagen des Projekts
 	- Ortsunabhängiger Abruf
 	- Übersicht über nicht bestandene Klausuren bzw. unterpunktete Leistungsnachweise
 	- Zwischennoten (welche Noten hatte ich in ZP?), Anzeige welche Noten noch notwendig sind um zu bestehen (Leistungsnachweise)
-	-  
+	
 
 II.) Verwendete Programme
 
@@ -67,6 +67,7 @@ II.) Verwendete Programme
 III.) Aufgaben
 - UML-Diagramme: Stefan
 - Test Hibernate mit Maven (Markus)
+- Anleitung zur Benutzung von Github (Markus)
 
 IV.) Programmtechnische Umsetzung
 - Admin kann komplett neue Studiengänge erstellen
@@ -75,8 +76,8 @@ IV.) Programmtechnische Umsetzung
 V.) Datenbankmodell
 - Tabellen:
 	- User&Gruppen (für JAAS)
-	-  
-
+	- Materialized View für Abbildung von Studenten auf Studienfächer bzw. für die Abfrage von Studenten und Noten 
+	- 	 
 
 VI.) nächstes Treffen
 - 

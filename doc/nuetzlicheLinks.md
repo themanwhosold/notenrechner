@@ -12,3 +12,6 @@ Stand: 2015-10-08
 
 ###Markdown (wie schreibe ich eine *.md-Datei):
 - http://markdown.de/
+
+###Materialized Views:
+- https://dev.mysql.com/doc/refman/5.0/en/create-view.html
