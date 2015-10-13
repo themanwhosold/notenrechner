@@ -28,24 +28,25 @@ id int not null
 ,note int not null
 ,primary key(id)
 ,foreign key (matrikelnummer) references studenten(matrikelnummer)
+,foreign key (studienfachID) references studienfaecher(id)
 );
 
 create table studienfaecher (
 id int not null
 ,studiengangID int not null
-,bezeichnung nvarchar(100)
+,bezeichnung nvarchar(100) not null
 ,ort nvarchar(100)
 ,zeit time
 ,dozent nvarchar(100)
-,gewichtung int
+,gewichtung int not null
 ,primary key(id)
 ,foreign key (studiengangID) references studiengang(id)
 );
 
 create table studiengang(
 id int not null
-,studiengangsleiter nvarchar(100)
-,bezeichnung nvarchar(100)
+,studiengangsleiter nvarchar(100) not null
+,bezeichnung nvarchar(100) not null
 ,primary key(id)
 );
 
@@ -73,6 +74,7 @@ insert into studienfaecher values(
 ,'Bei dir Zuhause'
 ,'12:00:00'
 ,'Dozent'
+,100
 );
 insert into studienfaecher values(
 43
