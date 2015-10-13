@@ -2,9 +2,10 @@ Anforderungsliste an das Projekt "Notenrechner":
 - 2 Frontends (Verwaltung & Studierende)
 - individualisierbare Notenliste/-berechnung pro Jahrgang
 - Studiengangspezifisch, d.h. Programm nur für Vinf oder allgemeingültig?
-- Wenn allgemeingültig müsste der Administrator in der Lage sein Studiengänge mit Spezifikation zu erstellen - kann schwierig werden
+	- Wenn allgemeingültig müsste der Administrator in der Lage sein Studiengänge mit Spezifikation zu erstellen - kann schwierig werden
 - Ablage der Noten in einer Datenbank -> Diskussionsbedarf, SQL oder NoSQL
 - Generierung von Testdaten (Mock data) für die Datenbank
+	- Ist möglich durch CSV Dateien der ersten Semester
 - Ablage der Noten kann nur durch den Administrator/Dozenten erfolgen
 - graphische Aufbereitung der Noten in Diagrammen
 - statistische Kennzahlen berechen (Standartabweichung, Durchschnittsnote,...)
@@ -27,6 +28,7 @@ eingesetzte Technologien:
 - Netbeans 8.0.2 oder 8.1.0 als IDE
 - Glassfish oder Wildfly als Application Server
 	-derzeit ist Wildfly 8.2.0 als AS eingestellt (Stand: 08.10.2015)
+		-Wildfly 9 und 10 werden noch weiterentwickelt
 - Angular.JS als Framework (?)
 - MySQL oder MongoDB/CouchDB oder whatever (?)
 - Authentifizierung mit JAAS und DB als Backend (später evtl. LDAP)
