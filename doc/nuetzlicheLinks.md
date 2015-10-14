@@ -9,6 +9,8 @@ Stand: 2015-10-08
 - Fork aktuell halten:
 	- https://help.github.com/articles/configuring-a-remote-for-a-fork/
 	- https://help.github.com/articles/syncing-a-fork/
+- Fork von meinem Repository aktualisieren, der harte Weg
+	- http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream
 
 ###Markdown (wie schreibe ich eine *.md-Datei):
 - http://markdown.de/
