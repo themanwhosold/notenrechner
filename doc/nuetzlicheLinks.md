@@ -11,6 +11,8 @@ Stand: 2015-10-08
 	- https://help.github.com/articles/syncing-a-fork/
 - Fork von meinem Repository aktualisieren, der harte Weg
 	- http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream
+- Keine Angst vor git rebase
+	- http://nathanleclaire.com/blog/2014/09/14/dont-be-scared-of-git-rebase/
 
 ###Markdown (wie schreibe ich eine *.md-Datei):
 - http://markdown.de/
