@@ -78,7 +78,6 @@ V.) Datenbankmodell
 - Tabellen:
 	- User&Gruppen (für JAAS)
 	- Materialized View für Abbildung von Studenten auf Studienfächer bzw. für die Abfrage von Studenten und Noten 
-	- 	 
 
 VI.) nächstes Treffen
 - Dienstag, 20.10.2015 14:00 Christoph gibt kleine Fanta ohne Eis aus...
