@@ -6,5 +6,5 @@ Wildfly 9.0.1Final
 
 MySQL
 
-Netbeans 8.1RC1
+Netbeans 8.1RC2
 
