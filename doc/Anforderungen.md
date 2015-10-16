@@ -36,3 +36,7 @@ eingesetzte Technologien:
 - Welches Tool für UML?
 	- Star UML?
 
+- individualisierbare Notenberechnung pro Jahrgang
+- Statistik
+- 123 Stefan 
+Test Stefan
