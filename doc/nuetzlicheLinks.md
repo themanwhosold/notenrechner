@@ -13,6 +13,8 @@ Stand: 2015-10-08
 	- http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream
 - Keine Angst vor git rebase
 	- http://nathanleclaire.com/blog/2014/09/14/dont-be-scared-of-git-rebase/
+- Upstream Aenderungen einfach herunterladen:
+	- http://de.gitready.com/intermediate/2009/02/12/easily-fetching-upstream-changes.html
 
 ###Markdown (wie schreibe ich eine *.md-Datei):
 - http://markdown.de/
