@@ -50,12 +50,15 @@ public class Noten implements Serializable {
     private int einzelgewicht;
     @JoinColumn(name = "Matrikelnr", referencedColumnName = "idPersonen")
     @ManyToOne(optional = false)
+    @Transient
     private Personen matrikelnr;
     @JoinColumn(name = "notenart_id", referencedColumnName = "notenart_id")
     @ManyToOne(optional = false)
+    @Transient
     private Notenart notenartId;
     @JoinColumn(name = "studienfachID", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @Transient
     private Studienfaecher studienfachID;
 
     public Noten() {

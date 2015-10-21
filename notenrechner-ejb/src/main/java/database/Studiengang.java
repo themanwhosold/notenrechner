@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -51,20 +52,26 @@ public class Studiengang implements Serializable {
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "bezeichnung")
+    @Transient
     private String bezeichnung;
     @Basic(optional = false)
     @NotNull
     @Column(name = "anz_semester")
+    @Transient
     private int anzSemester;
     @Basic(optional = false)
     @NotNull
     @Column(name = "grundstudiumBis")
+    @Transient
     private int grundstudiumBis;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studiengangId")
+    @Transient
     private List<Personen> personenList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studiengangID")
+    @Transient
     private List<Studienfaecher> studienfaecherList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studiengangId")
+    @Transient
     private List<Notenart> notenartList;
 
     public Studiengang() {

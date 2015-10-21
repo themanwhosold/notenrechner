@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,16 +42,20 @@ public class Notenart implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "notenart_id")
+    @Transient
     private Integer notenartId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "bezeichnung")
+    @Transient
     private String bezeichnung;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notenartId")
+    @Transient
     private List<Noten> notenList;
     @JoinColumn(name = "studiengang_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @Transient
     private Studiengang studiengangId;
 
     public Notenart() {

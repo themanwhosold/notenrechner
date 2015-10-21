@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -51,14 +52,18 @@ public class Studienfaecher implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "Semester")
+    @Transient
     private int semester;
     @JoinColumn(name = "Dozent_ID", referencedColumnName = "idPersonen")
     @ManyToOne(optional = false)
+    @Transient
     private Personen dozentID;
     @JoinColumn(name = "studiengangID", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @Transient
     private Studiengang studiengangID;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studienfachID")
+    @Transient
     private List<Noten> notenList;
 
     public Studienfaecher() {
