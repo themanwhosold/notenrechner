@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -50,48 +49,39 @@ public class Personen implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "idPersonen")
-    @Transient
     private Integer idPersonen;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "Nachname")
-    @Transient
     private String nachname;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "Vorname")
-    @Transient
     private String vorname;
     @Basic(optional = false)
     @NotNull
     @Column(name = "bio_geschlecht")
-    @Transient
     private boolean bioGeschlecht;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Geburtsdatum")
     @Temporal(TemporalType.DATE)
-    @Transient
     private Date geburtsdatum;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "Passwort")
-    @Transient
     private String passwort;
     @Column(name = "Rolle")
     private Short rolle;
     @JoinColumn(name = "studiengang_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @Transient
     private Studiengang studiengangId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dozentID")
-    @Transient
     private List<Studienfaecher> studienfaecherList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matrikelnr")
-    @Transient
     private List<Noten> notenList;
 
     public Personen() {

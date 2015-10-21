@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -50,15 +49,12 @@ public class Noten implements Serializable {
     private int einzelgewicht;
     @JoinColumn(name = "Matrikelnr", referencedColumnName = "idPersonen")
     @ManyToOne(optional = false)
-    @Transient
     private Personen matrikelnr;
     @JoinColumn(name = "notenart_id", referencedColumnName = "notenart_id")
     @ManyToOne(optional = false)
-    @Transient
     private Notenart notenartId;
     @JoinColumn(name = "studienfachID", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @Transient
     private Studienfaecher studienfachID;
 
     public Noten() {
