@@ -44,7 +44,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `noten`.`Personen`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `noten`.`Personen` (
+CREATE TABLE IF NOT EXISTS `noten`.`personen` (
   `idPersonen` INT NOT NULL COMMENT '',
   `Nachname` VARCHAR(100) NOT NULL COMMENT '',
   `Vorname` VARCHAR(100) NOT NULL COMMENT '',
