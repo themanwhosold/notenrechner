@@ -9,8 +9,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- Admin anlegen
 -- -----------------------------------------------------
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+-- CREATE user 'admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost' IDENTIFIED BY 'admin';
 FLUSH PRIVILEGES;
 
 -- -----------------------------------------------------
