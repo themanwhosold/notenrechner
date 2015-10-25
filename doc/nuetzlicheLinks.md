@@ -24,3 +24,4 @@ Stand: 2015-10-08
 
 ###Wildfly:
 - http://wildfly.org/news/2014/02/06/GlassFish-to-WildFly-migration/
+- http://giordanomaestro.blogspot.de/2015/02/install-jdbc-driver-on-wildfly.html
