@@ -21,3 +21,6 @@ Stand: 2015-10-08
 
 ###Materialized Views:
 - https://dev.mysql.com/doc/refman/5.0/en/create-view.html
+
+###Wildfly:
+- http://wildfly.org/news/2014/02/06/GlassFish-to-WildFly-migration/
