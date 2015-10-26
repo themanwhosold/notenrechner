@@ -33,6 +33,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>de.hof.se2</groupId>
+            <artifactId>notenrechner-ejb</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
