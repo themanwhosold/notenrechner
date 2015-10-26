@@ -147,7 +147,7 @@
             <datasources>
                 <datasource jndi-name="java:jboss/NotenDB" pool-name="java:jboss/NotenDB" enabled="true">
                     <connection-url>jdbc:mysql://localhost:3306/noten</connection-url>
-                    <driver-class>org.jdbc.mysql</driver-class>
+                    <driver-class>com.mysql.jdbc</driver-class>
                     <driver>h2</driver>
                     <security>
                         <user-name>admin</user-name>
