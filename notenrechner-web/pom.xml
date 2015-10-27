@@ -21,6 +21,24 @@
     
     <dependencies>
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.1.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.hof.se2</groupId>
+            <artifactId>notenrechner-ejb</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
@@ -75,7 +93,34 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>1.0.2.Final</version>
+            <configuration>
+               <groupId>mysql</groupId>
+               <artifactId>mysql-connector-java</artifactId>
+               <fileName>mysql-connector-java-5.1.37.jar</fileName>
+               <executions>
+                  <execution>
+                     <id>deploy-driver-MySQL</id>
+                     <phase>package</phase>
+                     <goals>
+                        <goal>deploy-artifact</goal>
+                     </goals>
+                     <configuration />
+                  </execution>
+               </executions>
+               <filename>${project.build.finalName}.war</filename>
+            </configuration>
+         </plugin>
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <id>unknown-jars-temp-repo</id>
+            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
+            <url>file:${project.basedir}/lib</url>
+        </repository>
+    </repositories>
 </project>
