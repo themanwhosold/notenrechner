@@ -7,7 +7,7 @@
     <class>database.Notenart</class>
     <class>database.Studienfaecher</class>
     <class>database.Noten</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/noten?zeroDateTimeBehavior=convertToNull"/>

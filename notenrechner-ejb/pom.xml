@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>notenrechner</artifactId>
-    <groupId>de.hof.se2</groupId>
-    <version>0.1-SNAPSHOT</version>
-  </parent>
+        <artifactId>notenrechner</artifactId>
+        <groupId>de.hof.se2</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
 
     <groupId>de.hof.se2</groupId>
     <artifactId>notenrechner-ejb</artifactId>
@@ -37,6 +37,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>5.1.37</version>
+      </dependency>
     </dependencies>
 
     <build>
@@ -85,6 +90,27 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.0.2.Final</version>
+                <configuration>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <fileName>mysql-connector-java-5.1.37.jar</fileName>
+                    <executions>
+                        <execution>
+                            <id>deploy-driver-MySQL</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>deploy-artifact</goal>
+                            </goals>
+                            <configuration />
+                        </execution>
+                    </executions>
+                    <filename>${project.build.finalName}.war</filename>
+                </configuration>
             </plugin>
         </plugins>
     </build>
