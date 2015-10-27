@@ -109,7 +109,6 @@
                             <configuration />
                         </execution>
                     </executions>
-                    <filename>${project.build.finalName}.war</filename>
                 </configuration>
             </plugin>
         </plugins>
