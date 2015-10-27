@@ -145,14 +145,19 @@
         <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:3.0">
             <datasources>
-                <datasource jndi-name="java:jboss/NotenDB" pool-name="java:jboss/NotenDB" enabled="true">
+                <datasource jta="true" jndi-name="java:jboss/NotenDB" pool-name="java:jboss/NotenDB" enabled="true" use-ccm="true">
                     <connection-url>jdbc:mysql://localhost:3306/noten</connection-url>
-                    <driver-class>com.mysql.jdbc</driver-class>
-                    <driver>h2</driver>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql-connector-java-5.1.37.jar_com.mysql.jdbc.Driver_5_1</driver>
                     <security>
                         <user-name>admin</user-name>
                         <password>admin</password>
                     </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+                        <background-validation>true</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+                    </validation>
                 </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
@@ -503,4 +508,9 @@
         </outbound-socket-binding>
     </socket-binding-group>
 
+    <deployments>
+        <deployment name="mysql-connector-java-5.1.37.jar" runtime-name="mysql-connector-java-5.1.37.jar">
+            <content sha1="2c378637f6faff77541244e8257b446f04324bd8"/>
+        </deployment>
+    </deployments>
 </server>
