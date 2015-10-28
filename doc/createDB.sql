@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `noten`.`personen` (
   `Geburtsdatum` DATE NOT NULL COMMENT '',
   `Passwort` VARCHAR(45) NOT NULL COMMENT '',
   `Rolle` TINYINT(3) NULL COMMENT '',
-  `studiengang_id` INT(11) NOT NULL COMMENT '',
+  `studiengang_id` INTjavax.el.ArrayELResolver.toInteger(11) NOT NULL COMMENT '',
   PRIMARY KEY (`idPersonen`)  COMMENT '',
   UNIQUE INDEX `idPersonen_UNIQUE` (`idPersonen` ASC)  COMMENT '',
   INDEX `fk_Personen_studiengang1_idx` (`studiengang_id` ASC)  COMMENT '',
@@ -137,3 +137,8 @@ DEFAULT CHARACTER SET = latin1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+use noten;
+set FOREIGN_KEY_CHECKS= 1;
+insert into noten values(2,4712,5,10,20171000, 41, 5000);
+select * from noten;
