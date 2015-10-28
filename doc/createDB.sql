@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `noten`.`personen` (
   `Geburtsdatum` DATE NOT NULL COMMENT '',
   `Passwort` VARCHAR(45) NOT NULL COMMENT '',
   `Rolle` TINYINT(3) NULL COMMENT '',
-  `studiengang_id` INTjavax.el.ArrayELResolver.toInteger(11) NOT NULL COMMENT '',
+  `studiengang_id` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`idPersonen`)  COMMENT '',
   UNIQUE INDEX `idPersonen_UNIQUE` (`idPersonen` ASC)  COMMENT '',
   INDEX `fk_Personen_studiengang1_idx` (`studiengang_id` ASC)  COMMENT '',
