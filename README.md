@@ -14,4 +14,5 @@ Branch master:
 ###Ordnerstruktur:
 - doc/ -> Dokumentation
 - scripts/ -> Skripte die für die Ausführung teilw. notwendig sind
+- config/ -> Config Dateien, z.B. die Wildfly Config
 
