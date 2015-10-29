@@ -37,8 +37,12 @@ public class NotenManaged implements Serializable{
     @Named
     public List<Noten> getAllNoten(){
         List<Noten> rc = new ArrayList<>();
-        rc = (List<Noten>) em.createNativeQuery("select * from noten").getResultList();
-//        rc.add(new Noten(120, 2));
+//        rc = em.createNamedQuery("Noten.findAll").getResultList();
+
+        // So sollte es funktionieren, macht es aber nicht:
+        rc = (List<Noten>) em.createNativeQuery("select * from noten", Noten.class).getResultList();
+        
+//        rc = (List<Noten>) em.createNativeQuery("select * from noten").getResultList();
         return rc;
     }
     

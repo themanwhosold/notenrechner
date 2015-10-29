@@ -25,4 +25,4 @@ insert into personen values(20171000, 'Schmidt', 'Tom', 1,'1990-2-2','passwort',
 -- select * from personen;
 set foreign_key_checks = 1;
 
--- select n.note, p.Nachname from noten n, personen p where n.Matrikelnr = p.idPersonen;
+select n.note, p.Nachname from noten n, personen p where n.Matrikelnr = p.idPersonen;
