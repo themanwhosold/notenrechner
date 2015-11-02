@@ -8,7 +8,7 @@ set foreign_key_checks = 0;
 -- idStudiengang, studiengangsleiter int, bezeichnung, anz_semester = 6, grundstudiumBis = 3
 insert into studiengang values(1,1,'Verwaltungsinformatik',6,5);
 -- idStudienfach, studiengang_id, bezeichnung, semester, dozent_id
-insert into studienfaecher values(1001, 1, 'OOP', 1, 2001);
+insert into studienfaecher values(1001, 1, 'OOP', 1, 1);
 -- idPersonen, nachname, vorname, bio_geschlecht, Gebdat, passwort, rolle, studiengang_id
 insert into personen values(1, 'Mueller', 'Hans', 1,'1980-1-1','passwort', 1,1);
 -- show warnings;

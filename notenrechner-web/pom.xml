@@ -36,7 +36,7 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>notenrechner-ear</artifactId>
             <version>${project.version}</version>
-            <type>ear</type>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

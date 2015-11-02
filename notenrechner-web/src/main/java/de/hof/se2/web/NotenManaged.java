@@ -5,8 +5,7 @@
  */
 package de.hof.se2.web;
 
-import de.hof.se2.entity.Noten;
-import de.hof.se2.entity.Studiengang;
+import de.hof.se2.entity.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
