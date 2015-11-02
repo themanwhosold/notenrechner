@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.ejb;
+package de.hof.se2.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,8 +16,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,24 +38,18 @@ public class Studiengang implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idStudiengang")
     private Integer idStudiengang;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "studiengangsleiter")
     private int studiengangsleiter;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "bezeichnung")
     private String bezeichnung;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "anz_semester")
     private int anzSemester;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "grundstudiumBis")
     private int grundstudiumBis;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studiengangId")
@@ -171,7 +163,7 @@ public class Studiengang implements Serializable {
 
     @Override
     public String toString() {
-        return "de.hof.se2.Studiengang[ idStudiengang=" + idStudiengang + " ]";
+        return "de.hof.se2.entity.Studiengang[ idStudiengang=" + idStudiengang + " ]";
     }
     
 }

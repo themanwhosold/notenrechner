@@ -27,16 +27,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>de.hof.se2</groupId>
-            <artifactId>notenrechner-ejb</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.37</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>notenrechner-ear</artifactId>
+            <version>${project.version}</version>
+            <type>ear</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

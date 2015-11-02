@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.ejb;
+package de.hof.se2.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -47,31 +45,22 @@ public class Personen implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idPersonen")
     private Integer idPersonen;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "Nachname")
     private String nachname;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "Vorname")
     private String vorname;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "bio_geschlecht")
     private boolean bioGeschlecht;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Geburtsdatum")
     @Temporal(TemporalType.DATE)
     private Date geburtsdatum;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "Passwort")
     private String passwort;
     @Column(name = "Rolle")
@@ -204,7 +193,7 @@ public class Personen implements Serializable {
 
     @Override
     public String toString() {
-        return "de.hof.se2.Personen[ idPersonen=" + idPersonen + " ]";
+        return "de.hof.se2.entity.Personen[ idPersonen=" + idPersonen + " ]";
     }
     
 }

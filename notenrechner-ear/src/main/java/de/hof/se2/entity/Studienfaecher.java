@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.ejb;
+package de.hof.se2.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,8 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,16 +38,12 @@ public class Studienfaecher implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idStudienfach")
     private Integer idStudienfach;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "bezeichnung")
     private String bezeichnung;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "semester")
     private int semester;
     @JoinColumn(name = "dozent_id", referencedColumnName = "idPersonen")
@@ -145,7 +139,7 @@ public class Studienfaecher implements Serializable {
 
     @Override
     public String toString() {
-        return "de.hof.se2.Studienfaecher[ idStudienfach=" + idStudienfach + " ]";
+        return "de.hof.se2.entity.Studienfaecher[ idStudienfach=" + idStudienfach + " ]";
     }
     
 }

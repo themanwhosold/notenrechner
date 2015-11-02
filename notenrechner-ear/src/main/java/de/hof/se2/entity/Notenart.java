@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.ejb;
+package de.hof.se2.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,8 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,12 +37,9 @@ public class Notenart implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idNotenart")
     private Integer idNotenart;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "bezeichnung")
     private String bezeichnung;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notenartId")
@@ -120,7 +115,7 @@ public class Notenart implements Serializable {
 
     @Override
     public String toString() {
-        return "de.hof.se2.Notenart[ idNotenart=" + idNotenart + " ]";
+        return "de.hof.se2.entity.Notenart[ idNotenart=" + idNotenart + " ]";
     }
     
 }
