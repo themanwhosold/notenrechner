@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.hof.se2</groupId>
-    <artifactId>notenrechner_test</artifactId>
+    <artifactId>notenrechner</artifactId>
     <version>0.1</version>
     <packaging>war</packaging>
 
-    <name>notenrechner_test</name>
+    <name>notenrechner</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
