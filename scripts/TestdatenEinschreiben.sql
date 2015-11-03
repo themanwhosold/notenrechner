@@ -18,6 +18,7 @@ insert into notenart values(1,1,'Klausur schriftlich 90 Minuten');
 
 -- idNoten, studienfach_id, note, wunschnote, matnr,notenart_id, einzelgewicht
 insert into noten values(1,1001,5,10,20171000, 1, 5000);
+insert into noten values(2,1001,10,12,20171000,1,5000);
 
 -- idPersonen, nachname, vorname, bio_geschlecht, Gebdat, passwort, rolle, studiengang_id
 insert into personen values(20171000, 'Schmidt', 'Tom', 1,'1990-2-2','passwort', 2,1);

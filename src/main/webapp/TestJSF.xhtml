@@ -13,5 +13,9 @@
         #{noten.einzelgewicht}  <br />
     </ui:repeat>
 
+    <ui:repeat value="#{outForStudents.getAllNotenForStudent(20171000)}" var="noten">
+        #{noten.note} <br />
+    </ui:repeat>
+
 </html>
 
