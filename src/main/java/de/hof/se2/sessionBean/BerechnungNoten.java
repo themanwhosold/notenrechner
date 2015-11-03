@@ -132,6 +132,8 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      */
     @Override
     public long getEndnote(int matrikelNr){
+        //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
+        //em.createNamedQuery(N, resultClass)
         return 0L;
     }
 
