@@ -19,7 +19,23 @@
                 #{noten.note}
         </h:column>
     </h:dataTable>
-    <h:outputText value="#{outForStudents.hallo}"/>
+    
 
+    <br>
+        <h:outputText value="Arithmetisches Mittel: #{outForStudents.getArithmetischesMittel(1001)}"/>
+        
+       
+    </br>
+    <br>
+        <h:outputText value="Varianz: #{outForStudents.getVarianz(1001)}"/>
+    </br>
+    <br>
+        <h:outputText value="Standardabweichung: #{outForStudents.getStandardabweichung(1001)}"/>
+    </br>
+    <br>
+        <h:outputText value="Median: #{outForStudents.getMedian(1001)}"/>
+    </br>
+    
+    
 </html>
 

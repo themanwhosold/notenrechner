@@ -7,6 +7,7 @@ package de.hof.se2.managedBean;
 
 import com.sun.jmx.snmp.UserAcl;
 import de.hof.se2.entity.Noten;
+
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,8 +31,13 @@ import javax.persistence.PersistenceContext;
 public class OutForStudents implements Serializable {
     @Current Document doc;
     @LoggedIn User user;
+    
+		@EJB
+    private BerechnungNotenLocal berechnungNoten;
+
     @PersistenceContext
     EntityManager em;
+    
 
     /**
      * Creates a new instance of OutForStudents
@@ -54,12 +60,51 @@ public class OutForStudents implements Serializable {
         return liste_noten_student;
     }
     
-    @EJB
-    BerechnungNotenLocal bnl;
+
+    /**
+     * @author max
+     * @param idStudienfach
+     * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten Bean
+     */
+    @Named
+    public double getArithmetischesMittel(int idStudienfach){
+        return this.berechnungNoten.getArithmethischesMittel(idStudienfach);
+    }
+    /**
+     * @author max
+     * @param idStudienfach
+     * @return Varianz des Studiengangs aus der berechnungNoten Bean
+     */
+    @Named
+    public double getVarianz(int idStudienfach){
+        return this.berechnungNoten.getVarianz(idStudienfach);
+    }
+    /**
+     * @author max
+     * @param idStudienfach
+     * @return Standardabweichung des Studiengangs aus der berechnungNoten Bean
+     */
+    @Named
+    public double getStandardabweichung(int idStudienfach){
+        return this.berechnungNoten.getStandardabweichung(idStudienfach);
+    }
+    
+    /**
+     * @author max
+     * @param idStudienfach
+     * @return Median des Studiengangs aus der berechnungNoten Bean
+     */
+    @Named
+    public int getMedian(int idStudienfach){
+        return this.berechnungNoten.getMedian(idStudienfach);
+    }
+    
+
     
     public String getHallo() {
-        String a = bnl.getHello();
+        String a = berechnungNoten.getHello();
         return a;
     }
+
 
 }
