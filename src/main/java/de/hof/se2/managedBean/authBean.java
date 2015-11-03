@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.web;
+package de.hof.se2.managedBean;
 
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -15,22 +15,48 @@ import javax.inject.Named;
  */
 @Stateless
 @LocalBean
-@Named (value = "login")
+@Named(value = "login")
 public class authBean {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    @Named
-    public void logedIn(){
-        
+    @Current userDaten credentials;
+    @PersistenceContext
+    EntityManager em;
+
+    public User user;
+
+    public void login() {
+
+        List<User> results = userDatabase.createQuery(
+                "select u from Personen p where p.idPersonen=:username and u.Passwort=:password")
+                .setParameter("username", credentials.getUsername())
+                .setParameter("password", credentials.getPassword())
+                .getResultList();
+
+        if (!results.isEmpty()) {
+
+            user = results.get(0);
+
+        }
+
     }
-    
-    @Named
-    public void login(){
-        
+
+    public void logout() {
+
+        user = null;
+
     }
-    @Named
-    public void logout(){
-        
+
+    public boolean isLoggedIn() {
+
+        return user != null;
+
+    }
+
+    @Produces
+    @LoggedIn
+    User getCurrentUser() {
+
+        return user;
+
     }
 }

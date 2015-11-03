@@ -5,6 +5,7 @@
  */
 package de.hof.se2.managedBean;
 
+import com.sun.jmx.snmp.UserAcl;
 import de.hof.se2.entity.Noten;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,8 +24,10 @@ import javax.persistence.PersistenceContext;
  */
 @Named(value = "outForStudents")
 @Dependent
-public class OutForStudents implements Serializable {
 
+public class OutForStudents implements Serializable {
+    @Current Document doc;
+    @LoggedIn User user;
     @PersistenceContext
     EntityManager em;
 
@@ -36,13 +39,13 @@ public class OutForStudents implements Serializable {
 
     /**
      *
-     * @param matrikelNr
+     * 
      * @return Liste der Noten für den jeweiligen Studenten
      */
     @Named
-    public List<Noten> getAllNotenForStudent(int matrikelNr) {
+    public List<Noten> getAllNotenForStudent() {
         List<Noten> liste_noten_student = new ArrayList<Noten>();
-        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
+        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + user.getUsername, Noten.class).getResultList();
         return liste_noten_student;
     }
 

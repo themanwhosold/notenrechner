@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.web;
+package de.hof.se2.managedBean;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
