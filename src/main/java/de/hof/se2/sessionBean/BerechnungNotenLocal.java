@@ -13,5 +13,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface BerechnungNotenLocal {
+
+    public double getArithmethischesMittel(int idStudienfach);
+    public double getStandardabweichung(int idStudienfach);
+    public int getMedian(int idStudienfach);
+    public double getVarianz(int idStudienfach);
     
 }
