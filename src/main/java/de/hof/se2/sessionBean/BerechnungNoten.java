@@ -9,7 +9,8 @@ import de.hof.se2.entity.Noten;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
+import javax.ejb.Local;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -21,7 +22,8 @@ import javax.persistence.PersistenceContext;
  * @version 0.1
  * @since 03.11.2015
  */
-@Stateless
+@Singleton
+@Local(BerechnungNotenLocal.class)
 public class BerechnungNoten implements BerechnungNotenLocal {
 
     @Resource
@@ -116,5 +118,40 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * es werden somit keine schon berechneten Werte wiederverwendet
      * Loesung: ueber Membervariablen der Bean
      */
+
+
+    
+    /**
+     *Methode um die Endnote zu berechnen
+     * 
+     * @author markus
+     * @version 0.1
+     * @param matrikelNr
+     * @since 03.11.2015
+     * @return Endnote
+     */
+    @Override
+    public long getEndnote(int matrikelNr){
+        return 0L;
+    }
+
+    /**
+     *Methode um die Note nach dem Grundstudium zu berechnen
+     * 
+     * @author markus
+     * @version 0.1
+     * @param matrikelNr
+     * @since 03.11.2015
+     * @return Note Grundstudium
+     */
+    @Override
+    public long getNoteGrundstudium(int matrikelNr) {
+        return 0L;
+    }
+    
+    @Override
+    public String getHello() {
+        return "Hallo Welt";
+    }
 
 }

@@ -6,7 +6,7 @@
 package de.hof.se2.managedBean;
 
 import de.hof.se2.entity.Noten;
-import de.hof.se2.sessionBean.BerechnungNoten;
+
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,7 +42,10 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
+     * Gibt eine Liste der Noten für den jeweiligen Studierenden zurück
+     * @author markus
+     * @version 0.1
+     * @since 03.11.2015
      * @param matrikelNr
      * @return Liste der Noten für den jeweiligen Studenten
      */
@@ -53,6 +56,7 @@ public class OutForStudents implements Serializable {
         return liste_noten_student;
     }
     
+
     /**
      * @author max
      * @param idStudienfach
@@ -91,5 +95,12 @@ public class OutForStudents implements Serializable {
         return this.berechnungNoten.getMedian(idStudienfach);
     }
     
+
+    
+    public String getHallo() {
+        String a = berechnungNoten.getHello();
+        return a;
+    }
+
 
 }
