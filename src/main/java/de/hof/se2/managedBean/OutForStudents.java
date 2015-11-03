@@ -6,9 +6,11 @@
 package de.hof.se2.managedBean;
 
 import de.hof.se2.entity.Noten;
+import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -35,7 +37,10 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
+     * Gibt eine Liste der Noten für den jeweiligen Studierenden zurück
+     * @author markus
+     * @version 0.1
+     * @since 03.11.2015
      * @param matrikelNr
      * @return Liste der Noten für den jeweiligen Studenten
      */
@@ -44,6 +49,14 @@ public class OutForStudents implements Serializable {
         List<Noten> liste_noten_student = new ArrayList<Noten>();
         liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
         return liste_noten_student;
+    }
+    
+    @EJB
+    BerechnungNotenLocal bnl;
+    
+    public String getHallo() {
+        String a = bnl.getHello();
+        return a;
     }
 
 }

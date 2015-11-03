@@ -13,5 +13,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface BerechnungNotenLocal {
+
+    long getEndnote(int matrikelNr);
+    long getNoteGrundstudium(int matrikelNr);
+    String getHello();
     
 }
