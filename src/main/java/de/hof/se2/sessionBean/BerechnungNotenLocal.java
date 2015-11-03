@@ -16,5 +16,6 @@ public interface BerechnungNotenLocal {
 
     long getEndnote(int matrikelNr);
     long getNoteGrundstudium(int matrikelNr);
+    String getHello();
     
 }

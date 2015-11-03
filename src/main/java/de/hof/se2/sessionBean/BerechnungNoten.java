@@ -52,4 +52,9 @@ public class BerechnungNoten implements BerechnungNotenLocal {
     public long getNoteGrundstudium(int matrikelNr) {
         return 0L;
     }
+    
+    @Override
+    public String getHello() {
+        return "Hallo Welt";
+    }
 }
