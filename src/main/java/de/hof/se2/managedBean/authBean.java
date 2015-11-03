@@ -5,9 +5,12 @@
  */
 package de.hof.se2.managedBean;
 
-import javax.ejb.Stateless;
+import java.util.List;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -19,6 +22,7 @@ import javax.inject.Named;
 public class authBean {
 
     @Current userDaten credentials;
+    
     @PersistenceContext
     EntityManager em;
 
@@ -26,7 +30,7 @@ public class authBean {
 
     public void login() {
 
-        List<User> results = userDatabase.createQuery(
+        List<User> results = em.createQuery(
                 "select u from Personen p where p.idPersonen=:username and u.Passwort=:password")
                 .setParameter("username", credentials.getUsername())
                 .setParameter("password", credentials.getPassword())

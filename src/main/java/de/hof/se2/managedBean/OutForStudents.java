@@ -5,9 +5,7 @@
  */
 package de.hof.se2.managedBean;
 
-import com.sun.jmx.snmp.UserAcl;
 import de.hof.se2.entity.Noten;
-
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class OutForStudents implements Serializable {
     @Current Document doc;
     @LoggedIn User user;
     
-		@EJB
+    @EJB
     private BerechnungNotenLocal berechnungNoten;
 
     @PersistenceContext
