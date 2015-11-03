@@ -9,9 +9,16 @@
         <title>Test JSF</title>
     </h:head>
 
-    <ui:repeat value="#{notenManaged.allNoten}" var="noten">
-        #{noten.einzelgewicht}  <br />
-    </ui:repeat>
+    <h:dataTable value="#{outForStudents.getAllNotenForStudent(20171000)}" var="noten">
+        <h:column>
+        <f:facet name="header">NotenID</f:facet>
+                #{noten.idNoten}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Note</f:facet>
+                #{noten.note}
+        </h:column>
+    </h:dataTable>
 
 </html>
 
