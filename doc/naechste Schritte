@@ -1,0 +1,8 @@
+mathematische Funktionen (arithmetisches Mittel, Standartabweichung und alles was es noch so gibt...) in eine Bean (Managed Bean oder noch besser SessionBean) implementieren 
+-> Methoden mit Uebergabeparameter und dazugehoerigen Abfragen aus der Datenbank
+-> vielleicht mehr Testdaten zum Testen der mathematischen Funktionen werden benoetigt
+
+die Studenten Seite mit den Noten des Studenten programmieren 
+-> erstmal eine einfache h:datatable (mein Vorschlag)
+
+Login Seite implementieren (spaeter mit JAAS?!) -> hat Schmobi schon angefangen
