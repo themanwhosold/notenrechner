@@ -5,8 +5,7 @@
  */
 package de.hof.se2.managedBean;
 
-import java.lang.annotation.Retention;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import javax.ejb.Stateless;
 
 /**
  *
