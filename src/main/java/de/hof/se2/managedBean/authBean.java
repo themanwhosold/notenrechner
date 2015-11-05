@@ -5,28 +5,34 @@
  */
 package de.hof.se2.managedBean;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+
+import javax.enterprise.inject.Default;
+import javax.enterprise.inject.Produces;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Schmidbauer
  */
-@Stateless
+@SessionScoped
 @LocalBean
 @Named(value = "login")
 public class authBean {
 
-    @Current userDaten credentials;
-    @PersistenceContext
-    EntityManager em;
+    @Default UserDaten credentials;
+    @PersistenceContext EntityManager em;
 
-    public User user;
+    public UserDaten user;
 
     public void login() {
 
-        List<User> results = userDatabase.createQuery(
+        List<UserDaten> results = em.createQuery(
                 "select u from Personen p where p.idPersonen=:username and u.Passwort=:password")
                 .setParameter("username", credentials.getUsername())
                 .setParameter("password", credentials.getPassword())
@@ -54,7 +60,7 @@ public class authBean {
 
     @Produces
     @LoggedIn
-    User getCurrentUser() {
+    UserDaten getCurrentUser() {
 
         return user;
 

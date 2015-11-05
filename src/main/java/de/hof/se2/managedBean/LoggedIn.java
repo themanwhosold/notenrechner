@@ -5,7 +5,12 @@
  */
 package de.hof.se2.managedBean;
 
+import java.lang.annotation.Retention;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import javax.ejb.Stateless;
+import static javax.persistence.AccessType.FIELD;
+import javax.xml.ws.BindingType;
+import org.hibernate.annotations.Target;
 
 /**
  *
@@ -13,7 +18,6 @@ import javax.ejb.Stateless;
  **/
 
 @Retention(RUNTIME)
-@Target({TYPE, METHOD, FIELD})
 @BindingType
 public @interface LoggedIn {}
 

@@ -11,9 +11,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.w3c.dom.Document;
 
 /**
  * Managed Bean mit der die Funktionalität für Studierende erzeugt wird
@@ -26,8 +28,8 @@ import javax.persistence.PersistenceContext;
 @Dependent
 
 public class OutForStudents implements Serializable {
-    @Current Document doc;
-    @LoggedIn User user;
+    @Default Document doc;
+    @LoggedIn UserDaten user;
     @PersistenceContext
     EntityManager em;
 
@@ -45,7 +47,7 @@ public class OutForStudents implements Serializable {
     @Named
     public List<Noten> getAllNotenForStudent() {
         List<Noten> liste_noten_student = new ArrayList<Noten>();
-        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + user.getUsername, Noten.class).getResultList();
+        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + user.getUsername(), Noten.class).getResultList();
         return liste_noten_student;
     }
 
