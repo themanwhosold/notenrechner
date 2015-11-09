@@ -5,10 +5,11 @@
  */
 package de.hof.se2.managedBean;
 
-import com.sun.jmx.snmp.UserAcl;
 import de.hof.se2.entity.Noten;
 
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
+import de.hof.se2.sessionBean.StatistikBeanLocal;
+import de.hof.se2.test.Statistik;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,22 @@ import org.w3c.dom.Document;
 @Dependent
 
 public class OutForStudents implements Serializable {
+<<<<<<< HEAD
 
     @Default
     Document doc;
     @LoggedIn
     UserDaten user;
+=======
+//    @Current Document doc;
+//    @LoggedIn User user;
+>>>>>>> bb73ac0d1eaa0cf2450353610f16ca52881bfb40
 
     @EJB
     private BerechnungNotenLocal berechnungNoten;
+
+    @EJB
+    private StatistikBeanLocal statistikBeanLocal;
 
     @PersistenceContext
     EntityManager em;
@@ -47,6 +56,7 @@ public class OutForStudents implements Serializable {
      * Creates a new instance of OutForStudents
      */
     public OutForStudents() {
+
     }
 
     /**
@@ -59,9 +69,13 @@ public class OutForStudents implements Serializable {
      * @return Liste der Noten für den jeweiligen Studenten
      */
     @Named
-    public List<Noten> getAllNotenForStudent() {
+    public List<Noten> getAllNotenForStudent(int matrikelNr) {
         List<Noten> liste_noten_student = new ArrayList<Noten>();
+<<<<<<< HEAD
         liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + user.getUsername(), Noten.class).getResultList();
+=======
+        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
+>>>>>>> bb73ac0d1eaa0cf2450353610f16ca52881bfb40
         return liste_noten_student;
     }
 
@@ -106,6 +120,15 @@ public class OutForStudents implements Serializable {
         return this.berechnungNoten.getMedian(idStudienfach);
     }
 
+<<<<<<< HEAD
+=======
+    @Named
+    public Statistik getStatistik(int idStudienfach) {
+
+        return this.statistikBeanLocal.getStatistik(idStudienfach);
+    }
+
+>>>>>>> bb73ac0d1eaa0cf2450353610f16ca52881bfb40
     public String getHallo() {
         String a = berechnungNoten.getHello();
         return a;

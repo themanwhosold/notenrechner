@@ -41,6 +41,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return arithmetisches Mittel des Studienfaches
      */
     @Override
+    @Deprecated
     public double getArithmethischesMittel(int idStudienfach) {
         List<Noten> liste = (List<Noten>) em.createNativeQuery("select n.* from noten n, studienfaecher s where n.studienfach_id = s.idStudienfach and s.idStudienfach = " + idStudienfach, Noten.class).getResultList();
         if (liste.size() <= 0) {
@@ -63,6 +64,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return Wert der Standardabweichung des Studienfaches
      */
     @Override
+    @Deprecated
     public double getStandardabweichung(int idStudienfach) {
 
         double varianz = this.getVarianz(idStudienfach);
@@ -76,6 +78,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return den Median des Studiengangs
      */
     @Override
+    @Deprecated
     public int getMedian(int idStudienfach) {
         List<Noten> liste = (List<Noten>) em.createNativeQuery("select n.* from noten n, studienfaecher s where n.studienfach_id = s.idStudienfach and s.idStudienfach = " + idStudienfach, Noten.class).getResultList();
         if (liste.size() <= 0) {
@@ -94,6 +97,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return Den Wert der Varianz des Studiengangs
      */
     @Override
+    @Deprecated
     public double getVarianz(int idStudienfach) {
 
         List<Noten> liste = (List<Noten>) em.createNativeQuery("select n.* from noten n, studienfaecher s where n.studienfach_id = s.idStudienfach and s.idStudienfach = " + idStudienfach, Noten.class).getResultList();
@@ -112,18 +116,16 @@ public class BerechnungNoten implements BerechnungNotenLocal {
         }
 
     }
-    
+
     /**
-     * Die statistischen Methoden sind inperformant, da jeder fuer sich eine Abfrage aus der Datenbank erzeugt
-     * es werden somit keine schon berechneten Werte wiederverwendet
-     * Loesung: ueber Membervariablen der Bean
+     * Die statistischen Methoden sind inperformant, da jeder fuer sich eine
+     * Abfrage aus der Datenbank erzeugt es werden somit keine schon berechneten
+     * Werte wiederverwendet Loesung: ueber Membervariablen der Bean -> wurde
+     * verbessert
      */
-
-
-    
     /**
-     *Methode um die Endnote zu berechnen
-     * 
+     * Methode um die Endnote zu berechnen
+     *
      * @author markus
      * @version 0.1
      * @param matrikelNr
@@ -131,15 +133,15 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return Endnote
      */
     @Override
-    public long getEndnote(int matrikelNr){
+    public long getEndnote(int matrikelNr) {
         //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
         //em.createNamedQuery(N, resultClass)
         return 0L;
     }
 
     /**
-     *Methode um die Note nach dem Grundstudium zu berechnen
-     * 
+     * Methode um die Note nach dem Grundstudium zu berechnen
+     *
      * @author markus
      * @version 0.1
      * @param matrikelNr
@@ -150,7 +152,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
     public long getNoteGrundstudium(int matrikelNr) {
         return 0L;
     }
-    
+
     @Override
     public String getHello() {
         return "Hallo Welt";
