@@ -13,37 +13,37 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 /**
  *
  * @author markus
  */
 @Named(value = "notenManaged")
 @SessionScoped
-public class NotenManaged implements Serializable{
+public class NotenManaged implements Serializable {
 
     @PersistenceContext
     EntityManager em;
-    
-    
-    List<Studiengang> a; 
+
+    List<Studiengang> a;
+
     /**
      * Creates a new instance of NotenManaged
      */
     public NotenManaged() {
-        
+
     }
-    
+
     @Named
-    public List<Noten> getAllNoten(){
+    public List<Noten> getAllNoten() {
         List<Noten> rc = new ArrayList<>();
 //        rc = em.createNamedQuery("Noten.findAll").getResultList();
 
         // So sollte es funktionieren, macht es aber nicht:
         rc = (List<Noten>) em.createNativeQuery("select * from noten", Noten.class).getResultList();
-        
+
 //        rc = (List<Noten>) em.createNativeQuery("select * from noten").getResultList();
         return rc;
     }
-    
-    
+
 }

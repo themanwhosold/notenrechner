@@ -5,10 +5,11 @@
  */
 package de.hof.se2.managedBean;
 
-import com.sun.jmx.snmp.UserAcl;
 import de.hof.se2.entity.Noten;
 
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
+import de.hof.se2.sessionBean.StatistikBeanLocal;
+import de.hof.se2.test.Statistik;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +30,28 @@ import javax.persistence.PersistenceContext;
 @Dependent
 
 public class OutForStudents implements Serializable {
-    @Current Document doc;
-    @LoggedIn User user;
-    
-		@EJB
+//    @Current Document doc;
+//    @LoggedIn User user;
+
+    @EJB
     private BerechnungNotenLocal berechnungNoten;
+
+    @EJB
+    private StatistikBeanLocal statistikBeanLocal;
 
     @PersistenceContext
     EntityManager em;
-    
 
     /**
      * Creates a new instance of OutForStudents
      */
     public OutForStudents() {
+
     }
 
     /**
      * Gibt eine Liste der Noten für den jeweiligen Studierenden zurück
+     *
      * @author markus
      * @version 0.1
      * @since 03.11.2015
@@ -54,57 +59,62 @@ public class OutForStudents implements Serializable {
      * @return Liste der Noten für den jeweiligen Studenten
      */
     @Named
-    public List<Noten> getAllNotenForStudent() {
+    public List<Noten> getAllNotenForStudent(int matrikelNr) {
         List<Noten> liste_noten_student = new ArrayList<Noten>();
-        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + user.getUsername, Noten.class).getResultList();
+        liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
         return liste_noten_student;
     }
-    
 
     /**
      * @author max
      * @param idStudienfach
-     * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten Bean
+     * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten
+     * Bean
      */
     @Named
-    public double getArithmetischesMittel(int idStudienfach){
+    public double getArithmetischesMittel(int idStudienfach) {
         return this.berechnungNoten.getArithmethischesMittel(idStudienfach);
     }
+
     /**
      * @author max
      * @param idStudienfach
      * @return Varianz des Studiengangs aus der berechnungNoten Bean
      */
     @Named
-    public double getVarianz(int idStudienfach){
+    public double getVarianz(int idStudienfach) {
         return this.berechnungNoten.getVarianz(idStudienfach);
     }
+
     /**
      * @author max
      * @param idStudienfach
      * @return Standardabweichung des Studiengangs aus der berechnungNoten Bean
      */
     @Named
-    public double getStandardabweichung(int idStudienfach){
+    public double getStandardabweichung(int idStudienfach) {
         return this.berechnungNoten.getStandardabweichung(idStudienfach);
     }
-    
+
     /**
      * @author max
      * @param idStudienfach
      * @return Median des Studiengangs aus der berechnungNoten Bean
      */
     @Named
-    public int getMedian(int idStudienfach){
+    public int getMedian(int idStudienfach) {
         return this.berechnungNoten.getMedian(idStudienfach);
     }
-    
 
-    
+    @Named
+    public Statistik getStatistik(int idStudienfach) {
+
+        return this.statistikBeanLocal.getStatistik(idStudienfach);
+    }
+
     public String getHallo() {
         String a = berechnungNoten.getHello();
         return a;
     }
-
 
 }
