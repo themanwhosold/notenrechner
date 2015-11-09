@@ -50,11 +50,11 @@ public class OutForStudents implements Serializable {
     @PersistenceContext
     EntityManager em;
 
+    
     /**
      * Creates a new instance of OutForStudents
      */
     public OutForStudents() {
-
     }
 
     /**

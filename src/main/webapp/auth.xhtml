@@ -17,7 +17,7 @@
         -->
 
         <h:form>
-            <h:panelGrid columns="2" rendered="#{!login.logedIn}">
+            <h:panelGrid columns="2" rendered="#{!login.loggedIn}">
                 <h:outputLabel for="username"
                                >Username:</h:outputLabel>
                 <h:inputText id="username" value="#{userDaten.username}"/>
@@ -26,7 +26,7 @@
                 <h:inputText id="password" value="#{userDaten.password}"/>
             </h:panelGrid>
             <h:commandButton value="Login" action="#{login.login}" rendered="#{!login.loggedIn}"/>
-            <h:commandButton value="Logout" acion="#{login.logout}" rendered="#{login.loggedIn}"/>
+            <h:commandButton value="Logout" action="#{login.logout}" rendered="#{login.loggedIn}"/>
         </h:form>
     </h:body>
 </html>
