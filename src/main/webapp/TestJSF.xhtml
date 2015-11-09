@@ -4,12 +4,13 @@
       xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:hx="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Test JSF</title>
     </h:head>
 
-    <h:dataTable value="#{outForStudents.getAllNotenForStudent(20171000)}" var="noten">
+    <h:dataTable value="#{outForStudents.getAllNotenForStudent(20171001)}" var="noten">
         <h:column>
             <f:facet name="header">NotenID</f:facet>
                 #{noten.idNoten}
@@ -36,9 +37,22 @@
         <h:outputText value="Median: #{outForStudents.getMedian(1001)}"/>
     </br>
 
-    <br>
-        <h:outputText value="Improved: #{outForStudents.getStatistik(1001)}"/>
-    </br>
 
+    <!--    <br>
+                <h:outputText value="Improved: #{outForStudents.getStatistik(1001).arithmetischesMittel}"/>
+        </br>-->
+    <br></br>
+    <br></br>
+    <c:set var="stat" value="${outForStudents.getStatistik(1001)}"/>
+    <br></br>
+    <h:outputText value="Improved: #{stat.arithmetischesMittel}"/>
+    <br></br>
+    <h:outputText value="Improved: #{stat.median}"/>
+    <br></br>
+    <h:outputText value="Improved: #{stat.varianz}"/>
+    <br></br>
+    <h:outputText value="Improved: #{stat.standardabweichung}"/>
+    <br></br>
+    <h:outputText value="ToString:  #{stat.toString()}"/>
 </html>
 
