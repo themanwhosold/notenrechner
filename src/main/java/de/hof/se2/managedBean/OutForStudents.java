@@ -25,7 +25,7 @@ import org.w3c.dom.Document;
  *
  * @author markus
  * @version 0.2
- * @since 03.11.2015
+ * @since 09.11.2015
  */
 @Named(value = "outForStudents")
 @Dependent
