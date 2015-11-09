@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.EAGER;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -81,7 +82,7 @@ public class Personen implements Serializable {
     private Studiengang studiengangId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dozentId")
     private List<Studienfaecher> studienfaecherList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matrikelnr")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "matrikelnr",fetch = EAGER)
     private List<Noten> notenList;
 
     public Personen() {
