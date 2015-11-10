@@ -11,7 +11,6 @@ import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
 import de.hof.se2.test.Statistik;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
@@ -57,13 +56,15 @@ public class OutForStudents implements Serializable {
 
     /**
      * Gibt eine Liste der Noten für den jeweiligen Studierenden zurück
-     *
+     * 
      * @author markus
-     * @version 0.2
-     * @since 09.11.2015
+     * @version 0.3
+     * @since 10.11.2015
      * @param matrikelNr
      * @return Liste der Noten für den jeweiligen Studenten
+     * @deprecated Weil auf der JSF Seite nur noch mit einem Personen Objekt gearbeitet wird und die Notenliste direkt aus dem Objekt aufgerufen werden kann
      */
+    @Deprecated
     @Named
     public List<Noten> getAllNotenForStudent(int matrikelNr) {
         /* Alte Version ohne Named Query:
