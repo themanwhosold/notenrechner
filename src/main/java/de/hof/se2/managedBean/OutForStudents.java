@@ -147,6 +147,11 @@ public class OutForStudents implements Serializable {
         String a = berechnungNoten.getHello();
         return a;
     }
+    
+    @Named
+    public double getEndnote(int personId){
+        return this.berechnungNoten.getEndnote(personId);
+    }
 
     @Named
     public Personen getPerson(int personId) {
