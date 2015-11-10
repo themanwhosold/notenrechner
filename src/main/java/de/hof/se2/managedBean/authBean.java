@@ -6,12 +6,15 @@
 package de.hof.se2.managedBean;
 
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+//import javax.annotation.ManagedBean;
+//import javax.ejb.Stateless;
+//import javax.ejb.LocalBean;
 
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
+//import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
+
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,22 +24,25 @@ import javax.persistence.PersistenceContext;
  * @author Schmidbauer
  */
 @SessionScoped
-@LocalBean
-@Named(value = "login")
+@Named(value = "authBean")
 public class authBean {
 
     @Default UserDaten credentials;
     @PersistenceContext EntityManager em;
 
     public UserDaten user;
-
+    
+    @Named
     public void login() {
-
+        System.out.println("Das klappt schon mal");
         List<UserDaten> results = em.createQuery(
-                "select u from Personen p where p.idPersonen=:username and u.Passwort=:password")
+                "select u from personen p where p.idPersonen=:username and p.Passwort=:password")
                 .setParameter("username", credentials.getUsername())
                 .setParameter("password", credentials.getPassword())
                 .getResultList();
+        for (UserDaten dat: results){
+            dat.toString();
+        }
 
         if (!results.isEmpty()) {
 
@@ -65,4 +71,14 @@ public class authBean {
         return user;
 
     }
+
+    public UserDaten getUser() {
+        return user;
+    }
+
+    public void setUser(UserDaten user) {
+        this.user = user;
+    }
+    
+    
 }
