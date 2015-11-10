@@ -3,15 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition template="templates/defaultTemplate.xhtml">
-            <ui:define name="top">Notenübersicht von #{outForStudents.getStudent(20171005).nachname}, #{outForStudents.getStudent(20171005).vorname}</ui:define>
+            <ui:define name="top">Notenübersicht für Studierende</ui:define>
             <ui:define name="content">
-                <h:dataTable value="#{outForStudents.getAllNotenForStudent(20171005)}" var="noten">
+                <c:set var="student" value="${outForStudents.getStudent(20171001)}"/>
+                <h:outputText value="Student: #{student.getVorname()}, #{student.getNachname()}"/>
+                <br />
+                <h:outputText value="Matrikelnummer: #{student.getIdPersonen()}"/>
+                <h:dataTable value="#{student.getNotenList()}" var="noten">
                     <h:column>
                         <f:facet name="header">NotenID</f:facet>
                             #{noten.idNoten}
@@ -20,8 +25,14 @@
                         <f:facet name="header">Note</f:facet>
                             #{noten.note}
                     </h:column>
+                     <h:column>
+                        <f:facet name="header">Gewichtung</f:facet>
+                            #{noten.einzelgewicht}
+                    </h:column>
                 </h:dataTable>
-
+                <br>
+                    <h:outputText value="Endnote: #{outForStudents.getEndnote(student.getIdPersonen())}"/>
+                </br>
             </ui:define>
         </ui:composition>
     </h:body>

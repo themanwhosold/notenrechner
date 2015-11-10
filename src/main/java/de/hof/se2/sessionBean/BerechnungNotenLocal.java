@@ -19,8 +19,8 @@ public interface BerechnungNotenLocal {
     public double getStandardabweichung(int idStudienfach);
     public int getMedian(int idStudienfach);
     public double getVarianz(int idStudienfach);
-    public long getEndnote(int matrikelNr);
-    public long getNoteGrundstudium(int matrikelNr);
+    public double getEndnote(int matrikelNr);
+    public double getNoteGrundstudium(int matrikelNr);
     public String getHello();
 
     
