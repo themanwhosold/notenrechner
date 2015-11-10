@@ -51,8 +51,12 @@
     <br></br>
     <h:outputText value="Improved: #{stat.varianz}"/>
     <br></br>
-    <h:outputText value="Improved: #{stat.standardabweichung}"/>
+    <h:outputText value="Improved Standardabweichung: #{stat.standardabweichung}"/>
     <br></br>
     <h:outputText value="ToString:  #{stat.toString()}"/>
+    <br>
+        <c:set var="student" value="${outForStudents.getStudent(1)}"/>
+        <h:outputText value="Student:  #{student.getVorname()}"/>
+    </br>
 </html>
 

@@ -11,6 +11,7 @@ import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
 import de.hof.se2.test.Statistik;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
@@ -39,8 +40,6 @@ public class OutForStudents implements Serializable {
 
 //    @Current Document doc;
 //    @LoggedIn User user;
-
-
     @EJB
     private BerechnungNotenLocal berechnungNoten;
 
@@ -50,7 +49,6 @@ public class OutForStudents implements Serializable {
     @PersistenceContext
     EntityManager em;
 
-    
     /**
      * Creates a new instance of OutForStudents
      */
@@ -73,12 +71,15 @@ public class OutForStudents implements Serializable {
         liste_noten_student = (List<Noten>) em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
         return liste_noten_student;
         Neue Version:
-        */
+         */
         Personen person = this.getStudent(matrikelNr);
         return person.getNotenList();
     }
+
     /**
-     * Klasse um ein Objekt vom Typ Personen zurück zu liefern um in der Ausgabe einige Parameter gleich bei der Hand zu haben
+     * Klasse um ein Objekt vom Typ Personen zurück zu liefern um in der Ausgabe
+     * einige Parameter gleich bei der Hand zu haben
+     *
      * @author markus
      * @version 0.1
      * @since 09.11.2015
@@ -135,7 +136,6 @@ public class OutForStudents implements Serializable {
         return this.berechnungNoten.getMedian(idStudienfach);
     }
 
-
     @Named
     public Statistik getStatistik(int idStudienfach) {
 
@@ -147,4 +147,9 @@ public class OutForStudents implements Serializable {
         return a;
     }
 
+    @Named
+    public Personen getPerson(int personId) {
+        List<Personen> liste = em.createNativeQuery("select * from personen where idPersonen = " + personId, Personen.class).getResultList();
+        return liste.get(0);
+    }
 }
