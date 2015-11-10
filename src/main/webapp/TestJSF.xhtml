@@ -45,13 +45,18 @@
     <br></br>
     <c:set var="stat" value="${outForStudents.getStatistik(1001)}"/>
     <br></br>
-    <h:outputText value="Improved: #{stat.arithmetischesMittel}"/>
+    <h:outputText value="Improved arithmetisches Mittel: #{stat.arithmetischesMittel}"/>
     <br></br>
-    <h:outputText value="Improved: #{stat.median}"/>
+    
+    <h:outputText value="Improved Median: #{stat.median}"/>
+ 
     <br></br>
-    <h:outputText value="Improved: #{stat.varianz}"/>
+    <h:outputText value="Improved Vaianz: #{stat.varianz}"/>
     <br></br>
-    <h:outputText value="Improved Standardabweichung: #{stat.standardabweichung}"/>
+    <h:outputText value="Improved Standardabweichung: #{stat.standardabweichung}">
+        <f:convertNumber pattern="#0.00"/>
+    </h:outputText>
+    <!--<h:outputText value="Improved Standardabweichung: #{stat.standardabweichung}"/>-->
     <br></br>
     <h:outputText value="ToString:  #{stat.toString()}"/>
     <br>

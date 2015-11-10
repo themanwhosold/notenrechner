@@ -124,19 +124,28 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * verbessert
      */
     /**
-     * Methode um die Endnote zu berechnen
+     * Methode um die Endnote zu berechnen -> funktioniert nur wenn die in der Datenbank abgelegte Einzelgewicht immer relativ zur Endnote ist
      *
-     * @author markus
+     * @author Max
      * @version 0.1
      * @param matrikelNr
-     * @since 03.11.2015
+     * @since 10.11.2015
      * @return Endnote
      */
     @Override
-    public long getEndnote(int matrikelNr) {
+    public double getEndnote(int matrikelNr) {
         //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
         //em.createNamedQuery(N, resultClass)
-        return 0L;
+        double rc = 0.;
+        List<Noten> notenListe = em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
+        long summeGewichtung = 0;
+        long summeNoten = 0;
+        for (Noten noten : notenListe) {
+            summeNoten += noten.getEinzelgewicht() * noten.getNote();
+            summeGewichtung += noten.getEinzelgewicht();
+        }
+        rc =  (double) summeNoten / (double) summeGewichtung;
+        return rc;
     }
 
     /**
@@ -149,7 +158,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return Note Grundstudium
      */
     @Override
-    public long getNoteGrundstudium(int matrikelNr) {
+    public double getNoteGrundstudium(int matrikelNr) {
         return 0L;
     }
 
