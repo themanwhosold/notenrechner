@@ -7,7 +7,7 @@ package de.hof.se2.test;
 
 /**
  * Stellt eine Statistik dar mit arithmetischesMittel, standardabweichung,
- * median und varianz
+ * median und varianz, Beste und schlechteste Note (max-/minNote)
  *
  * @author max
  * @version 0.1
@@ -19,12 +19,16 @@ public class Statistik {
     private double standardabweichung;
     private int median;
     private double varianz;
+    private int maxNote;
+    private int minNote;
 
-    public Statistik(double arithmetischesMittel, double standardabweichung, int median, double varianz) {
+    public Statistik(double arithmetischesMittel, double standardabweichung, int median, double varianz, int maxNote, int minNote) {
         this.arithmetischesMittel = arithmetischesMittel;
         this.standardabweichung = standardabweichung;
         this.median = median;
         this.varianz = varianz;
+        this.maxNote = maxNote;
+        this.minNote = minNote;
     }
 
     public double getArithmetischesMittel() {
@@ -43,9 +47,17 @@ public class Statistik {
         return varianz;
     }
 
-    @Override
-    public String toString() {
-        return "Statistik{" + "arithmetischesMittel=" + arithmetischesMittel + ", standardabweichung=" + standardabweichung + ", median=" + median + ", varianz=" + varianz + '}';
+    public int getMaxNote() {
+        return maxNote;
     }
 
+    public int getMinNote() {
+        return minNote;
+    }
+
+    @Override
+    public String toString() {
+        return "Statistik{" + "arithmetischesMittel=" + arithmetischesMittel + ", standardabweichung=" + standardabweichung + ", median=" + median + ", varianz=" + varianz + ", maxNote=" + maxNote + ", minNote=" + minNote + '}';
+    }
+    
 }
