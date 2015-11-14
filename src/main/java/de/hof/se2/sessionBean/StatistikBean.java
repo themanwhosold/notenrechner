@@ -7,6 +7,7 @@ package de.hof.se2.sessionBean;
 
 import de.hof.se2.entity.Noten;
 import de.hof.se2.test.Statistik;
+import java.util.Comparator;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -45,7 +46,8 @@ public class StatistikBean implements StatistikBeanLocal {
     private List<Noten> dbAbfrage(int idStudienfach) {
         List<Noten> liste = null;
         try {
-            liste = (List<Noten>) em.createNativeQuery("select n.* from noten n, studienfaecher s where n.studienfach_id = s.idStudienfach and s.idStudienfach = " + idStudienfach, Noten.class).getResultList();
+            //Gibt die notenListe aufsteigend sortiert zurueck (muss man spaeter nicht nochmal sortieren):
+            liste = (List<Noten>) em.createNativeQuery("select n.* from noten n, studienfaecher s where n.studienfach_id = s.idStudienfach and s.idStudienfach = " + idStudienfach + " order by n.note", Noten.class).getResultList();
         } catch (Exception ex) {
 //            ex.printStackTrace();   // schlecht wird nicht angezeigt
             throw new RuntimeException(ex); //Naja
@@ -90,6 +92,9 @@ public class StatistikBean implements StatistikBeanLocal {
         return median;
     }
 
+    /**
+     * @author max Wert der Varianz des Studiengangs
+     */
     private double berechneVarianz(List<Noten> notenListe, double arithmetischesMittel) {
 
         double zaehler = 0.;
@@ -100,6 +105,28 @@ public class StatistikBean implements StatistikBeanLocal {
         }
         double varianz = zaehler / notenListe.size();
         return varianz;
+    }
+
+    /**
+     *
+     * @author max
+     * @return ein int[] -> erster Eintrag = Minimum, zweiter Eintrag = Maximum
+     */
+    private int[] getMinMaxNoten(List<Noten> notenListe) {
+        notenListe.sort(new Comparator<Noten>() {
+            @Override
+            public int compare(Noten n1, Noten n2) {
+                if (n1.getNote() > n2.getNote()) {
+                    return 1;
+                } else if (n1.getNote() < n2.getNote()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+        int rc[] = {notenListe.get(0).getNote(), notenListe.get(notenListe.size() - 1).getNote()};
+        return rc;
     }
 
     /**
@@ -114,8 +141,26 @@ public class StatistikBean implements StatistikBeanLocal {
         int median = this.berechneMedian(notenListe);
         double varianz = this.berechneVarianz(notenListe, aritmetischesMittel);
         double standardAbweichung = this.berechneStandardabweichung(varianz);
+//        int minMax [] = this.getMinMaxNoten(notenListe);
+        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, notenListe.get(notenListe.size() - 1).getNote(), notenListe.get(0).getNote());
+    }
 
-        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz);
+    /**
+     * Von Christoph angefragt, da man nun flexibler die Statistik erzeugen kann
+     * -> ist performancetechnisch schlechter
+     *
+     * @author max Erzeugt ein Objekt der Klasse Statistik
+     * @param notenListe
+     * @return ein Objekt der Klasse Statistik
+     */
+    @Override
+    public Statistik getStatistik(List<Noten> notenListe) {
+        double aritmetischesMittel = this.berechneArithmetischesMittel(notenListe);
+        int median = this.berechneMedian(notenListe);
+        double varianz = this.berechneVarianz(notenListe, aritmetischesMittel);
+        double standardAbweichung = this.berechneStandardabweichung(varianz);
+        int minMax[] = this.getMinMaxNoten(notenListe);
+        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, minMax[1], minMax[0]);
     }
 
 }
