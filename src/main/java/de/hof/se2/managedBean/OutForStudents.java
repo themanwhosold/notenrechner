@@ -158,4 +158,11 @@ public class OutForStudents implements Serializable {
         List<Personen> liste = em.createNativeQuery("select * from personen where idPersonen = " + personId, Personen.class).getResultList();
         return liste.get(0);
     }
+    
+    @Named
+    public Statistik getStatistik(List<Noten> notenListe) {
+
+        return this.statistikBeanLocal.getStatistik(notenListe);
+    }
+    
 }
