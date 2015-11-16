@@ -27,22 +27,18 @@ import javax.persistence.PersistenceContext;
 @Named(value = "authBean")
 public class authBean {
 
-    @Default UserDaten credentials;
+    @Default User credentials;
     @PersistenceContext EntityManager em;
 
-    public UserDaten user;
+    public User user;
     
     @Named
     public void login() {
-        System.out.println("Das klappt schon mal");
-        List<UserDaten> results = em.createQuery(
+        List<User> results = em.createQuery(
                 "select u from personen p where p.idPersonen=:username and p.Passwort=:password")
                 .setParameter("username", credentials.getUsername())
                 .setParameter("password", credentials.getPassword())
                 .getResultList();
-        for (UserDaten dat: results){
-            dat.toString();
-        }
 
         if (!results.isEmpty()) {
 
@@ -66,17 +62,17 @@ public class authBean {
 
     @Produces
     @LoggedIn
-    UserDaten getCurrentUser() {
+    User getCurrentUser() {
 
         return user;
 
     }
 
-    public UserDaten getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDaten user) {
+    public void setUser(User user) {
         this.user = user;
     }
     
