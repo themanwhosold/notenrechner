@@ -20,6 +20,7 @@ public interface BerechnungNotenLocal {
     public int getMedian(int idStudienfach);
     public double getVarianz(int idStudienfach);
     public double getEndnote(int matrikelNr);
+    public double getWunschEndnote(int matrikelNr);
     public double getNoteGrundstudium(int matrikelNr);
     public String getHello();
 

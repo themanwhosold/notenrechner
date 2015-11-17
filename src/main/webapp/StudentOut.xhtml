@@ -18,32 +18,28 @@
                 <h:outputText value="Matrikelnummer: #{student.getIdPersonen()}"/>
                 <h:form>
                     <h:dataTable value="#{student.getNotenList()}" var="noten">
-                        <h:column>
-                            <f:facet name="header">NotenID</f:facet>
-                                #{noten.idNoten}
-                        </h:column>
-                        <h:column>
+                        <h:column headerClass="columnCenter">
                             <f:facet name="header">Fach</f:facet>
-                                #{noten.studienfachId.bezeichnung}
+                            <h:outputText style="float: left;" value="#{noten.studienfachId.bezeichnung}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Note</f:facet>
-                            <h:inputText disabled="true" value="#{noten.note}" />
+                            <!--<h:inputText disabled="true" value="#{noten.note}" />-->
+                            <h:outputText style="float: left;" value="#{noten.note}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
                             <h:inputText value="#{noten.wunschnote}" />
                         </h:column>
-                        <h:column>
-                            <f:facet name="header">Gewichtung</f:facet>
-                                #{noten.einzelgewicht}
-                        </h:column>
                     </h:dataTable>
                     <br>
                         <h:outputText value="Endnote: #{outForStudents.getEndnote(student.getIdPersonen())}"/>
+                        <br />
+                        <h:outputText value="Endnote (Wunschnoten): #{outForStudents.getWunschEndnote(student.getIdPersonen())}"/>
                     </br>
                     <br />
                     <h:commandButton value="Wunschnoten speichern..." action="WunschnotenGespeichert" />
+                    <h:commandButton value="Endnote neu berechnen" />
                 </h:form>
             </ui:define>
         </ui:composition>
