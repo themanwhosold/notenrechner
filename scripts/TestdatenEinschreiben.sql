@@ -98,8 +98,9 @@ where noten.Matrikelnr=personen.idPersonen and studienfaecher.id= noten.studienf
 and personen.Nachname='Schmidt' and noten.notenart_id= notenart.notenart_id;
 
 -- zeigt alle Noten des Dozenten mit der Id=1 von einem gewissen Fach an !
-select noten.note, studienfaecher.bezeichnung, personen.idPersonen, noten.Matrikelnr
-from noten, personen, studienfaecher
-where studienfaecher.idStudienfach= noten.studienfach_id 
- and studienfaecher.Dozent_ID= personen.idPersonen
- and personen.idPersonen=1
+select noten.*
+ from noten, studienfaecher, personen
+ where noten.studienfach_id= studienfaecher.idStudienfach and personen.idPersonen = studienfaecher.dozent_id
+ and personen.idPersonen=1;
+;
+ 
