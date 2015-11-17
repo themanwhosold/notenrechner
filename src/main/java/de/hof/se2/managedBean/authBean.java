@@ -5,6 +5,7 @@
  */
 package de.hof.se2.managedBean;
 
+import de.hof.se2.entity.Personen;
 import java.util.List;
 //import javax.annotation.ManagedBean;
 //import javax.ejb.Stateless;
@@ -30,19 +31,32 @@ public class authBean {
     @Default User credentials;
     @PersistenceContext EntityManager em;
 
-    public User user;
+    private User user;
     
     @Named
-    public void login() {
-        List<User> results = em.createQuery(
-                "select u from personen p where p.idPersonen=:username and p.Passwort=:password")
-                .setParameter("username", credentials.getUsername())
-                .setParameter("password", credentials.getPassword())
+    public void login(int id, String password) {
+//        User test= new User();
+//        test.setPassword("passwort");
+//        test.setUserId(1);
+        List<Personen> results = em.createQuery(
+                
+                
+                "select p from Personen p where p.idPersonen=:username and p.passwort=:password")
+                .setParameter("username", id)
+//                .setParameter("username", test.getUserId())
+                .setParameter("password", password)
+//                .setParameter("password", test.getPassword())
                 .getResultList();
 
         if (!results.isEmpty()) {
+            
 
-            user = results.get(0);
+            
+            user.setUserId(results.get(0).getIdPersonen());
+            user.setNachname(results.get(0).getNachname());
+            user.setVorname(results.get(0).getVorname());
+            
+            
 
         }
 
@@ -62,10 +76,12 @@ public class authBean {
 
     @Produces
     @LoggedIn
-    User getCurrentUser() {
-
+    @Named
+   public User getCurrentUser() {
+//       User myUSer=new User();
+//       myUSer.setUserId(20171001);
         return user;
-
+//return myUSer;
     }
 
     public User getUser() {

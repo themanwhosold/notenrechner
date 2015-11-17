@@ -11,12 +11,16 @@
             <h:panelGrid columns="2" rendered="#{!authBean.loggedIn}">
                 <h:outputLabel for="username"
                                >Username:</h:outputLabel>
-                <h:inputText id="username" value="#{user.username}"/>
+                <h:inputText id="username" value="#{user.userId}"/>
                 <h:outputLabel for="password"
                                >Password:</h:outputLabel>
                 <h:inputSecret id="password" value="#{user.password}"/>
             </h:panelGrid>
-            <h:commandButton value="Login" action="#{authBean.login}" rendered="#{!authBean.loggedIn}"/>
+<!--            <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}"/>-->
+                <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}">
+                
+                </h:commandButton>
+            <h:link value="StudentsOut.xhtml"/>
             <h:commandButton value="Logout" action="#{authBean.logout}" rendered="#{authBean.loggedIn}"/>
         </h:form>
     </h:body>
