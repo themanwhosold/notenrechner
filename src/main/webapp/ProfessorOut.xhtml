@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+        <h:body>
+        <ui:composition template="templates/defaultTemplate.xhtml">
+            <ui:define name="top">Notenübersicht für Dozenten</ui:define>
+            <ui:define name="content">
+                <c:set var="professor" value="${outForProfessors.getProfessor(5)}"/>
+                <h:outputText value="Professor: #{professor.getVorname()}, #{professor.getNachname()}"/>
+                <br />
+                <h:outputText value="Dozent_id: #{professor.getIdPersonen()}"/>
+                <h:dataTable value="#{outForProfessors.notenListByProfessor(professor.getIdPersonen())}" var="noten">
+<!--                    <h:column>
+                        <f:facet name="header">NotenID</f:facet>
+                            #{noten.idNoten}
+                    </h:column>-->
+                    <h:column>
+                        <f:facet name="header">Note</f:facet>
+                            #{noten.note}
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Gewichtung</f:facet>
+                            #{noten.einzelgewicht}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Studienfach</f:facet>
+                            #{noten.studienfachId.bezeichnung}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Notenart</f:facet>
+                            #{noten.notenartId.bezeichnung}
+                    </h:column>
+                </h:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
