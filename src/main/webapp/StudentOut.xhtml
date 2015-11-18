@@ -39,7 +39,7 @@
                     </br>
                     <br />
                     <h:commandButton value="Wunschnoten speichern..." action="WunschnotenGespeichert" />
-                    <h:commandButton value="Endnote neu berechnen" />
+                    <h:commandButton value="Endnote neu berechnen" onclick="#{outForStudents.getWunschEndnote(student.getIdPersonen())}"/>
                 </h:form>
             </ui:define>
         </ui:composition>
