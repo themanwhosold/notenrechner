@@ -8,39 +8,61 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-        <h:body>
+    <h:body>
         <ui:composition template="templates/defaultTemplate.xhtml">
             <ui:define name="top">Notenübersicht für Dozenten</ui:define>
             <ui:define name="content">
-                <c:set var="professor" value="${outForProfessors.getProfessor(5)}"/>
-                <h:outputText value="Professor: #{professor.getVorname()}, #{professor.getNachname()}"/>
+                <c:set var="professor" value="${outForProfessors.getProfessor(1)}"/>
+                <h:outputText value="Professor: #{professor.getVorname()}  #{professor.getNachname()}"/>
                 <br />
                 <h:outputText value="Dozent_id: #{professor.getIdPersonen()}"/>
-                <h:dataTable value="#{outForProfessors.notenListByProfessor(professor.getIdPersonen())}" var="noten">
-<!--                    <h:column>
-                        <f:facet name="header">NotenID</f:facet>
-                            #{noten.idNoten}
-                    </h:column>-->
-                    <h:column>
-                        <f:facet name="header">Note</f:facet>
-                            #{noten.note}
-                    </h:column>
-                     <h:column>
-                        <f:facet name="header">Gewichtung</f:facet>
-                            #{noten.einzelgewicht}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Studienfach</f:facet>
-                            #{noten.studienfachId.bezeichnung}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Notenart</f:facet>
-                            #{noten.notenartId.bezeichnung}
-                    </h:column>
-                </h:dataTable>
+                <br />
+                <c:set var="professor" value="${outForProfessors.getProfessor(1)}"/>
+                <br />
+                <ui:repeat value="#{outForProfessors.StudienfaecherListByProfessor(professor.getIdPersonen())}" var="studienfaecher">
+                    <li> Notenübersicht des Faches: #{studienfaecher.bezeichnung}</li>
+                    <h:dataTable class="profnoten" style="border-spacing:10px;" value="#{outForProfessors.notenListByProfessorStudienfach(professor.getIdPersonen(), studienfaecher.idStudienfach)}" var="noten">
+                        <h:column>
+                            <f:facet name="header">Matrikelnummer</f:facet>
+                                #{noten.matrikelnr.idPersonen}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Studienfach</f:facet>
+                                #{noten.studienfachId.bezeichnung}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Semester</f:facet>
+                                #{noten.studienfachId.semester}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Punkte</f:facet>
+                                #{noten.note}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Art der Prüfung</f:facet>
+                                #{noten.notenartId.bezeichnung}
+                        </h:column>
+                        <br />  
+                    </h:dataTable>
+                    <c:set var="statistik" value="${outForStudents.getStatistik(studienfaecher.idStudienfach)}"/>
+                    <p>Arithmetisches Mittel: <h:outputText value="#{statistik.getArithmetischesMittel()}" >
+                            <f:convertNumber pattern="#0.00" />
+                        </h:outputText>
+                    </p>
+                    <p>Standardabweichung <h:outputText value="#{statistik.getStandardabweichung()}" >
+                            <f:convertNumber pattern="#0.00" />
+                        </h:outputText>
+                    </p>
+                    <h:outputText value="Median: #{statistik.getMedian()}"/>
+                    <p>Varianz: <h:outputText value="#{statistik.getVarianz()}" >
+                            <f:convertNumber pattern="#0.00" />
+                        </h:outputText>
+                    </p>
+                    <p><h:outputText value="Beste Note: #{statistik.getMaxNote()}"/></p>
+                    <p><h:outputText value="Schlechteste Note: #{statistik.getMinNote()}"/></p>
+
+                </ui:repeat>
             </ui:define>
         </ui:composition>
     </h:body>
 </html>
-
-
