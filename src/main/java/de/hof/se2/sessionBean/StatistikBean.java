@@ -7,6 +7,8 @@ package de.hof.se2.sessionBean;
 
 import de.hof.se2.entity.Noten;
 import de.hof.se2.test.Statistik;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.annotation.Resource;
@@ -130,37 +132,83 @@ public class StatistikBean implements StatistikBeanLocal {
     }
 
     /**
+     *
+     * Gibt die Anzahl der Notenarten eines Studienfaches zurueck
+     *
+     * @author max
+     * @since 24.11.2015
+     * @param idStudienfach
+     * @return anzahlNotenArten
+     */
+    @Override
+    public int getAnzahlNotenArten(int idStudienfach) {
+        BigInteger anzahlNotenArten = BigInteger.ZERO;
+        try {
+            anzahlNotenArten = (BigInteger) em.createNativeQuery("select count(distinct notenart_id) from noten where studienfach_id =" + idStudienfach).getResultList().get(0);
+        } catch (Exception ex) {
+//            ex.printStackTrace();   // schlecht wird nicht angezeigt
+            throw new RuntimeException("Hallo " + ex); //Naja
+
+        }
+        return anzahlNotenArten.intValue();
+    }
+
+    /**
      * @author max Erzeugt ein Objekt der Klasse Statistik
      * @param idStudienfach
      * @return ein Objekt der Klasse Statistik
      */
     @Override
-    public Statistik getStatistik(int idStudienfach) {
-        List<Noten> notenListe = this.dbAbfrage(idStudienfach);
-        double aritmetischesMittel = this.berechneArithmetischesMittel(notenListe);
-        int median = this.berechneMedian(notenListe);
-        double varianz = this.berechneVarianz(notenListe, aritmetischesMittel);
-        double standardAbweichung = this.berechneStandardabweichung(varianz);
+    public List<Statistik> getStatistik(int idStudienfach) {
+        List<Statistik> rc = new ArrayList<>();
+
+        List<Noten> notenListe = this.dbAbfrage(idStudienfach); //Liefert sortierte NotenListe, aber nicht unterschieden nach Art
+//        ArrayList<ArrayList<Noten>> liste = new ArrayList<>();
+        int anzahl = this.getAnzahlNotenArten(idStudienfach);
+
+        for (int i = 1; i <= anzahl; i++) { //Geht nur wenn Notenart aufsteigend nummeriert werden
+            ArrayList<Noten> temp = new ArrayList<>();
+            for (Noten noten : notenListe) {
+                if (noten.getNotenartId().getIdNotenart() == i) {
+                    temp.add(noten);
+                }
+            }
+//            liste.add(temp);
+            double aritmetischesMittel = this.berechneArithmetischesMittel(temp);
+            int median = this.berechneMedian(temp);
+            double varianz = this.berechneVarianz(temp, aritmetischesMittel);
+            double standardAbweichung = this.berechneStandardabweichung(varianz);
+            Noten tempNote = temp.get(0);
+            Statistik stat = new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, temp.get(temp.size() - 1).getNote(), tempNote.getNote(), tempNote.getStudienfachId(), tempNote.getNotenartId());
+            rc.add(stat);
+        }
+
+//        double aritmetischesMittel = this.berechneArithmetischesMittel(notenListe);
+//        int median = this.berechneMedian(notenListe);
+//        double varianz = this.berechneVarianz(notenListe, aritmetischesMittel);
+//        double standardAbweichung = this.berechneStandardabweichung(varianz);
 //        int minMax [] = this.getMinMaxNoten(notenListe);
-        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, notenListe.get(notenListe.size() - 1).getNote(), notenListe.get(0).getNote());
+//        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, notenListe.get(notenListe.size() - 1).getNote(), notenListe.get(0).getNote());
+        return rc;
     }
 
     /**
      * Von Christoph angefragt, da man nun flexibler die Statistik erzeugen kann
-     * -> ist performancetechnisch schlechter
+     * -> ist performancetechnisch schlechter -> Deprecated!
      *
      * @author max Erzeugt ein Objekt der Klasse Statistik
      * @param notenListe
      * @return ein Objekt der Klasse Statistik
      */
     @Override
+    @Deprecated
     public Statistik getStatistik(List<Noten> notenListe) {
         double aritmetischesMittel = this.berechneArithmetischesMittel(notenListe);
         int median = this.berechneMedian(notenListe);
         double varianz = this.berechneVarianz(notenListe, aritmetischesMittel);
         double standardAbweichung = this.berechneStandardabweichung(varianz);
         int minMax[] = this.getMinMaxNoten(notenListe);
-        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, minMax[1], minMax[0]);
+        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, minMax[1], minMax[0], null, null);
     }
 
 }

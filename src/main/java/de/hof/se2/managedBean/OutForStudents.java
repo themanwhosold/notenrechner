@@ -145,8 +145,7 @@ public class OutForStudents implements Serializable {
     }
 
     @Named
-    public Statistik getStatistik(int idStudienfach) {
-
+    public List<Statistik> getStatistik(int idStudienfach) {
         return this.statistikBeanLocal.getStatistik(idStudienfach);
     }
 
@@ -172,8 +171,8 @@ public class OutForStudents implements Serializable {
     }
     
     @Named
+    @Deprecated
     public Statistik getStatistik(List<Noten> notenListe) {
-
         return this.statistikBeanLocal.getStatistik(notenListe);
     }
     

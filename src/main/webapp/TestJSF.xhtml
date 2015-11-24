@@ -38,30 +38,28 @@
     </br>
 
 
-    <!--    <br>
-                <h:outputText value="Improved: #{outForStudents.getStatistik(1001).arithmetischesMittel}"/>
-        </br>-->
+
     <br></br>
     <br></br>
     <c:set var="stat" value="${outForStudents.getStatistik(1001)}"/>
     <br></br>
-    <h:outputText value="Improved arithmetisches Mittel: #{stat.arithmetischesMittel}"/>
+    <h:outputText value="Improved arithmetisches Mittel: #{stat}"/>
     <br></br>
-    
-    <h:outputText value="Improved Median: #{stat.median}"/>
+<!--    
+    <h:outputText value="Improved Median: #{stat.get(0).median}"/>
  
     <br></br>
-    <h:outputText value="Improved Vaianz: #{stat.varianz}"/>
+    <h:outputText value="Improved Vaianz: #{stat.get(0).varianz}"/>
     <br></br>
-    <h:outputText value="Improved Standardabweichung: #{stat.standardabweichung}">
+    <h:outputText value="Improved Standardabweichung: #{stat.get(0).standardabweichung}">
         <f:convertNumber pattern="#0.00"/>
     </h:outputText>
-    <!--<h:outputText value="Improved Standardabweichung: #{stat.standardabweichung}"/>-->
+    <h:outputText value="Improved Standardabweichung: #{stat.get(0).standardabweichung}"/>
     <br></br>
-    <h:outputText value="ToString:  #{stat.toString()}"/>
+    <h:outputText value="ToString:  #{stat.get(0).toString()}"/>
     <br>
         <c:set var="student" value="${outForStudents.getStudent(1)}"/>
         <h:outputText value="Student:  #{student.getVorname()}"/>
-    </br>
+    </br>-->
 </html>
 
