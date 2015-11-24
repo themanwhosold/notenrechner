@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--Autor: Maximilian Schreiber-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="Template.xhtml" >
+            <ui:define name="title">Spieler Hinzufügen</ui:define>
+            <ui:define name = "top1">
+                <h2>Spieler Hinzufügen zum Team #{TeamsAusDatenbank.getTeam(TeamsAusDatenbank.ID).name}</h2>
+            </ui:define>
+            <ui:define name = "top2"> </ui:define>
+            <ui:define name = "top3"> </ui:define>
+            <ui:define name = "top4"> </ui:define>
+
+            <ui:define name="content">
+
+
+
+                <h:form>
+                    <label for="vorname">Vorname: &nbsp;&nbsp;</label>
+                    <h:inputText id="vorname" value="#{spielerHinzufuegenBean.vorname}" p:placeholder="Vorname" />
+                    <br></br>
+                    <label for="nachname">Nachname: </label>
+                    <h:inputText id="nachname" value="#{spielerHinzufuegenBean.nachname}" p:placeholder="Nachname" />
+
+                    <br></br>
+                    <h:commandButton value="Spieler in Datenbank schreiben" 
+                                     action="#{spielerHinzufuegenBean.schreibenPlayerInDB(TeamsAusDatenbank.ID)}"
+                                     onclick="alert('Spieler erfolgreich in die Datenbank geschrieben')">
+                                       
+                     
+                    </h:commandButton>  
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
