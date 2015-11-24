@@ -27,3 +27,7 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+
+.profnoten{
+    text-align: center;
+}

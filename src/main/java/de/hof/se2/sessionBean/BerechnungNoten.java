@@ -8,8 +8,8 @@ package de.hof.se2.sessionBean;
 import de.hof.se2.entity.Noten;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.ejb.SessionContext;
 import javax.ejb.Local;
+import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -142,6 +142,29 @@ public class BerechnungNoten implements BerechnungNotenLocal {
         long summeNoten = 0;
         for (Noten noten : notenListe) {
             summeNoten += noten.getEinzelgewicht() * noten.getNote();
+            summeGewichtung += noten.getEinzelgewicht();
+        }
+        rc =  (double) summeNoten / (double) summeGewichtung;
+        return rc;
+    }
+    /**
+     * Methode um die Endnote auf Basis der Wunschnoten zu berechnen
+     * @author markus
+     * @version 0.1
+     * @param matrikelNr
+     * @since 17.11.2015
+     * @return Endnote
+     */
+    @Override
+    public double getWunschEndnote(int matrikelNr) {
+        //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
+        //em.createNamedQuery(N, resultClass)
+        double rc = 0.;
+        List<Noten> notenListe = em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
+        long summeGewichtung = 0;
+        long summeNoten = 0;
+        for (Noten noten : notenListe) {
+            summeNoten += noten.getEinzelgewicht() * noten.getWunschnote();
             summeGewichtung += noten.getEinzelgewicht();
         }
         rc =  (double) summeNoten / (double) summeGewichtung;

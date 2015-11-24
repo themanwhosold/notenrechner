@@ -95,6 +95,13 @@ public class OutForStudents implements Serializable {
         List<Personen> person = em.createNamedQuery("Personen.findByIdPersonen", Personen.class).setParameter("idPersonen", matrikelNr).getResultList();
         return person.get(0);
     }
+    /**
+     * Methode um Änderungen an den Wunschnoten in die DB zu schreiben
+     * @param matrikelNr 
+     */
+    public void setStudent(int matrikelNr) {
+        
+    }
 
     /**
      * @author max
@@ -151,6 +158,11 @@ public class OutForStudents implements Serializable {
     @Named
     public double getEndnote(int personId){
         return this.berechnungNoten.getEndnote(personId);
+    }
+    
+    @Named
+    public double getWunschEndnote(int personId){
+        return this.berechnungNoten.getWunschEndnote(personId);
     }
 
     @Named

@@ -6,4 +6,4 @@ env:
 before_install: 
 jdk:
   - oraclejdk8
-  - oraclejdk7
+    #  - oraclejdk7

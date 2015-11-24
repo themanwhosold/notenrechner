@@ -34,7 +34,9 @@ insert into studienfaecher values(1002, 1, 'Mathematik', 1, 2);
 insert into studienfaecher values(1003, 1, 'GdRT', 1, 3);
 insert into studienfaecher values(1004, 1, 'GdI', 1, 4);
 insert into studienfaecher values(1005, 1, 'Betriebssysteme', 1, 5);
-insert into studienfaecher values(1006, 1, 'Statistik', 1, 6);
+insert into studienfaecher values(1006, 1, 'Statistik', 2, 6);
+insert into studienfaecher values(1007, 1, 'Datenbanken', 2, 1);
+
 
 -- Notenart
 -- idNotenart, studiengang_id, bezeichnung
@@ -89,17 +91,18 @@ insert into noten values(33,1004,12,10,20171005, 1, 5000);
 insert into noten values(34,1005,13,10,20171005, 1, 5000);
 insert into noten values(35,1006,5,10,20171005, 2, 1000);
 
+-- idNoten, studienfach_id, note, wunschnote, matnr,notenart_id, einzelgewicht
+-- Noten für Fach Datenbanken
+insert into noten values(36,1007,14,10,20171001, 1, 5000);
+insert into noten values(37,1007,13,10,20171002, 1, 5000);
+insert into noten values(38,1007,15,10,20171003, 1, 5000);
+insert into noten values(39,1007,11,10,20171004, 1, 5000);
+insert into noten values(40,1007,10,10,20171005, 1, 5000);
+insert into noten values(41,1007,9,10,20171001, 1, 5000);
+
+
 set foreign_key_checks = 1;
 
--- zeigt alle Noten von Student mit nachnamen "Schmidt" an!
-select personen.Vorname, personen.Nachname, noten.note, studienfaecher.bezeichnung, notenart.bezeichnung
-from noten, personen, studienfaecher, notenart
-where noten.Matrikelnr=personen.idPersonen and studienfaecher.id= noten.studienfachID 
-and personen.Nachname='Schmidt' and noten.notenart_id= notenart.notenart_id;
 
--- zeigt alle Noten des Dozenten mit der Id=1 von einem gewissen Fach an !
-select noten.note, studienfaecher.bezeichnung, personen.idPersonen, noten.Matrikelnr
-from noten, personen, studienfaecher
-where studienfaecher.idStudienfach= noten.studienfach_id 
- and studienfaecher.Dozent_ID= personen.idPersonen
- and personen.idPersonen=1
+
+
