@@ -15,6 +15,7 @@ import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 //import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -31,9 +32,9 @@ public class authBean {
     @Default User credentials;
     @PersistenceContext EntityManager em;
 
-    private User user;
+//    private User user;
     
-    @Named
+    @Named 
     public void login(int id, String password) {
 //        User test= new User();
 //        test.setPassword("passwort");
@@ -50,11 +51,11 @@ public class authBean {
 
         if (!results.isEmpty()) {
             
-
+            credentials=new User();
             
-            user.setUserId(results.get(0).getIdPersonen());
-            user.setNachname(results.get(0).getNachname());
-            user.setVorname(results.get(0).getVorname());
+            credentials.setUserId(results.get(0).getIdPersonen());
+            credentials.setNachname(results.get(0).getNachname());
+            credentials.setVorname(results.get(0).getVorname());
             
             
 
@@ -64,13 +65,13 @@ public class authBean {
 
     public void logout() {
 
-        user = null;
+        credentials = null;
 
     }
 
     public boolean isLoggedIn() {
 
-        return user != null;
+        return credentials != null;
 
     }
 
@@ -78,18 +79,18 @@ public class authBean {
     @LoggedIn
     @Named
    public User getCurrentUser() {
-//       User myUSer=new User();
-//       myUSer.setUserId(20171001);
-        return user;
-//return myUSer;
+       User myUSer=new User();
+       myUSer.setUserId(2);
+//        return credentials;
+return myUSer;
     }
 
     public User getUser() {
-        return user;
+        return credentials;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.credentials = user;
     }
     
     

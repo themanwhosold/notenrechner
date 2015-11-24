@@ -20,7 +20,11 @@
                 <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}">
                 
                 </h:commandButton>
-            <h:link value="StudentsOut.xhtml"/>
+            <br/>
+            <h:outputLabel value="haltso">#{authBean.currentUser.userId}</h:outputLabel>
+            <h:link value="Studenten" outcome="StudentOut"/>
+            <br/>
+            <h:link value="Profs" outcome="ProfessorOut"/>
             <h:commandButton value="Logout" action="#{authBean.logout}" rendered="#{authBean.loggedIn}"/>
         </h:form>
     </h:body>

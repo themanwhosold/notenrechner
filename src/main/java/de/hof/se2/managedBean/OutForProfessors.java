@@ -37,7 +37,7 @@ public class OutForProfessors implements Serializable {
     @Default
     Document doc;
     @LoggedIn
-    UserDaten user;
+    User user;
 
     //    @Current Document doc;
 //    @LoggedIn User user;

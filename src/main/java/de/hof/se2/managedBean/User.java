@@ -14,10 +14,11 @@ import javax.inject.Named;
  */
 @Named(value = "user")
 @RequestScoped
+@LoggedIn
 public class User{
     
 
-    private int userId;
+    private int userId=0;
     private int rolle;
     private String password;
     private String vorname;
@@ -52,7 +53,8 @@ public class User{
     }
 
     public int getUserId() {
-        return userId;
+        if (userId==0) return 1;
+        else return userId;
     }
 
     public void setUserId(int userId) {

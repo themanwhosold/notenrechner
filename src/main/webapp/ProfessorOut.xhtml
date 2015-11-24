@@ -12,7 +12,8 @@
         <ui:composition template="templates/defaultTemplate.xhtml">
             <ui:define name="top">Notenübersicht für Dozenten</ui:define>
             <ui:define name="content">
-                <c:set var="professor" value="${outForProfessors.getProfessor(1)}"/>
+                <c:set var="professor" value="#{outForProfessors.getProfessor(authBean.currentUser.userId)}"/>
+                <!--<c:set var="professor" value="${outForProfessors.getProfessor(1)}"/>-->
                 <h:outputText value="Professor: #{professor.getVorname()}  #{professor.getNachname()}"/>
                 <br />
                 <h:outputText value="Dozent_id: #{professor.getIdPersonen()}"/>
