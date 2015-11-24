@@ -5,13 +5,18 @@
  */
 package de.hof.se2.managedBean;
 
+import de.hof.se2.entity.Personen;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+//import javax.annotation.ManagedBean;
+//import javax.ejb.Stateless;
+//import javax.ejb.LocalBean;
 
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
+//import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,26 +26,38 @@ import javax.persistence.PersistenceContext;
  * @author Schmidbauer
  */
 @SessionScoped
-@LocalBean
-@Named(value = "login")
+@Named(value = "authBean")
 public class authBean {
 
-    @Default UserDaten credentials;
+    @Default User credentials;
     @PersistenceContext EntityManager em;
 
-    public UserDaten user;
-
-    public void login() {
-
-        List<UserDaten> results = em.createQuery(
-                "select u from Personen p where p.idPersonen=:username and u.Passwort=:password")
-                .setParameter("username", credentials.getUsername())
-                .setParameter("password", credentials.getPassword())
+//    private User user;
+    
+    @Named 
+    public void login(int id, String password) {
+//        User test= new User();
+//        test.setPassword("passwort");
+//        test.setUserId(1);
+        List<Personen> results = em.createQuery(
+                
+                
+                "select p from Personen p where p.idPersonen=:username and p.passwort=:password")
+                .setParameter("username", id)
+//                .setParameter("username", test.getUserId())
+                .setParameter("password", password)
+//                .setParameter("password", test.getPassword())
                 .getResultList();
 
         if (!results.isEmpty()) {
-
-            user = results.get(0);
+            
+            credentials=new User();
+            
+            credentials.setUserId(results.get(0).getIdPersonen());
+            credentials.setNachname(results.get(0).getNachname());
+            credentials.setVorname(results.get(0).getVorname());
+            
+            
 
         }
 
@@ -48,21 +65,33 @@ public class authBean {
 
     public void logout() {
 
-        user = null;
+        credentials = null;
 
     }
 
     public boolean isLoggedIn() {
 
-        return user != null;
+        return credentials != null;
 
     }
 
     @Produces
     @LoggedIn
-    UserDaten getCurrentUser() {
-
-        return user;
-
+    @Named
+   public User getCurrentUser() {
+       User myUSer=new User();
+       myUSer.setUserId(2);
+//        return credentials;
+return myUSer;
     }
+
+    public User getUser() {
+        return credentials;
+    }
+
+    public void setUser(User user) {
+        this.credentials = user;
+    }
+    
+    
 }

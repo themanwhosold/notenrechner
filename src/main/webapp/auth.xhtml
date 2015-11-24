@@ -7,26 +7,25 @@
         <title>Login</title>
     </h:head>
     <h:body>
-        <!--        <form name="loginForm" method="POST" action="authCheck">
-                    <p><strong>Benutzername: </strong>
-                        <input type="text" name="user" size="25"></p>
-                    <p><strong>Passwort: </strong>
-                        <input type="password" size="25" name="password"></p>
-                    <p>
-                        <input type="submit" value="Login" name="login" onclick="#{authenticate.auth}"/></p>
-        -->
-
         <h:form>
-            <h:panelGrid columns="2" rendered="#{!login.loggedIn}">
+            <h:panelGrid columns="2" rendered="#{!authBean.loggedIn}">
                 <h:outputLabel for="username"
                                >Username:</h:outputLabel>
-                <h:inputText id="username" value="#{userDaten.username}"/>
+                <h:inputText id="username" value="#{user.userId}"/>
                 <h:outputLabel for="password"
                                >Password:</h:outputLabel>
-                <h:inputText id="password" value="#{userDaten.password}"/>
+                <h:inputSecret id="password" value="#{user.password}"/>
             </h:panelGrid>
-            <h:commandButton value="Login" action="#{login.login}" rendered="#{!login.loggedIn}"/>
-            <h:commandButton value="Logout" action="#{login.logout}" rendered="#{login.loggedIn}"/>
+<!--            <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}"/>-->
+                <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}">
+                
+                </h:commandButton>
+            <br/>
+            <h:outputLabel value="haltso">#{authBean.currentUser.userId}</h:outputLabel>
+            <h:link value="Studenten" outcome="StudentOut"/>
+            <br/>
+            <h:link value="Profs" outcome="ProfessorOut"/>
+            <h:commandButton value="Logout" action="#{authBean.logout}" rendered="#{authBean.loggedIn}"/>
         </h:form>
     </h:body>
 </html>
