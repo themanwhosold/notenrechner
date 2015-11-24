@@ -5,15 +5,12 @@
  */
 package de.hof.se2.managedBean;
 
-import de.hof.se2.test.Professors;
 import de.hof.se2.entity.Noten;
 import de.hof.se2.entity.Personen;
 import de.hof.se2.entity.Studienfaecher;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
-import de.hof.se2.test.Statistik;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
@@ -121,7 +118,7 @@ public class OutForProfessors implements Serializable {
 
     /**
      * @author max
-     * @param idStudienfach
+     * @param personId
      * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten
      * Bean
      */
