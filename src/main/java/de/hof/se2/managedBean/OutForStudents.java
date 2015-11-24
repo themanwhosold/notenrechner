@@ -144,6 +144,12 @@ public class OutForStudents implements Serializable {
         return this.berechnungNoten.getMedian(idStudienfach);
     }
 
+    /**
+     * Gibt eine Liste von Statistik Objekte zurueck, die nach Notenart unterscheiden 
+     * @author Maximilian Schreiber
+     * @param idStudienfach
+     * @return List<Statistik>
+     */
     @Named
     public List<Statistik> getStatistik(int idStudienfach) {
         return this.statistikBeanLocal.getStatistik(idStudienfach);
