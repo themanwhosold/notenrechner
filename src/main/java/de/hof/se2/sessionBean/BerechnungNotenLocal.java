@@ -5,6 +5,8 @@
  */
 package de.hof.se2.sessionBean;
 
+import de.hof.se2.eigeneNoten.Endnote;
+import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import javax.ejb.Local;
 
 /**
@@ -19,9 +21,9 @@ public interface BerechnungNotenLocal {
     public double getStandardabweichung(int idStudienfach);
     public int getMedian(int idStudienfach);
     public double getVarianz(int idStudienfach);
-    public double getEndnote(int matrikelNr);
+    public Endnote getEndnote(int matrikelNr);
     public double getWunschEndnote(int matrikelNr);
-    public double getNoteGrundstudium(int matrikelNr);
+    public Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr);
     public String getHello();
 
     

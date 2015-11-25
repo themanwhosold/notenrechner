@@ -5,6 +5,8 @@
  */
 package de.hof.se2.managedBean;
 
+import de.hof.se2.eigeneNoten.Endnote;
+import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
 import de.hof.se2.entity.Personen;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
@@ -161,7 +163,7 @@ public class OutForStudents implements Serializable {
     }
     
     @Named
-    public double getEndnote(int personId){
+    public Endnote getEndnote(int personId){
         return this.berechnungNoten.getEndnote(personId);
     }
     
@@ -180,6 +182,11 @@ public class OutForStudents implements Serializable {
     @Deprecated
     public Statistik getStatistik(List<Noten> notenListe) {
         return this.statistikBeanLocal.getStatistik(notenListe);
+    }
+    
+    @Named
+    public Zwischenpruefungsnote getZwischenpruefungsnote(int personID){
+        return this.berechnungNoten.getNoteGrundstudium(personID);
     }
     
 }

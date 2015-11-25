@@ -5,6 +5,8 @@
  */
 package de.hof.se2.sessionBean;
 
+import de.hof.se2.eigeneNoten.Endnote;
+import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
 import java.util.List;
 import javax.annotation.Resource;
@@ -118,13 +120,12 @@ public class BerechnungNoten implements BerechnungNotenLocal {
     }
 
     /**
-     * Die statistischen Methoden sind inperformant, da jeder fuer sich eine
-     * Abfrage aus der Datenbank erzeugt es werden somit keine schon berechneten
-     * Werte wiederverwendet Loesung: ueber Membervariablen der Bean -> wurde
-     * verbessert
+     * Bei den Berechnungen der Zwischen- bzw. der Endnote geht alles, 
+     * außer die korreckte Berechnung der Leistungsnachweisdurchschnittsnoten
      */
     /**
-     * Methode um die Endnote zu berechnen -> funktioniert nur wenn die in der Datenbank abgelegte Einzelgewicht immer relativ zur Endnote ist
+     * Methode um die Endnote zu berechnen -> funktioniert nur wenn die in der
+     * Datenbank abgelegte Einzelgewicht immer relativ zur Endnote ist
      *
      * @author Max
      * @version 0.1
@@ -133,22 +134,60 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @return Endnote
      */
     @Override
-    public double getEndnote(int matrikelNr) {
+    public Endnote getEndnote(int matrikelNr) {
         //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
         //em.createNamedQuery(N, resultClass)
-        double rc = 0.;
-        List<Noten> notenListe = em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
+
+//        double rc = 0.;
+//        List<Noten> notenListe = em.createNativeQuery("select * from noten where Matrikelnr = " + matrikelNr, Noten.class).getResultList();
+//        long summeGewichtung = 0;
+//        long summeNoten = 0;
+//        for (Noten noten : notenListe) {
+//            summeNoten += noten.getEinzelgewicht() * noten.getNote();
+//            summeGewichtung += noten.getEinzelgewicht();
+//        }
+//        rc = (double) summeNoten / (double) summeGewichtung;
+//        return rc;
+        Zwischenpruefungsnote zwischenpruefungsnote = this.getNoteGrundstudium(matrikelNr);
+
+        int bisGrundstudium = (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
+        List<Noten> notenListe = em.createNativeQuery("select n.* from noten n,studienfaecher s where n.Matrikelnr = " + matrikelNr + " and n.studienfach_id = s.idStudienfach and s.semester > " + bisGrundstudium, Noten.class).getResultList();
+
         long summeGewichtung = 0;
         long summeNoten = 0;
+
+        long anzahlLeistungsnachweise = 0;
+        long summeLeistungsnachweise = 0;
         for (Noten noten : notenListe) {
             summeNoten += noten.getEinzelgewicht() * noten.getNote();
             summeGewichtung += noten.getEinzelgewicht();
+            if (noten.getNotenartId().getIdNotenart() == 2) {     //Achtung 2 ist hardcodiert!!!!
+                anzahlLeistungsnachweise++;
+                summeLeistungsnachweise += noten.getNote();
+            }
         }
-        rc =  (double) summeNoten / (double) summeGewichtung;
+
+        // Nicht ganz trivial:
+//Alternative zu sout:
+//        throw new RuntimeException(
+//                "zwischenpruefungsnote: " + zwischenpruefungsnote.getZwischenpruefungsnote() + "   "
+//                + "zwischenpruefungsnoteGewichtung: " + zwischenpruefungsnote.getSummeGewichtung() + "  "
+//                + "SummeNoten: " + summeNoten + "  "
+//                + "Summe Gewichtung: " + summeGewichtung + "   "
+//        );
+        
+        double multi1 = zwischenpruefungsnote.getZwischenpruefungsnote() * zwischenpruefungsnote.getSummeGewichtung();
+        double endnote = (multi1 + summeNoten) / (double) (zwischenpruefungsnote.getSummeGewichtung() + summeGewichtung);
+        double leistungsnachweisNote = (double) summeLeistungsnachweise / (double) anzahlLeistungsnachweise;
+
+        Endnote rc = new Endnote(endnote, leistungsnachweisNote, zwischenpruefungsnote, notenListe, summeGewichtung, summeNoten);
         return rc;
+
     }
+
     /**
      * Methode um die Endnote auf Basis der Wunschnoten zu berechnen
+     *
      * @author markus
      * @version 0.1
      * @param matrikelNr
@@ -167,22 +206,41 @@ public class BerechnungNoten implements BerechnungNotenLocal {
             summeNoten += noten.getEinzelgewicht() * noten.getWunschnote();
             summeGewichtung += noten.getEinzelgewicht();
         }
-        rc =  (double) summeNoten / (double) summeGewichtung;
+        rc = (double) summeNoten / (double) summeGewichtung;
         return rc;
     }
 
     /**
      * Methode um die Note nach dem Grundstudium zu berechnen
      *
-     * @author markus
+     * @author max
      * @version 0.1
      * @param matrikelNr
-     * @since 03.11.2015
+     * @since 03.11.2015, 25.11.2015
      * @return Note Grundstudium
      */
     @Override
-    public double getNoteGrundstudium(int matrikelNr) {
-        return 0L;
+    public Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr) {
+        int bisGrundstudium = (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
+        List<Noten> notenListe = em.createNativeQuery("select n.* from noten n,studienfaecher s where n.Matrikelnr = " + matrikelNr + " and n.studienfach_id = s.idStudienfach and s.semester <= " + bisGrundstudium, Noten.class).getResultList();
+
+        long summeGewichtung = 0;
+        long summeNoten = 0;
+
+        long anzahlLeistungsnachweise = 0;
+        long summeLeistungsnachweise = 0;
+        for (Noten noten : notenListe) {
+            summeNoten += noten.getEinzelgewicht() * noten.getNote();
+            summeGewichtung += noten.getEinzelgewicht();
+            if (noten.getNotenartId().getIdNotenart() == 2) {     //Achtung 2 ist hardcodiert!!!!
+                anzahlLeistungsnachweise++;
+                summeLeistungsnachweise += noten.getNote();
+            }
+        }
+        double note = (double) summeNoten / (double) summeGewichtung;
+        double leistungsnachweisNote = (double) summeLeistungsnachweise / (double) anzahlLeistungsnachweise;
+        Zwischenpruefungsnote rc = new Zwischenpruefungsnote(note, leistungsnachweisNote, notenListe, summeGewichtung);
+        return rc;
     }
 
     @Override
