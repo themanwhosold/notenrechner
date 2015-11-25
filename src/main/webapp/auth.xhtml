@@ -11,10 +11,10 @@
             <h:panelGrid columns="2" rendered="#{!authBean.loggedIn}">
                 <h:outputLabel for="username"
                                >Username:</h:outputLabel>
-                <h:inputText id="username" value="#{user.userId}"/>
+                <h:inputText id="username" value="#{credentials.username}"/>
                 <h:outputLabel for="password"
                                >Password:</h:outputLabel>
-                <h:inputSecret id="password" value="#{user.password}"/>
+                <h:inputSecret id="password" value="#{credentials.password}"/>
             </h:panelGrid>
 <!--            <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}"/>-->
                 <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}">
