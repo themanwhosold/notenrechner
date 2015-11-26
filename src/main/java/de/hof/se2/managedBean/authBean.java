@@ -29,10 +29,10 @@ import javax.persistence.PersistenceContext;
 @Named(value = "authBean")
 public class authBean {
 
-    @Default User credentials;
+    @Inject Credentials credentials;
     @PersistenceContext EntityManager em;
 
-//    private User user;
+    private User user;
     
     @Named 
     public void login(int id, String password) {
@@ -43,20 +43,21 @@ public class authBean {
                 
                 
                 "select p from Personen p where p.idPersonen=:username and p.passwort=:password")
-                .setParameter("username", id)
+                .setParameter("username", credentials.getUsername())
+//                .setParameter("username", id)
 //                .setParameter("username", test.getUserId())
-                .setParameter("password", password)
+                .setParameter("password", credentials.getPassword())
+//                .setParameter("password", password)
 //                .setParameter("password", test.getPassword())
                 .getResultList();
 
         if (!results.isEmpty()) {
             
-            credentials=new User();
-            
-            credentials.setUserId(results.get(0).getIdPersonen());
-            credentials.setNachname(results.get(0).getNachname());
-            credentials.setVorname(results.get(0).getVorname());
-            
+            user = new User();
+            user.setUserId(results.get(0).getIdPersonen());
+            user.setNachname(results.get(0).getNachname());
+            user.setVorname(results.get(0).getVorname());
+            user.setRolle((int)results.get(0).getRolle());
             
 
         }
@@ -65,13 +66,13 @@ public class authBean {
 
     public void logout() {
 
-        credentials = null;
+        user = null;
 
     }
 
     public boolean isLoggedIn() {
 
-        return credentials != null;
+        return user != null;
 
     }
 
@@ -79,18 +80,18 @@ public class authBean {
     @LoggedIn
     @Named
    public User getCurrentUser() {
-       User myUSer=new User();
-       myUSer.setUserId(2);
-//        return credentials;
-return myUSer;
+//       User myUSer=new User();
+//       myUSer.setUserId(2);
+        return user;
+//return myUSer;
     }
 
     public User getUser() {
-        return credentials;
+        return user;
     }
 
     public void setUser(User user) {
-        this.credentials = user;
+        this.user = user;
     }
     
     
