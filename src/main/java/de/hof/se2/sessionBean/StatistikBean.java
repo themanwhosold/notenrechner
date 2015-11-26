@@ -142,15 +142,38 @@ public class StatistikBean implements StatistikBeanLocal {
      */
     @Override
     public int getAnzahlNotenArten(int idStudienfach) {
-        BigInteger anzahlNotenArten = BigInteger.ZERO;
+        BigInteger anzahlNotenArten = BigInteger.ZERO;  //BigInteger Typsicherheit fraglich
         try {
             anzahlNotenArten = (BigInteger) em.createNativeQuery("select count(distinct notenart_id) from noten where studienfach_id =" + idStudienfach).getResultList().get(0);
         } catch (Exception ex) {
 //            ex.printStackTrace();   // schlecht wird nicht angezeigt
-            throw new RuntimeException("Hallo " + ex); //Naja
+            throw new RuntimeException(ex); //Naja
 
         }
         return anzahlNotenArten.intValue();
+    }
+
+    /**
+     *
+     * Gibt die NotenIDs eines Studienfaches zurueck
+     *
+     * @author max
+     * @since 24.11.2015
+     * @param idStudienfach
+     * @return ArrayList<Integer>
+     */
+    private List<Integer> getIDsNotenarten(int idStudienfach) {
+
+        ArrayList<Integer> rc = new ArrayList<>();
+        try {
+            rc = (ArrayList<Integer>) em.createNativeQuery("select distinct notenart_id from noten where studienfach_id = " + idStudienfach).getResultList();
+        } catch (Exception ex) {
+//            ex.printStackTrace();   // schlecht wird nicht angezeigt
+            throw new RuntimeException(ex); //Naja
+
+        }
+
+        return rc;
     }
 
     /**
@@ -163,16 +186,21 @@ public class StatistikBean implements StatistikBeanLocal {
         List<Statistik> rc = new ArrayList<>();
 
         List<Noten> notenListe = this.dbAbfrage(idStudienfach); //Liefert sortierte NotenListe, aber nicht unterschieden nach Art
-//        ArrayList<ArrayList<Noten>> liste = new ArrayList<>();
-        int anzahl = this.getAnzahlNotenArten(idStudienfach);
-
-        for (int i = 1; i <= anzahl; i++) { //Geht nur wenn Notenart aufsteigend nummeriert werden
+        for (int i : this.getIDsNotenarten(idStudienfach)) {
             ArrayList<Noten> temp = new ArrayList<>();
             for (Noten noten : notenListe) {
                 if (noten.getNotenartId().getIdNotenart() == i) {
                     temp.add(noten);
                 }
-            }
+        }
+        //Alter Code
+//        for (int i = 0; i < anzahl; i++) {
+//            ArrayList<Noten> temp = new ArrayList<>();
+//            for (Noten noten : notenListe) {
+//                if (noten.getNotenartId().getIdNotenart() == i) {
+//                    temp.add(noten);
+//                }
+//            }
 //            liste.add(temp);
             double aritmetischesMittel = this.berechneArithmetischesMittel(temp);
             int median = this.berechneMedian(temp);
@@ -183,12 +211,6 @@ public class StatistikBean implements StatistikBeanLocal {
             rc.add(stat);
         }
 
-//        double aritmetischesMittel = this.berechneArithmetischesMittel(notenListe);
-//        int median = this.berechneMedian(notenListe);
-//        double varianz = this.berechneVarianz(notenListe, aritmetischesMittel);
-//        double standardAbweichung = this.berechneStandardabweichung(varianz);
-//        int minMax [] = this.getMinMaxNoten(notenListe);
-//        return new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, notenListe.get(notenListe.size() - 1).getNote(), notenListe.get(0).getNote());
         return rc;
     }
 

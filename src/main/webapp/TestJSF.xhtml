@@ -10,7 +10,7 @@
         <title>Test JSF</title>
     </h:head>
 
-    <h:dataTable value="#{outForStudents.getAllNotenForStudent(20171001)}" var="noten">
+    <h:dataTable value="#{outForStudents.getAllNotenForStudent(20130000)}" var="noten">
         <h:column>
             <f:facet name="header">NotenID</f:facet>
                 #{noten.idNoten}
@@ -44,6 +44,14 @@
     <c:set var="stat" value="${outForStudents.getStatistik(1001)}"/>
     <br></br>
     <h:outputText value="Improved arithmetisches Mittel: #{stat}"/>
+    <br></br>
+    <br></br>
+    <c:set var="znote" value="${outForStudents.getZwischenpruefungsnote(20130000)}"/>
+    <h:outputText value="Grundstudiumsnote: #{znote}"/>
+    <br></br>
+    <br></br>
+    <c:set var="endnote" value="${outForStudents.getEndnote(20130000)}"/>
+    <h:outputText value="Endsnote: #{endnote}"/>
     <br></br>
 <!--    
     <h:outputText value="Improved Median: #{stat.get(0).median}"/>
