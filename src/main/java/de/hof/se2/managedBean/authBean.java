@@ -6,7 +6,9 @@
 package de.hof.se2.managedBean;
 
 import de.hof.se2.entity.Personen;
+import de.hof.se2.sessionBean.authSessionLocal;
 import java.util.List;
+import javax.ejb.EJB;
 //import javax.annotation.ManagedBean;
 //import javax.ejb.Stateless;
 //import javax.ejb.LocalBean;
@@ -28,6 +30,8 @@ import javax.persistence.PersistenceContext;
 @SessionScoped
 @Named(value = "authBean")
 public class authBean {
+    @EJB 
+    private authSessionLocal localSession;
 
     @Inject Credentials credentials;
     @PersistenceContext EntityManager em;
@@ -36,32 +40,7 @@ public class authBean {
     
     @Named 
     public void login(int id, String password) {
-//        User test= new User();
-//        test.setPassword("passwort");
-//        test.setUserId(1);
-        List<Personen> results = em.createQuery(
-                
-                
-                "select p from Personen p where p.idPersonen=:username and p.passwort=:password")
-                .setParameter("username", credentials.getUsername())
-//                .setParameter("username", id)
-//                .setParameter("username", test.getUserId())
-                .setParameter("password", credentials.getPassword())
-//                .setParameter("password", password)
-//                .setParameter("password", test.getPassword())
-                .getResultList();
-
-        if (!results.isEmpty()) {
-            
-            user = new User();
-            user.setUserId(results.get(0).getIdPersonen());
-            user.setNachname(results.get(0).getNachname());
-            user.setVorname(results.get(0).getVorname());
-            user.setRolle((int)results.get(0).getRolle());
-            
-
-        }
-
+        this.localSession.login(id, password);
     }
 
     public void logout() {
@@ -80,10 +59,7 @@ public class authBean {
     @LoggedIn
     @Named
    public User getCurrentUser() {
-//       User myUSer=new User();
-//       myUSer.setUserId(2);
-        return user;
-//return myUSer;
+       return this.localSession.getCurrentUser();
     }
 
     public User getUser() {
