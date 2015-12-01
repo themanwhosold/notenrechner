@@ -40,10 +40,16 @@ public class authSessionLocalTest {
     public void testGetCurrentUser() {
         System.out.println("getCurrentUser");
         authSessionLocal instance = new authSessionLocalImpl();
-        User expResult = null;
+        User expResult = new User();
+        expResult.setNachname("Mueller");
+        expResult.setVorname("Hans");
+        expResult.setRolle(1);
+        expResult.setUserId(1);
+        expResult.setPassword("passwort");
+        instance.login(1, "passwort");
         User result = instance.getCurrentUser();
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        fail("test failed");
     }
 
     /**
@@ -52,11 +58,11 @@ public class authSessionLocalTest {
     @Test
     public void testLogin() {
         System.out.println("login");
-        int id = 0;
-        String password = "";
+        int id = 1;
+        String password = "passwort";
         authSessionLocal instance = new authSessionLocalImpl();
         instance.login(id, password);
-        fail("The test case is a prototype.");
+        fail("test failed");
     }
 
     /**
@@ -65,10 +71,15 @@ public class authSessionLocalTest {
     @Test
     public void testSetUser() {
         System.out.println("setUser");
-        User user = null;
+        User user = new User();
+        user.setNachname("Mueller");
+        user.setVorname("Hans");
+        user.setRolle(1);
+        user.setUserId(1);
+        user.setPassword("passwort");
         authSessionLocal instance = new authSessionLocalImpl();
         instance.setUser(user);
-        fail("The test case is a prototype.");
+        fail("test failed");
     }
 
     public class authSessionLocalImpl implements authSessionLocal {

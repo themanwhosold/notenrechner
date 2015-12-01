@@ -51,7 +51,8 @@ public class authSessionTest {
         String password = "passwort";
         authSession instance = new authSession();
         instance.login(id, password);
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.isLoggedIn());
+        fail("Test Failed");
     }
 
     /**
@@ -61,8 +62,10 @@ public class authSessionTest {
     public void testLogout() throws Exception {
         System.out.println("logout");
         authSession instance = new authSession();
+        instance.login(1,"passwort");
         instance.logout();
-        fail("The test case is a prototype.");
+        assertEquals(false, instance.isLoggedIn());
+        fail("Test Failed");
     }
 
     /**
@@ -75,7 +78,11 @@ public class authSessionTest {
         boolean expResult = false;
         boolean result = instance.isLoggedIn();
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        expResult = true;
+        instance.login(1, "passwort");
+        result= instance.isLoggedIn();
+        assertEquals(expResult, result);
+        fail("Test failed");
     }
 
     /**
@@ -85,16 +92,10 @@ public class authSessionTest {
     public void testGetCurrentUser() throws Exception {
         System.out.println("getCurrentUser");
         authSession instance = new authSession();
-        User expResult = new User();
-        expResult.setNachname("Mueller");
-        expResult.setVorname("Hans");
-        expResult.setRolle(1);
-        expResult.setUserId(1);
-        expResult.setPassword("passwort");
         instance.login(1, "passwort");
         User result = instance.getCurrentUser();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        fail("Test failed");
     }
 
     /**
@@ -104,15 +105,10 @@ public class authSessionTest {
     public void testGetUser() throws Exception {
         System.out.println("getUser");
         authSession instance = new authSession();
-        User expResult = new User();
-        expResult.setNachname("Mueller");
-        expResult.setVorname("Hans");
-        expResult.setRolle(1);
-        expResult.setUserId(1);
-        expResult.setPassword("passwort");
+        instance.login(1, "passwort");
         User result = instance.getUser();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        fail("Test Failed");
     }
 
     /**
@@ -121,10 +117,15 @@ public class authSessionTest {
     @Test
     public void testSetUser() throws Exception {
         System.out.println("setUser");
-        User user = null;
+        User user = new User();
+        user.setNachname("Mueller");
+        user.setVorname("Hans");
+        user.setRolle(1);
+        user.setUserId(1);
+        user.setPassword("passwort");
         authSession instance = new authSession();
         instance.setUser(user);
-        fail("The test case is a prototype.");
+        fail("Test failed");
     }
     
 }

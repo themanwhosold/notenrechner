@@ -41,40 +41,73 @@ public class StatistikBeanTest {
     @Test
     public void testGetAnzahlNotenArten() throws Exception {
         System.out.println("getAnzahlNotenArten");
-        int idStudienfach = 0;
+        int idStudienfach;
         StatistikBean instance = new StatistikBean();
-        int expResult = 0;
-        int result = instance.getAnzahlNotenArten(idStudienfach);
+        int expResult;
+        int result;
+        
+        /*
+        First Testcase Should not be Zero
+        */
+        idStudienfach=2001;
+        expResult=2;
+        result = instance.getAnzahlNotenArten(idStudienfach);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        fail("First test failed");
+        /*
+        Second Testcase Should not be Zero
+        */
+        idStudienfach=2011;
+        expResult=1;
+        result = instance.getAnzahlNotenArten(idStudienfach);
+        assertEquals(expResult, result);
+        fail("Second test failed");
+        /*
+        Third Testcase Should be Zero, because the id does not exist
+        */
+        idStudienfach=42;
+        expResult=0;
+        result = instance.getAnzahlNotenArten(idStudienfach);
+        assertEquals(expResult, result);
+        fail("Third test failed");
+        
     }
 
     /**
      * Test of getStatistik method, of class StatistikBean.
      */
     @Test
-    public void testGetStatistik_int() throws Exception {
-        System.out.println("getStatistik");
-        int idStudienfach = 0;
+    public void testGetStatistik_ReturnIstListe() throws Exception {
+        System.out.println("getStatistik als Liste");
+        int idStudienfach = 1001;
         StatistikBean instance = new StatistikBean();
-        List<Statistik> expResult = null;
         List<Statistik> result = instance.getStatistik(idStudienfach);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        fail("Test Failed, result should be not null");
+        idStudienfach=42;
+        result = instance.getStatistik(idStudienfach);
+        assertNull(result);
+        fail("Test Failed, result should be null");
     }
 
     /**
      * Test of getStatistik method, of class StatistikBean.
      */
     @Test
-    public void testGetStatistik_List() throws Exception {
-        System.out.println("getStatistik");
+    public void testGetStatistik_ReturnIstStatistik() throws Exception {
+        System.out.println("getStatistik als Statistik (deprecated)");
         List<Noten> notenListe = null;
+        notenListe.add(new Noten(1, 3333));
+        notenListe.add(new Noten(2, 2220));
+        notenListe.add(new Noten(3, 1110));
         StatistikBean instance = new StatistikBean();
         Statistik expResult = null;
         Statistik result = instance.getStatistik(notenListe);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        fail("The test should be not null");
+        notenListe.clear();
+        result= instance.getStatistik(notenListe);
+        assertNull(result);
     }
     
 }

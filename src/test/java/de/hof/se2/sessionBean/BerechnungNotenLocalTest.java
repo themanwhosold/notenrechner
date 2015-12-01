@@ -5,6 +5,8 @@
  */
 package de.hof.se2.sessionBean;
 
+import de.hof.se2.eigeneNoten.Endnote;
+import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -96,9 +98,9 @@ public class BerechnungNotenLocalTest {
         System.out.println("getEndnote");
         int matrikelNr = 0;
         BerechnungNotenLocal instance = new BerechnungNotenLocalImpl();
-        double expResult = 0.0;
-        double result = instance.getEndnote(matrikelNr);
-        assertEquals(expResult, result, 0.0);
+        Endnote expResult = null;
+        Endnote result = instance.getEndnote(matrikelNr);
+        assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
 
@@ -124,9 +126,9 @@ public class BerechnungNotenLocalTest {
         System.out.println("getNoteGrundstudium");
         int matrikelNr = 0;
         BerechnungNotenLocal instance = new BerechnungNotenLocalImpl();
-        double expResult = 0.0;
-        double result = instance.getNoteGrundstudium(matrikelNr);
-        assertEquals(expResult, result, 0.0);
+        Zwischenpruefungsnote expResult = null;
+        Zwischenpruefungsnote result = instance.getNoteGrundstudium(matrikelNr);
+        assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
 
@@ -161,16 +163,16 @@ public class BerechnungNotenLocalTest {
             return 0.0;
         }
 
-        public double getEndnote(int matrikelNr) {
-            return 0.0;
+        public Endnote getEndnote(int matrikelNr) {
+            return null;
         }
 
         public double getWunschEndnote(int matrikelNr) {
             return 0.0;
         }
 
-        public double getNoteGrundstudium(int matrikelNr) {
-            return 0.0;
+        public Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr) {
+            return null;
         }
 
         public String getHello() {

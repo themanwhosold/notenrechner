@@ -38,10 +38,10 @@ public class DBWriterTest {
     @Test
     public void testSchreibeStudent() throws Exception {
         System.out.println("schreibeStudent");
-        int matrikelNr = 0;
+        int matrikelNr = 20171002;
         DBWriter instance = new DBWriter();
         instance.schreibeStudent(matrikelNr);
-        fail("The test case is a prototype.");
+        fail("test failed");
     }
     
 }

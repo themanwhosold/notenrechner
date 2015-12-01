@@ -34,7 +34,7 @@ public class DBWriterLocalTest {
 
     @Test
     public void testSomeMethod() {
-        fail("The test case is a prototype.");
+        fail("Tnothing todo here");
     }
     
 }
