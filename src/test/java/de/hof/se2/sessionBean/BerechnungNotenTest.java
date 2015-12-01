@@ -140,8 +140,8 @@ public class BerechnungNotenTest {
         int matrikelNr = 0;
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         BerechnungNotenLocal instance = (BerechnungNotenLocal)container.getContext().lookup("java:global/classes/BerechnungNoten");
-        Zwischenpruefungsnote expResult = null;
-        Zwischenpruefungsnote result = instance.getNoteGrundstudium(matrikelNr);
+        double expResult = 0;
+        double result = instance.getNoteGrundstudium(matrikelNr);
         assertEquals(expResult, result);
         container.close();
         fail("The test case is a prototype.");
