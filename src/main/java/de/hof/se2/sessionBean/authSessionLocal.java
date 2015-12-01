@@ -8,11 +8,13 @@ package de.hof.se2.sessionBean;
 import de.hof.se2.managedBean.User;
 
 /**
- *
+ *Lokales Interface der authSession
  * @author Schmidbauer
  */
 public interface authSessionLocal {
     public User getCurrentUser();
     public void login(int id, String password);
+
+    public void setUser(User user);
     
 }
