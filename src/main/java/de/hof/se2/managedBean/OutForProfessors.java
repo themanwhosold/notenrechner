@@ -10,6 +10,7 @@ import de.hof.se2.entity.Personen;
 import de.hof.se2.entity.Studienfaecher;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
+import de.hof.se2.test.Statistik;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -127,5 +128,16 @@ public class OutForProfessors implements Serializable {
     public Personen getPerson(int personId) {
         List person = em.createNativeQuery("select * from personen where idPersonen = " + personId, Personen.class).getResultList();
         return (Personen) person.get(0);
+    }
+    
+    /**
+     * Gibt eine Liste von Statistik Objekte zurueck, die nach Notenart unterscheiden 
+     * @author Maximilian Schreiber
+     * @param idStudienfach
+     * @return List<Statistik>
+     */
+    @Named
+    public List<Statistik> getStatistik(int idStudienfach) {
+        return this.statistikBeanLocal.getStatistik(idStudienfach);
     }
 }
