@@ -43,10 +43,10 @@
                         </h:column>
                         <br />  
                     </h:dataTable>
-                    <c:set var="statistik" value="${outForProfessors.getStatistik(studienfaecher.idStudienfach)}"/>
+
                     <ui:repeat var="a" value="${outForProfessors.getStatistik(studienfaecher.idStudienfach)}">
                         <p>Statistik für <h:outputText value="#{a.getNotenartID().bezeichnung}" ></h:outputText></p>
-                        <p>arithmetisches Mittel: <h:outputText value="#{a.getArithmetischesMittel()}" >
+                        <p>Arithmetisches Mittel: <h:outputText value="#{a.getArithmetischesMittel()}" >
                                 <f:convertNumber pattern="#0.00" />
                             </h:outputText>
                         </p>
