@@ -17,6 +17,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
 /**
  * Klasse legt Benutzer an, der in alle Seitenaufrufe injected werden kann
@@ -31,6 +35,20 @@ public class authSession implements authSessionLocal{
 
     private User user;
     
+
+    
+    
+    @Deployment
+public static JavaArchive createDeployment() {
+
+    JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
+    jar.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
+    jar.addPackage("com.demopack.demoproj");
+    jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+
+    return jar;
+}
+
     /**
      * Methode wird zum Login aufgerufen und erwartet als Parameter die USer ID und das Passwort in der DB
      * @param id
