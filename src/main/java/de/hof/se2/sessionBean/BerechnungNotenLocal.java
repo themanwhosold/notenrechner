@@ -8,6 +8,7 @@ package de.hof.se2.sessionBean;
 import de.hof.se2.eigeneNoten.BerechneteNoten;
 import de.hof.se2.eigeneNoten.Endnote;
 import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
+import de.hof.se2.entity.Noten;
 import javax.ejb.Local;
 
 /**
@@ -24,8 +25,9 @@ public interface BerechnungNotenLocal {
     public double getVarianz(int idStudienfach);
     public Endnote getEndnote(int matrikelNr);
     public double getWunschEndnote(int matrikelNr);
-    public Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr);
+//    public Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr);
 //    public String getHello();
     public BerechneteNoten getBerechneteNoten(int matrikelNr);
+    public double getRelativeGewichtung(Noten note, Endnote endnote);
     
 }

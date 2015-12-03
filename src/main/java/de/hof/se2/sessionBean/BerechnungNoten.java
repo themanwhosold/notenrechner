@@ -259,8 +259,7 @@ public class BerechnungNoten implements BerechnungNotenLocal {
      * @since 03.11.2015, 25.11.2015
      * @return Note Grundstudium
      */
-    @Override
-    public Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr) {
+    private Zwischenpruefungsnote getNoteGrundstudium(int matrikelNr) {
         int bisGrundstudium = this.getBisGrundstudium(matrikelNr);
         List<Noten> notenListe = em.createNativeQuery("select n.* from noten n,studienfaecher s where n.Matrikelnr = " + matrikelNr + " and n.studienfach_id = s.idStudienfach and s.semester <= " + bisGrundstudium, Noten.class).getResultList();
 
@@ -310,6 +309,18 @@ public class BerechnungNoten implements BerechnungNotenLocal {
         }
 
         return rc;
+    }
+    
+    /**
+     * Gibt die Gewichtung der Einzelnote relativ zur Endnote zurueck
+     * @author Maximilian Schreiber
+     * @param note
+     * @param endnote
+     * @return 
+     */
+    @Override
+    public double getRelativeGewichtung(Noten note, Endnote endnote){
+        return ((note.getEinzelgewicht() / endnote.getSummeGewichtung() + endnote.getZwischenpruefungsnote().getSummeGewichtung()) *100);
     }
 
 }

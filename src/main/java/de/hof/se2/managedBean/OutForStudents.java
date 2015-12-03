@@ -59,13 +59,15 @@ public class OutForStudents implements Serializable {
 
     /**
      * Gibt eine Liste der Noten für den jeweiligen Studierenden zurück
-     * 
+     *
      * @author markus
      * @version 0.3
      * @since 10.11.2015
      * @param matrikelNr
      * @return Liste der Noten für den jeweiligen Studenten
-     * @deprecated Weil auf der JSF Seite nur noch mit einem Personen Objekt gearbeitet wird und die Notenliste direkt aus dem Objekt aufgerufen werden kann
+     * @deprecated Weil auf der JSF Seite nur noch mit einem Personen Objekt
+     * gearbeitet wird und die Notenliste direkt aus dem Objekt aufgerufen
+     * werden kann
      */
     @Deprecated
     @Named
@@ -98,12 +100,14 @@ public class OutForStudents implements Serializable {
         List<Personen> person = em.createNamedQuery("Personen.findByIdPersonen", Personen.class).setParameter("idPersonen", matrikelNr).getResultList();
         return person.get(0);
     }
+
     /**
      * Methode um Änderungen an den Wunschnoten in die DB zu schreiben
-     * @param matrikelNr 
+     *
+     * @param matrikelNr
      */
     public void setStudent(int matrikelNr) {
-        
+
     }
 
     /**
@@ -148,7 +152,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     * Gibt eine Liste von Statistik Objekte zurueck, die nach Notenart unterscheiden 
+     * Gibt eine Liste von Statistik Objekte zurueck, die nach Notenart
+     * unterscheiden
+     *
      * @author Maximilian Schreiber
      * @param idStudienfach
      * @return List<Statistik>
@@ -158,14 +164,13 @@ public class OutForStudents implements Serializable {
         return this.statistikBeanLocal.getStatistik(idStudienfach);
     }
 
-    
     @Named
-    public Endnote getEndnote(int personId){
+    public Endnote getEndnote(int personId) {
         return this.berechnungNoten.getEndnote(personId);
     }
-    
+
     @Named
-    public double getWunschEndnote(int personId){
+    public double getWunschEndnote(int personId) {
         return this.berechnungNoten.getWunschEndnote(personId);
     }
 
@@ -174,21 +179,28 @@ public class OutForStudents implements Serializable {
         List<Personen> liste = em.createNativeQuery("select * from personen where idPersonen = " + personId, Personen.class).getResultList();
         return liste.get(0);
     }
-    
+
     @Named
     @Deprecated
     public Statistik getStatistik(List<Noten> notenListe) {
         return this.statistikBeanLocal.getStatistik(notenListe);
     }
-    
+
+//    @Named
+//    @Deprecated
+//    public Zwischenpruefungsnote getZwischenpruefungsnote(int personID) {
+//        return this.berechnungNoten.getNoteGrundstudium(personID);
+//    }
+
     @Named
-    public Zwischenpruefungsnote getZwischenpruefungsnote(int personID){
-        return this.berechnungNoten.getNoteGrundstudium(personID);
+    public double getRelativeGewichtung(Noten note, Endnote endnote){
+        return this.berechnungNoten.getRelativeGewichtung(note, endnote);
     }
     
+    
     @Named
-    public BerechneteNoten getBerechneteNoten(int personID){
+    public BerechneteNoten getBerechneteNoten(int personID) {
         return this.berechnungNoten.getBerechneteNoten(personID);
     }
-    
+
 }
