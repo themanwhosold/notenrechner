@@ -24,7 +24,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * authBean ist das Gegenstück der authSession im Package de.hof.se2.sessionBean 
  * @author Schmidbauer
  */
 @SessionScoped
@@ -38,23 +38,40 @@ public class authBean {
 
     private User user;
     
+    /**
+     *Login per localSession Bean
+     * @param id
+     * @param password
+     */
     @Named 
     public void login(int id, String password) {
         this.localSession.login(id, password);
     }
 
+    /**
+     * Loggt einen USer aus. Bedient sich der Localen SessionBean
+     */
     public void logout() {
 
-        user = null;
+        this.localSession.setUser(null);
 
     }
 
+    /**
+     * Stellt fest ob ein USer eingeloggt ist. Bedient sich der Localen SessionBean
+     * @return boolean
+     */
     public boolean isLoggedIn() {
 
-        return user != null;
+        return this.localSession.getCurrentUser() != null;
 
     }
 
+    /**
+     * Gibt den momentan eingeloggten BEnutzer zurück
+     * Bedient sich der SessionBean authSession
+     * @return
+     */
     @Produces
     @LoggedIn
     @Named
@@ -62,13 +79,5 @@ public class authBean {
        return this.localSession.getCurrentUser();
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
     
 }
