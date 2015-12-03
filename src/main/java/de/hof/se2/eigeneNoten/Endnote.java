@@ -25,8 +25,10 @@ public class Endnote extends BerechneteNoten {
     private List<Noten> notenListe;     // Fraglich, ob ich das hier will
     private long summeGewichtung;
     private double noteMultiGewichtung;
+    private boolean mitWunschnoten;
+    private boolean istGueltig;
 
-    public Endnote(double endnote, double leistungsnachweisnote, Zwischenpruefungsnote zwischenpruefungsnote, List<Noten> notenListe, long summeGewichtung, long summeNoten) {
+    public Endnote(double endnote, double leistungsnachweisnote, Zwischenpruefungsnote zwischenpruefungsnote, List<Noten> notenListe, long summeGewichtung, long summeNoten, boolean mitWunschnoten, boolean istGueltig) {
         this.endnote = endnote;
         this.leistungsnachweisnote = leistungsnachweisnote;
         this.zwischenpruefungsnote = zwischenpruefungsnote;
@@ -36,6 +38,8 @@ public class Endnote extends BerechneteNoten {
 //        this.notenListe.addAll(this.zwischenpruefungsnote.getNotenListe());
         this.summeGewichtung = summeGewichtung;
         this.noteMultiGewichtung = summeNoten;
+        this.mitWunschnoten = mitWunschnoten;
+        this.istGueltig = istGueltig;
     }
 
     public double getEndnote() {
@@ -72,7 +76,7 @@ public class Endnote extends BerechneteNoten {
 
     @Override
     public String toString() {
-        return "Endnote{" + "endnote=" + endnote + ", leistungsnachweisnote=" + leistungsnachweisnote + ", zwischenpruefungsnote=" + zwischenpruefungsnote + ", notenListe.size()=" + notenListe.size() + ", summeGewichtung=" + summeGewichtung + ", noteMultiGewichtung=" + noteMultiGewichtung + '}';
+        return "Endnote{" + "endnote=" + endnote + ", leistungsnachweisnote=" + leistungsnachweisnote + ", zwischenpruefungsnote=" + zwischenpruefungsnote + ", notenListe.size()=" + notenListe.size() + ", summeGewichtung=" + summeGewichtung + ", noteMultiGewichtung=" + noteMultiGewichtung + ", mitWunschnoten=" + mitWunschnoten + ", istGueltig=" + istGueltig + '}';
     }
 
     public double getNoteMultiGewichtung() {
@@ -91,4 +95,21 @@ public class Endnote extends BerechneteNoten {
         this.summeGewichtung = summeGewichtung;
     }
 
+    public boolean isMitWunschnoten() {
+        return mitWunschnoten;
+    }
+
+    public void setMitWunschnoten(boolean mitWunschnoten) {
+        this.mitWunschnoten = mitWunschnoten;
+    }
+
+    public boolean isIstGueltig() {
+        return istGueltig;
+    }
+
+    public void setIstGueltig(boolean istGueltig) {
+        this.istGueltig = istGueltig;
+    }
+
+    
 }

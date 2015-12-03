@@ -22,6 +22,7 @@ public abstract class BerechneteNoten {
     private List<Noten> notenListe;
     private long summeGewichtung;
     private double noteMultiGewichtung;
+    private boolean mitWunschnoten;
 
 //    abstract long berechnenoteMultiGewichtung();
 
