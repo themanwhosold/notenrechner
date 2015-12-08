@@ -37,6 +37,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     @PersistenceContext
     EntityManager em;
 
+//    private static final Logger logBerechnungNoten = Logger.getLogger(BerechnungNoten.class.getName());
     public BerechnungNoten() {
     }
 
@@ -152,8 +153,6 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
         long summeLeistungsnachweise = berechneteWerte.getSummeLeistungsnachweise();
         boolean mitWunschnoten = berechneteWerte.isMitWunschnoten();
 
-        
-
         // Nicht ganz trivial:
 //Alternative zu sout:
 //        throw new RuntimeException(
@@ -164,7 +163,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 //        );
         double multi1 = zwischenpruefungsnote.getZwischenpruefungsnote() * zwischenpruefungsnote.getSummeGewichtung();
         double endnote = (multi1 + summeNoten) / (double) (zwischenpruefungsnote.getSummeGewichtung() + summeGewichtung);
-        double leistungsnachweisNote = (double) summeLeistungsnachweise / (double) anzahlLeistungsnachweise;
+        double leistungsnachweisNote = (double) anzahlLeistungsnachweise / (double) summeLeistungsnachweise;
 
         Endnote rc = new Endnote(endnote, leistungsnachweisNote, zwischenpruefungsnote, notenListe, summeGewichtung, summeNoten, mitWunschnoten, berechneteWerte.isErfolgreichGerechnet());
         return rc;
@@ -203,8 +202,8 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
                 summeNoten += noten.getEinzelgewicht() * noten.getNote();
                 summeGewichtung += noten.getEinzelgewicht();
                 if (noten.getNotenartId().getIdNotenart() == 2) {     //Achtung 2 ist hardcodiert!!!!
-                    anzahlLeistungsnachweise++;
-                    summeLeistungsnachweise += noten.getNote();
+                    anzahlLeistungsnachweise += noten.getEinzelgewicht() * noten.getNote();
+                    summeLeistungsnachweise += noten.getEinzelgewicht();
                 }
             } else if (noten.getWunschnote() != null) { //Note ist null, aber Wunschnote ist nicht null
                 //Fall 3
@@ -212,8 +211,8 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
                 summeGewichtung += noten.getEinzelgewicht();
                 mitWunschnoten = true;
                 if (noten.getNotenartId().getIdNotenart() == 2) {     //Achtung 2 ist hardcodiert!!!!
-                    anzahlLeistungsnachweise++;
-                    summeLeistungsnachweise += noten.getWunschnote();
+                    anzahlLeistungsnachweise += noten.getEinzelgewicht() * noten.getNote();
+                    summeLeistungsnachweise += noten.getEinzelgewicht();
                 }
             } else {    // Sowohl Note als auch Wunschnote ist Null
                 //Fall 4
@@ -222,7 +221,8 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
             }
 
         }
-        return new BerechneteWerte(summeGewichtung, summeNoten, anzahlLeistungsnachweise, summeLeistungsnachweise, mitWunschnoten, erfolgreichGerechnet);
+        BerechneteWerte rc = new BerechneteWerte(summeGewichtung, summeNoten, anzahlLeistungsnachweise, summeLeistungsnachweise, mitWunschnoten, erfolgreichGerechnet);
+        return rc;
     }
 
     /**
@@ -268,11 +268,11 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
         long summeGewichtung = berechneteWerte.getSummeGewichtung();
         long summeNoten = berechneteWerte.getSummeNoten();
         long anzahlLeistungsnachweise = berechneteWerte.getAnzahlLeistungsnachweise();
-        long summeLeistungsnachweise = berechneteWerte.getSummeGewichtung();
+        long summeLeistungsnachweise = berechneteWerte.getSummeLeistungsnachweise();
         boolean mitWunschnoten = berechneteWerte.isMitWunschnoten();
 
         double note = (double) summeNoten / (double) summeGewichtung;
-        double leistungsnachweisNote = (double) summeLeistungsnachweise / (double) anzahlLeistungsnachweise;
+        double leistungsnachweisNote = (double) anzahlLeistungsnachweise / (double) summeLeistungsnachweise;
         Zwischenpruefungsnote rc = new Zwischenpruefungsnote(note, leistungsnachweisNote, notenListe, summeGewichtung, bisGrundstudium, mitWunschnoten, berechneteWerte.isErfolgreichGerechnet());
         return rc;
     }
@@ -311,17 +311,18 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 
         return rc;
     }
-    
+
     /**
      * Gibt die Gewichtung der Einzelnote relativ zur Endnote zurueck
+     *
      * @author Maximilian Schreiber
      * @param note
      * @param endnote
-     * @return 
+     * @return
      */
     @Override
-    public double getRelativeGewichtung(Noten note, Endnote endnote){
-        return ((note.getEinzelgewicht() / endnote.getSummeGewichtung() + endnote.getZwischenpruefungsnote().getSummeGewichtung()) *100);
+    public double getRelativeGewichtung(Noten note, Endnote endnote) {
+        return ((note.getEinzelgewicht() / endnote.getSummeGewichtung() + endnote.getZwischenpruefungsnote().getSummeGewichtung()) * 100);
     }
 
 }
