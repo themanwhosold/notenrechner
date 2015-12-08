@@ -9,12 +9,12 @@ import de.hof.se2.entity.Personen;
 import de.hof.se2.managedBean.Credentials;
 import de.hof.se2.managedBean.LoggedIn;
 import de.hof.se2.managedBean.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Singleton;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
  */
 @Singleton
 @Local(authSessionLocal.class)
-public class authSession implements authSessionLocal{
+public class authSession implements authSessionLocal, Serializable{
     
     @Inject Credentials credentials;
     @PersistenceContext EntityManager em;

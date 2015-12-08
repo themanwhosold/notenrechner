@@ -8,6 +8,7 @@ package de.hof.se2.sessionBean;
 import de.hof.se2.entity.Personen;
 import de.hof.se2.managedBean.OutForProfessors;
 import de.hof.se2.managedBean.OutForStudents;
+import java.io.Serializable;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -21,7 +22,7 @@ import javax.persistence.PersistenceContext;
  * @since 24.11.2015
  */
 @Singleton
-public class DBWriter implements DBWriterLocal {
+public class DBWriter implements DBWriterLocal, Serializable {
 
     @PersistenceContext
     EntityManager em;

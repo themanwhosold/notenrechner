@@ -46,14 +46,31 @@
     <h:outputText value="Improved arithmetisches Mittel: #{stat}"/>
     <br></br>
     <br></br>
-    <c:set var="znote" value="${outForStudents.getZwischenpruefungsnote(20130000)}"/>
-    <h:outputText value="Grundstudiumsnote: #{znote}"/>
-    <br></br>
-    <br></br>
     <c:set var="endnote" value="${outForStudents.getEndnote(20130000)}"/>
-    <h:outputText value="Endsnote: #{endnote}"/>
+    <h:outputText value="Endnote: #{endnote}"/>
     <br></br>
-<!--    
+    <c:set var="endnote2" value="${outForStudents.getBerechneteNoten(20171001)}"/>
+    <h:outputText value="Endnote2: #{endnote2}"/>
+    <br></br>
+    <h:outputLabel value="Note konnte nicht berechnet werden" rendered="#{endnote2.isIstGueltig() == false}" /> 
+    <h:outputLabel value="#{endnote2}" rendered="#{endnote2.isIstGueltig() == true}" /> 
+    <br></br>
+    <br></br>
+    <br></br>
+    <h:outputLabel value="#{endnote2}" /> 
+    <br></br>
+    <br></br>
+    <br></br>
+    <h:outputText value="Bla:  #{endnote.getNotenListe().get(2).getNotenartId().getBezeichnung()}"/>
+
+    <br></br>
+    <p>relative Gewichtung:
+    <h:outputText value="#{endnote.getNotenListe().get(2).getEinzelgewicht() / (endnote.getSummeGewichtung() + endnote.getZwischenpruefungsnote().getSummeGewichtung()) * 100}">
+                <f:convertNumber pattern="#0.00"/> </h:outputText>
+                 
+    </p>
+    
+    <!--    
     <h:outputText value="Improved Median: #{stat.get(0).median}"/>
  
     <br></br>

@@ -22,13 +22,19 @@ public class Zwischenpruefungsnote extends BerechneteNoten {
     private List<Noten> notenListe;     // Fraglich, ob ich das hier will
     private long summeGewichtung;
     private long noteMultiGewichtung;
+    private boolean mitWunschnoten;
+    private int bisGrundstudium;
+    private boolean istGueltig;
 
-    public Zwischenpruefungsnote(double zwischenpruefungsnote, double leistungsnachweisnote, List<Noten> notenListe, long summeGewichtung) {
+    public Zwischenpruefungsnote(double zwischenpruefungsnote, double leistungsnachweisnote, List<Noten> notenListe, long summeGewichtung, int bisGrundstudium, boolean mitWunschnoten, boolean istGueltig) {
         this.zwischenpruefungsnote = zwischenpruefungsnote;
         this.leistungsnachweisnote = leistungsnachweisnote;
         this.notenListe = notenListe;
         this.summeGewichtung = summeGewichtung;
         this.noteMultiGewichtung = (long)(this.zwischenpruefungsnote * this.summeGewichtung);
+        this.bisGrundstudium = bisGrundstudium;
+        this.mitWunschnoten = mitWunschnoten;
+        this.istGueltig = istGueltig;
     }
 
     public double getZwischenpruefungsnote() {
@@ -61,8 +67,9 @@ public class Zwischenpruefungsnote extends BerechneteNoten {
 
     @Override
     public String toString() {
-        return "Zwischenpruefungsnote{" + "zwischenpruefungsnote=" + zwischenpruefungsnote + ", leistungsnachweisnote=" + leistungsnachweisnote + ", notenListe.size()=" + notenListe.size() + ", summeGewichtung=" + summeGewichtung + ", noteMultiGewichtung=" + noteMultiGewichtung + '}';
+        return "Zwischenpruefungsnote{" + "zwischenpruefungsnote=" + zwischenpruefungsnote + ", leistungsnachweisnote=" + leistungsnachweisnote + ", notenListe.size()=" + notenListe.size() + ", summeGewichtung=" + summeGewichtung + ", noteMultiGewichtung=" + noteMultiGewichtung + ", mitWunschnoten=" + mitWunschnoten + ", bisGrundstudium=" + bisGrundstudium + ", istGueltig=" + istGueltig + '}';
     }
+
 
     public void setNoteMultiGewichtung(long noteMultiGewichtung) {
         this.noteMultiGewichtung = noteMultiGewichtung;
@@ -76,4 +83,30 @@ public class Zwischenpruefungsnote extends BerechneteNoten {
         this.summeGewichtung = summeGewichtung;
     }
 
+    public boolean isMitWunschnoten() {
+        return mitWunschnoten;
+    }
+
+    public void setMitWunschnoten(boolean mitWunschnoten) {
+        this.mitWunschnoten = mitWunschnoten;
+    }
+
+    public int getBisGrundstudium() {
+        return bisGrundstudium;
+    }
+
+    public void setBisGrundstudium(int bisGrundstudium) {
+        this.bisGrundstudium = bisGrundstudium;
+    }
+
+    public boolean isIstGueltig() {
+        return istGueltig;
+    }
+
+    public void setIstGueltig(boolean istGueltig) {
+        this.istGueltig = istGueltig;
+    }
+
+    
+    
 }
