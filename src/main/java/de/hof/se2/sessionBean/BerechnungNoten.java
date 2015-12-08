@@ -13,11 +13,16 @@ import de.hof.se2.entity.Noten;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
 /**
  * Logik für die Berechnung der Noten anhand der in der DB angegebenen
@@ -30,7 +35,8 @@ import javax.persistence.PersistenceContext;
 @Singleton
 @Local(BerechnungNotenLocal.class)
 public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
-
+    @EJB
+    BerechneteNoten instance;
     @Resource
     SessionContext sessionContext;
 
@@ -39,6 +45,17 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 
     public BerechnungNoten() {
     }
+    
+        @Deployment
+public static JavaArchive createDeployment() {
+
+    JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
+    jar.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
+    jar.addPackage("com.demopack.demoproj");
+    jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+
+    return jar;
+}
 
     /**
      * @author max
