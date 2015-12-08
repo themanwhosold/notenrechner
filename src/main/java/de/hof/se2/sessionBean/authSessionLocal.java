@@ -27,7 +27,7 @@ public interface authSessionLocal {
 //    return jar;
 //    }
     public User getCurrentUser();
-    public void login(int id, String password);
+    public void login();
 
     public void setUser(User user);
     

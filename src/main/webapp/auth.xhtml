@@ -17,7 +17,7 @@
                 <h:inputSecret id="password" value="#{credentials.password}"/>
             </h:panelGrid>
 <!--            <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}"/>-->
-                <h:commandButton value="Login" action="#{authBean.login(username, password)}"  rendered="#{!authBean.loggedIn}">
+                <h:commandButton value="Login" action="#{authBean.login()}"  rendered="#{!authBean.loggedIn}">
                 
                 </h:commandButton>
             <br/>

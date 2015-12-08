@@ -64,10 +64,10 @@
 //        expResult.setRolle(1);
 //        expResult.setUserId(1);
 //        expResult.setPassword("passwort");
-//        instance.login(1, "passwort");
+//        instance.login();
 //        User result = instance.getCurrentUser();
 //        assertEquals(expResult, result);
-//        fail("test failed");
+////        fail("test failed");
 //    }
 //
 //    /**
@@ -79,8 +79,8 @@
 //        int id = 1;
 //        String password = "passwort";
 ////        authSessionLocal instance = new authSessionLocalImpl();
-//        instance.login(id, password);
-//        fail("test failed");
+//        instance.login();
+////        fail("test failed");
 //    }
 //
 //    /**
@@ -97,20 +97,20 @@
 //        user.setPassword("passwort");
 ////        authSessionLocal instance = new authSessionLocalImpl();
 //        instance.setUser(user);
-//        fail("test failed");
+////        fail("test failed");
 //    }
 //
-//    public class authSessionLocalImpl implements authSessionLocal {
-//
-//        public User getCurrentUser() {
-//            return null;
-//        }
-//
-//        public void login(int id, String password) {
-//        }
-//
-//        public void setUser(User user) {
-//        }
-//    }
+////    public class authSessionLocalImpl implements authSessionLocal {
+////
+////        public User getCurrentUser() {
+////            return null;
+////        }
+////
+////        public void login(int id, String password) {
+////        }
+////
+////        public void setUser(User user) {
+////        }
+////    }
 //    
 //}

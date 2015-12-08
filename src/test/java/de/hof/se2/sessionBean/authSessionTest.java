@@ -5,12 +5,16 @@
 // */
 //package de.hof.se2.sessionBean;
 //
+//import de.hof.se2.managedBean.Credentials;
 //import de.hof.se2.managedBean.User;
 //import javax.ejb.EJB;
 //import javax.ejb.embeddable.EJBContainer;
+//import javax.inject.Inject;
 //import javax.naming.Context;
 //import javax.naming.NamingException;
+//import javax.persistence.Entity;
 //import javax.persistence.EntityManager;
+//import javax.persistence.PersistenceContext;
 //import org.jboss.arquillian.container.test.api.Deployment;
 //import org.jboss.arquillian.container.test.impl.deployment.ArquillianDeploymentAppender;
 //import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -34,6 +38,10 @@
 ////    EntityManager entityManager;
 //    @EJB
 //    authSession instance;
+//    @PersistenceContext
+//    EntityManager em;
+//    @Inject
+//    Credentials credentials;
 //    
 //        @Deployment
 //    public static JavaArchive createDeployment() {
@@ -60,6 +68,7 @@
 //    @Before
 //    public void setUp() throws NamingException {
 //        instance= new authSession();
+//        credentials = new Credentials();
 ////        entityManager = mock();
 ////        EJBContainer cont = EJBContainer.createEJBContainer();
 ////        Context ctxt = cont.getContext();
@@ -85,9 +94,11 @@
 ////        EJBContainer cont = EJBContainer.createEJBContainer();
 ////        Context ctxt = cont.getContext();
 ////        authSession instance= (authSession)ctxt.lookup("java:global/classes/de/hof/se2/sessionBean/authSession");
-//        instance.login(id, password);
+//        credentials.setPassword(password);
+//        credentials.setUsername(id);
+//        instance.login();
 //        assertEquals(true, instance.isLoggedIn());
-//        fail("Test Failed");
+////        fail("Test Failed");
 //    }
 //
 //    /**
@@ -100,10 +111,10 @@
 ////        EJBContainer cont = EJBContainer.createEJBContainer();
 ////        Context ctxt = cont.getContext();
 ////        authSession instance= (authSession)ctxt.lookup("java:global/classes/de/hof/se2/sessionBean/authSession");
-//        instance.login(1,"passwort");
+//        instance.login();
 //        instance.logout();
 //        assertEquals(false, instance.isLoggedIn());
-//        fail("Test Failed");
+////        fail("Test Failed");
 //    }
 //
 //    /**
@@ -120,10 +131,10 @@
 //        boolean result = instance.isLoggedIn();
 //        assertEquals(expResult, result);
 //        expResult = true;
-//        instance.login(1, "passwort");
+//        instance.login();
 //        result= instance.isLoggedIn();
 //        assertEquals(expResult, result);
-//        fail("Test failed");
+////        fail("Test failed");
 //    }
 //
 //    /**
@@ -136,10 +147,10 @@
 ////        EJBContainer cont = EJBContainer.createEJBContainer();
 ////        Context ctxt = cont.getContext();
 ////        authSession instance= (authSession)ctxt.lookup("java:global/classes/de/hof/se2/sessionBean/authSession");
-//        instance.login(1, "passwort");
+//        instance.login();
 //        User result = instance.getCurrentUser();
 //        assertNotNull(result);
-//        fail("Test failed");
+////        fail("Test failed");
 //    }
 //
 //    /**
@@ -152,10 +163,10 @@
 ////        EJBContainer cont = EJBContainer.createEJBContainer();
 ////        Context ctxt = cont.getContext();
 ////        authSession instance= (authSession)ctxt.lookup("java:global/classes/de/hof/se2/sessionBean/authSession");
-//        instance.login(1, "passwort");
+//        instance.login();
 //        User result = instance.getUser();
 //        assertNotNull(result);
-//        fail("Test Failed");
+////        fail("Test Failed");
 //    }
 //
 //    /**
@@ -175,7 +186,7 @@
 ////        Context ctxt = cont.getContext();
 ////        authSession instance= (authSession)ctxt.lookup("java:global/classes/de/hof/se2/sessionBean/authSession");
 //        instance.setUser(user);
-//        fail("Test failed");
+////        fail("Test failed");
 //    }
 //    
 //}
