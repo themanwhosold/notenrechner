@@ -294,7 +294,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
      * @return
      */
     private int getBisGrundstudium(int matrikelNr) {
-        logBerechnung.info("Test");
+        logBerechnung.info("Test"); //nur einer Test des Loggers
         return (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
     }
 
