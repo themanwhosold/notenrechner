@@ -7,6 +7,7 @@ package de.hof.se2.sessionBean;
 
 import de.hof.se2.entity.Noten;
 import de.hof.se2.test.Statistik;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -28,7 +29,7 @@ import javax.persistence.PersistenceContext;
  */
 @Singleton
 @Local(StatistikBeanLocal.class)
-public class StatistikBean implements StatistikBeanLocal {
+public class StatistikBean implements StatistikBeanLocal, Serializable {
 
     @Resource
     SessionContext sessionContext;
