@@ -10,8 +10,12 @@ import de.hof.se2.eigeneNoten.BerechneteWerte;
 import de.hof.se2.eigeneNoten.Endnote;
 import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
+import de.hof.se2.logWriter.LogWriter;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.SessionContext;
@@ -36,9 +40,13 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 
     @PersistenceContext
     EntityManager em;
+    
+    LogWriter logBerechnungWriter;
+    Logger logBerechnung;
 
-//    private static final Logger logBerechnungNoten = Logger.getLogger(BerechnungNoten.class.getName());
-    public BerechnungNoten() {
+    public BerechnungNoten() throws IOException {
+        this.logBerechnungWriter = new LogWriter(new File("/home/markus/test"),Boolean.TRUE);
+        this.logBerechnung = logBerechnungWriter.newLog();
     }
 
     /**
@@ -286,6 +294,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
      * @return
      */
     private int getBisGrundstudium(int matrikelNr) {
+        logBerechnung.info("Test"); //nur einer Test des Loggers
         return (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
     }
 
