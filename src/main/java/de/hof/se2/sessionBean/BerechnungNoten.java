@@ -10,6 +10,7 @@ import de.hof.se2.eigeneNoten.BerechneteWerte;
 import de.hof.se2.eigeneNoten.Endnote;
 import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Local;
@@ -28,7 +29,7 @@ import javax.persistence.PersistenceContext;
  */
 @Singleton
 @Local(BerechnungNotenLocal.class)
-public class BerechnungNoten implements BerechnungNotenLocal {
+public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 
     @Resource
     SessionContext sessionContext;
