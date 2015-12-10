@@ -10,8 +10,12 @@ import de.hof.se2.eigeneNoten.BerechneteWerte;
 import de.hof.se2.eigeneNoten.Endnote;
 import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
+import de.hof.se2.logWriter.LogWriter;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -42,8 +46,13 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 
     @PersistenceContext
     EntityManager em;
+    
+    LogWriter logBerechnungWriter;
+    Logger logBerechnung;
 
-    public BerechnungNoten() {
+    public BerechnungNoten() throws IOException {
+        this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
+        this.logBerechnung = logBerechnungWriter.newLog();
     }
     
         @Deployment
@@ -169,8 +178,6 @@ public static JavaArchive createDeployment() {
         long summeLeistungsnachweise = berechneteWerte.getSummeLeistungsnachweise();
         boolean mitWunschnoten = berechneteWerte.isMitWunschnoten();
 
-        
-
         // Nicht ganz trivial:
 //Alternative zu sout:
 //        throw new RuntimeException(
@@ -181,9 +188,10 @@ public static JavaArchive createDeployment() {
 //        );
         double multi1 = zwischenpruefungsnote.getZwischenpruefungsnote() * zwischenpruefungsnote.getSummeGewichtung();
         double endnote = (multi1 + summeNoten) / (double) (zwischenpruefungsnote.getSummeGewichtung() + summeGewichtung);
-        double leistungsnachweisNote = (double) summeLeistungsnachweise / (double) anzahlLeistungsnachweise;
+        double leistungsnachweisNote = (double) anzahlLeistungsnachweise / (double) summeLeistungsnachweise;
 
         Endnote rc = new Endnote(endnote, leistungsnachweisNote, zwischenpruefungsnote, notenListe, summeGewichtung, summeNoten, mitWunschnoten, berechneteWerte.isErfolgreichGerechnet());
+//       logBerechnung.info(rc.toString());
         return rc;
 
     }
@@ -220,8 +228,8 @@ public static JavaArchive createDeployment() {
                 summeNoten += noten.getEinzelgewicht() * noten.getNote();
                 summeGewichtung += noten.getEinzelgewicht();
                 if (noten.getNotenartId().getIdNotenart() == 2) {     //Achtung 2 ist hardcodiert!!!!
-                    anzahlLeistungsnachweise++;
-                    summeLeistungsnachweise += noten.getNote();
+                    anzahlLeistungsnachweise += noten.getEinzelgewicht() * noten.getNote();
+                    summeLeistungsnachweise += noten.getEinzelgewicht();
                 }
             } else if (noten.getWunschnote() != null) { //Note ist null, aber Wunschnote ist nicht null
                 //Fall 3
@@ -229,8 +237,8 @@ public static JavaArchive createDeployment() {
                 summeGewichtung += noten.getEinzelgewicht();
                 mitWunschnoten = true;
                 if (noten.getNotenartId().getIdNotenart() == 2) {     //Achtung 2 ist hardcodiert!!!!
-                    anzahlLeistungsnachweise++;
-                    summeLeistungsnachweise += noten.getWunschnote();
+                    anzahlLeistungsnachweise += noten.getEinzelgewicht() * noten.getNote();
+                    summeLeistungsnachweise += noten.getEinzelgewicht();
                 }
             } else {    // Sowohl Note als auch Wunschnote ist Null
                 //Fall 4
@@ -239,7 +247,10 @@ public static JavaArchive createDeployment() {
             }
 
         }
-        return new BerechneteWerte(summeGewichtung, summeNoten, anzahlLeistungsnachweise, summeLeistungsnachweise, mitWunschnoten, erfolgreichGerechnet);
+        
+        BerechneteWerte rc = new BerechneteWerte(summeGewichtung, summeNoten, anzahlLeistungsnachweise, summeLeistungsnachweise, mitWunschnoten, erfolgreichGerechnet);
+//        logBerechnung.info(rc.toString());
+        return rc;
     }
 
     /**
@@ -252,7 +263,6 @@ public static JavaArchive createDeployment() {
      * @return Endnote
      */
     @Override
-    @Deprecated
     public double getWunschEndnote(int matrikelNr) {
         //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
         //em.createNamedQuery(N, resultClass)
@@ -285,11 +295,11 @@ public static JavaArchive createDeployment() {
         long summeGewichtung = berechneteWerte.getSummeGewichtung();
         long summeNoten = berechneteWerte.getSummeNoten();
         long anzahlLeistungsnachweise = berechneteWerte.getAnzahlLeistungsnachweise();
-        long summeLeistungsnachweise = berechneteWerte.getSummeGewichtung();
+        long summeLeistungsnachweise = berechneteWerte.getSummeLeistungsnachweise();
         boolean mitWunschnoten = berechneteWerte.isMitWunschnoten();
 
         double note = (double) summeNoten / (double) summeGewichtung;
-        double leistungsnachweisNote = (double) summeLeistungsnachweise / (double) anzahlLeistungsnachweise;
+        double leistungsnachweisNote = (double) anzahlLeistungsnachweise / (double) summeLeistungsnachweise;
         Zwischenpruefungsnote rc = new Zwischenpruefungsnote(note, leistungsnachweisNote, notenListe, summeGewichtung, bisGrundstudium, mitWunschnoten, berechneteWerte.isErfolgreichGerechnet());
         return rc;
     }
@@ -303,6 +313,7 @@ public static JavaArchive createDeployment() {
      * @return
      */
     private int getBisGrundstudium(int matrikelNr) {
+        logBerechnung.info("Test"); //nur einer Test des Loggers
         return (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
     }
 
@@ -328,17 +339,18 @@ public static JavaArchive createDeployment() {
 
         return rc;
     }
-    
+
     /**
      * Gibt die Gewichtung der Einzelnote relativ zur Endnote zurueck
+     *
      * @author Maximilian Schreiber
      * @param note
      * @param endnote
-     * @return 
+     * @return
      */
     @Override
-    public double getRelativeGewichtung(Noten note, Endnote endnote){
-        return ((note.getEinzelgewicht() / endnote.getSummeGewichtung() + endnote.getZwischenpruefungsnote().getSummeGewichtung()) *100);
+    public double getRelativeGewichtung(Noten note, Endnote endnote) {
+        return ((note.getEinzelgewicht() / endnote.getSummeGewichtung() + endnote.getZwischenpruefungsnote().getSummeGewichtung()) * 100);
     }
 
 }

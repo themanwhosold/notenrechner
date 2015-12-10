@@ -6,12 +6,16 @@
 package de.hof.se2.sessionBean;
 
 import de.hof.se2.entity.Noten;
+import de.hof.se2.logWriter.LogWriter;
 import de.hof.se2.test.Statistik;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Local;
@@ -37,7 +41,12 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     @PersistenceContext
     EntityManager em;
 
-    public StatistikBean() {
+    LogWriter logBerechnungWriter;
+    Logger logBerechnung;
+
+    public StatistikBean() throws IOException {
+        this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/statistikLog"), Boolean.TRUE);
+        this.logBerechnung = logBerechnungWriter.newLog();
     }
 
     /**
@@ -193,8 +202,8 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
                 if (noten.getNotenartId().getIdNotenart() == i) {
                     temp.add(noten);
                 }
-        }
-        //Alter Code
+            }
+            //Alter Code
 //        for (int i = 0; i < anzahl; i++) {
 //            ArrayList<Noten> temp = new ArrayList<>();
 //            for (Noten noten : notenListe) {
@@ -211,7 +220,7 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
             Statistik stat = new Statistik(aritmetischesMittel, standardAbweichung, median, varianz, temp.get(temp.size() - 1).getNote(), tempNote.getNote(), tempNote.getStudienfachId(), tempNote.getNotenartId());
             rc.add(stat);
         }
-
+        logBerechnung.info(rc.toString());
         return rc;
     }
 
