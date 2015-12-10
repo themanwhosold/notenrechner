@@ -45,7 +45,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     Logger logBerechnung;
 
     public BerechnungNoten() throws IOException {
-        this.logBerechnungWriter = new LogWriter(new File("/home/markus/test"),Boolean.TRUE);
+        this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();
     }
 
@@ -174,6 +174,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
         double leistungsnachweisNote = (double) anzahlLeistungsnachweise / (double) summeLeistungsnachweise;
 
         Endnote rc = new Endnote(endnote, leistungsnachweisNote, zwischenpruefungsnote, notenListe, summeGewichtung, summeNoten, mitWunschnoten, berechneteWerte.isErfolgreichGerechnet());
+//       logBerechnung.info(rc.toString());
         return rc;
 
     }
@@ -229,7 +230,9 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
             }
 
         }
+        
         BerechneteWerte rc = new BerechneteWerte(summeGewichtung, summeNoten, anzahlLeistungsnachweise, summeLeistungsnachweise, mitWunschnoten, erfolgreichGerechnet);
+//        logBerechnung.info(rc.toString());
         return rc;
     }
 
@@ -243,7 +246,6 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
      * @return Endnote
      */
     @Override
-    @Deprecated
     public double getWunschEndnote(int matrikelNr) {
         //Personen p = em.createNamedQuery(Personen.findByIdPersonen, Personen.class);
         //em.createNamedQuery(N, resultClass)
