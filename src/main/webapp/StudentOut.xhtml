@@ -12,12 +12,12 @@
         <ui:composition template="templates/defaultTemplate.xhtml">
             <ui:define name="top">Notenübersicht für Studierende</ui:define>
             <ui:define name="content">
-                <c:set var="student" value="${outForStudents.getStudent(20171002)}"/>
+                <c:set var="student" value="${outForStudents.getStudent(20130000)}"/>
                 <h:outputText value="Student: #{student.getVorname()}, #{student.getNachname()}"/>
                 <br />
                 <h:outputText value="Matrikelnummer: #{student.getIdPersonen()}"/>
                 <h:form>
-                    <h:dataTable value="#{student.getNotenList()}" var="noten">
+                    <h:dataTable value="#{outForStudents.getNotenListSortedSemester(student.getIdPersonen())}" var="noten">
                         <h:column headerClass="columnCenter">
                             <f:facet name="header">Fach</f:facet>
                             <h:outputText style="float: left;" value="#{noten.studienfachId.bezeichnung}"/>
