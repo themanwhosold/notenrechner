@@ -203,4 +203,9 @@ public class OutForStudents implements Serializable {
         return this.berechnungNoten.getBerechneteNoten(personID);
     }
 
+    @Named
+    public List<Noten> getNotenListSortedSemester(int personID){
+        return  this.em.createNativeQuery("select n.* from noten n, studienfaecher s where Matrikelnr = " + personID + " and s.idStudienfach = n.studienfach_id order by s.semester", Noten.class).getResultList();
+    }
+    
 }
