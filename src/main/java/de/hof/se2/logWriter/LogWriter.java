@@ -12,9 +12,12 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 
 /**
- * Logwriter schreibt ein log, dass zur Fehlerklärung ausgewertet werden kann
- * @author Schmidbauer
+ * Klasse die im Endausbau einen globalen Logger zur Verfügung stellt
+ * @author markus
+ * @version 0.1
+ * @since 15.12.2015
  */
+
 public class LogWriter {
 
     private final File logPath; //File Objekt in dem das Logfile abgespeichert wird

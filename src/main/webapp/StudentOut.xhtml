@@ -30,7 +30,7 @@
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
                             <c:set var="notenID" value="${noten.idNoten}"/>
-                            <h:inputText id="wunschnote" value="${noten.wunschnote}" onblur="${outForStudents.setWunschnote(notenID, wunschnote.value)}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
+                            <h:inputText id="wunschnote" value="${noten.wunschnote}" onblur="${noten.setWunschnote(10)}" onchange="#{outForStudents.setWunschnote(notenID, 11)}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
                                 <f:validateDoubleRange minimum="0" maximum="15" for="wunschnote"/>
                             </h:inputText>
                         </h:column>

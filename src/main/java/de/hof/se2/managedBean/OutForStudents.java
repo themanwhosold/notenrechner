@@ -111,12 +111,15 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     * Methode um Änderungen an den Wunschnoten in die DB zu schreiben
+     * Methode um Änderungen am Objekt "Student" in die DB zu schreiben
      *
-     * @author markus
-     *
+     *@author markus
+     *@version 0.1
+     *@since 15.12.2015
+     *@deprecated Derzeit nicht funktionsfähig
      *
      */
+    @Deprecated
     @Transactional
     public void setStudent() {
         em.persist(this);
@@ -251,6 +254,7 @@ public class OutForStudents implements Serializable {
     }
 
     /**
+
      * Erzeut eine Notenliste, geordnet nach Semestern der PErson, die abgefragt wird
      * @param personID Student für den die Liste erzeugt werden soll
      * @return Notenliste, sortiert nach Semestern für einen Studenten
@@ -261,8 +265,12 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     * @param notenID
-     * @param wunschNote
+     * Methode um die Wunschnote in die Datenbank zu schreiben, soll aus der JSF Seite mit bspw. onblur aufgerufen werden und eine(!) Note in die Datenbank schreiben
+     * @param notenID ID der zu ändernden Note
+     * @param wunschNote neuer Wert der Wunschnote
+     * @author markus
+     * @version 0.1
+     * @since 15.12.2015
      * @todo Native Query umbauen
      */
     @Transactional
@@ -272,13 +280,15 @@ public class OutForStudents implements Serializable {
         //int wunschNoteI = Integer.parseInt(wunschNote);
         Query update_query_wunschnote = em.createNativeQuery("update noten.noten set Wunschnote= ? where idNoten= ?");
         update_query_wunschnote.setParameter(2, notenID);
-        update_query_wunschnote.setParameter(1, 10);
+        update_query_wunschnote.setParameter(1, wunschNote);
         update_query_wunschnote.executeUpdate();
     }
 
     /**
      * Methode um die komplette Seite zu speichern
      * http://stackoverflow.com/questions/19002570/retrieving-value-of-jsf-input-field-without-managed-bean-property
+     * @version 0.1
+     * @since 15.12.2015
      */
     @Transactional
     public void save() {
