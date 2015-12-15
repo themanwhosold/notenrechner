@@ -117,7 +117,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testGetNoteMultiGewichtung() {
         System.out.println("getNoteMultiGewichtung");
         Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
-        assertNotNull(instance.getNoteMultiGewichtung());
+        assertNotNull(instance.getSummeZPNoteMitGewichtung());
 //        fail("Gesamtgewichtung nicht erfolgreich geholt");
     }
 
@@ -141,7 +141,7 @@ public class ZwischenpruefungsnoteUnitTest {
         System.out.println("setNoteMultiGewichtung");
         long noteMultiGewichtung = 0L;
         Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
-        instance.setNoteMultiGewichtung(noteMultiGewichtung);
+        instance.setSummeZPNoteMitGewichtung(noteMultiGewichtung);
 //        fail("Notengewichtung nicht erfolgreich");
     }
 

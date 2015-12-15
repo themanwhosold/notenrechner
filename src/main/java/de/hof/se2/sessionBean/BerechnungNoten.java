@@ -175,7 +175,7 @@ public static JavaArchive createDeployment() {
 
         Zwischenpruefungsnote zwischenpruefungsnote = this.getNoteGrundstudium(matrikelNr);
 
-        int bisGrundstudium = zwischenpruefungsnote.getBisGrundstudium();   //Sparen einer DB Abfrage
+        int bisGrundstudium = zwischenpruefungsnote.getDauerGrundstudiumBisSemester();   //Sparen einer DB Abfrage
         List<Noten> notenListe = em.createNativeQuery("select n.* from noten n,studienfaecher s where n.Matrikelnr = " + matrikelNr + " and n.studienfach_id = s.idStudienfach and s.semester > " + bisGrundstudium, Noten.class).getResultList();
 
         BerechneteWerte berechneteWerte = this.getBerechneteWerte(notenListe);

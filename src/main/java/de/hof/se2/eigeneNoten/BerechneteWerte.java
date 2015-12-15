@@ -87,56 +87,56 @@ public class BerechneteWerte {
     }
 
     /**
-     * Holt Summe
-     * @return
+     * Holt Summe der Leistungsnachweise. Muss noch durch Anzahl geteilt werden
+     * @return Gesamtsumme aller Notenwerte der Leistungsnachweise
      */
     public long getSummeLeistungsnachweise() {
         return summeLeistungsnachweise;
     }
 
     /**
-     *
-     * @param summeLeistungsnachweise
+     * Setzt Summe der Noten der Leistungsnachweise, muss noch durch Anzahl geteilt werden
+     * @param summeLeistungsnachweise Setzt die Summe der Leistungsnachweisnoten auf den Parameter
      */
     public void setSummeLeistungsnachweise(long summeLeistungsnachweise) {
         this.summeLeistungsnachweise = summeLeistungsnachweise;
     }
 
     /**
-     *
-     * @return
+     * Der Student hat Wunschnoten angegeben, diese werden zur berechnung herangezogen
+     * @return Wunschnoten sind gesetzt oder nicht
      */
     public boolean isMitWunschnoten() {
         return mitWunschnoten;
     }
 
     /**
-     *
-     * @param mitWunschnoten
+     * Bestimmt ob Wunschnoten angegeben wurden, die zur berechnung herangezogen werden müssen
+     * @param mitWunschnoten Wurden Noten vom Studenten gesetzt oder nicht?
      */
     public void setMitWunschnoten(boolean mitWunschnoten) {
         this.mitWunschnoten = mitWunschnoten;
     }
 
     /**
-     *
-     * @return
+     * Überprüft ob alle berechnungen erfolgreich waren
+     * @return Wert gibt an ob Noten erfolgreich berechnet wurden
      */
     public boolean isErfolgreichGerechnet() {
         return erfolgreichGerechnet;
     }
 
     /**
-     *
-     * @param erfolgreichGerechnet
+     * Setzt erfolgreiche berechnung auf true oder false
+     * @param erfolgreichGerechnet bestimmt ob Berechnung der Noten erfolgreich war oder nicht
      */
     public void setErfolgreichGerechnet(boolean erfolgreichGerechnet) {
         this.erfolgreichGerechnet = erfolgreichGerechnet;
     }
 
     /**
-     *
-     * @return
+     * Tostring gibt alle Berechneten Werte aus
+     * @return String der berechneten Werte
      */
     @Override
     public String toString() {

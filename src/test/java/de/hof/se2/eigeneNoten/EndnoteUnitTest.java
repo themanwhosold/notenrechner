@@ -170,7 +170,7 @@ public class EndnoteUnitTest {
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
                 0, 0, new ArrayList<Noten>(), 0,0,true, true)
                 , new ArrayList<Noten>(),0,0, true, true);
-        assertNotNull(instance.getNoteMultiGewichtung());
+        assertNotNull(instance.getSummeNoten());
 //        fail("Summe der MultiNotenGewichtungen nicht erfolgreich gehholt");
     }
 
@@ -184,7 +184,7 @@ public class EndnoteUnitTest {
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
                 0, 0, new ArrayList<Noten>(), 0,0,true, true)
                 , new ArrayList<Noten>(),0,0, true, true);
-        instance.setNoteMultiGewichtung(noteMultiGewichtung);
+        instance.setSummeNoten(noteMultiGewichtung);
 //        fail("Summe der MultiNotenGewichtungen nicht erfolgreich gesetzt");
     }
 

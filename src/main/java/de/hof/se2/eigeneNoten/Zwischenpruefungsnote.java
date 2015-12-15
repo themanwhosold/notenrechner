@@ -21,164 +21,165 @@ public class Zwischenpruefungsnote extends BerechneteNoten {
     private double leistungsnachweisnote;
     private List<Noten> notenListe;     // Fraglich, ob ich das hier will
     private long summeGewichtung;
-    private long noteMultiGewichtung;
+    private long summeZPNoteMitGewichtung;
     private boolean mitWunschnoten;
-    private int bisGrundstudium;
+    private int dauerGrundstudiumBisSemester;
     private boolean istGueltig;
 
     /**
-     *
-     * @param zwischenpruefungsnote
-     * @param leistungsnachweisnote
-     * @param notenListe
-     * @param summeGewichtung
-     * @param bisGrundstudium
-     * @param mitWunschnoten
-     * @param istGueltig
+     * Setzt Zwischenprüfungsnote mit allen im Grundstudium existierenden Werten eines Studenten
+     * @param zwischenpruefungsnote Die Note die als ZP-NOte berechnet wurde
+     * @param leistungsnachweisnote Note der Leistungsnachweise im Grundstudium
+     * @param notenListe Liste aller Noten des Grundstudiums
+     * @param summeGewichtung Summe der Gewichtungen. Durch diesen Wert muss geteilt werden
+     * @param dauerGrundstudiumBisSemester Das Grundstudium dauert bis zum übergebenen Semester
+     * @param mitWunschnoten Student hat Wunschnoten eingetragen
+     * @param istGueltig Berechnete Zwischenprüfungsnote ist gültig
      */
-    public Zwischenpruefungsnote(double zwischenpruefungsnote, double leistungsnachweisnote, List<Noten> notenListe, long summeGewichtung, int bisGrundstudium, boolean mitWunschnoten, boolean istGueltig) {
+    public Zwischenpruefungsnote(double zwischenpruefungsnote, double leistungsnachweisnote, List<Noten> notenListe, long summeGewichtung, int dauerGrundstudiumBisSemester, boolean mitWunschnoten, boolean istGueltig) {
         this.zwischenpruefungsnote = zwischenpruefungsnote;
         this.leistungsnachweisnote = leistungsnachweisnote;
         this.notenListe = notenListe;
         this.summeGewichtung = summeGewichtung;
-        this.noteMultiGewichtung = (long)(this.zwischenpruefungsnote * this.summeGewichtung);
-        this.bisGrundstudium = bisGrundstudium;
+        this.summeZPNoteMitGewichtung = (long)(this.zwischenpruefungsnote * this.summeGewichtung);
+        this.dauerGrundstudiumBisSemester = dauerGrundstudiumBisSemester;
         this.mitWunschnoten = mitWunschnoten;
         this.istGueltig = istGueltig;
     }
 
     /**
-     *
-     * @return
+     * Holt die Zwischenprüfungsnote eines Studenten
+     * @return Zwischenprüfungsnote eines Studenten
      */
     public double getZwischenpruefungsnote() {
         return zwischenpruefungsnote;
     }
 
     /**
-     *
-     * @param zwischenpruefungsnote
+     * Setzt die Zwischenprüfungsnote auf den Folgenden Wert
+     * @param zwischenpruefungsnote Entspricht der ZP Note eines Studenten
      */
     public void setZwischenpruefungsnote(double zwischenpruefungsnote) {
         this.zwischenpruefungsnote = zwischenpruefungsnote;
     }
 
     /**
-     *
-     * @return
+     * Note der Leistungsnachweise im Grundstudium
+     * @return Note der Leistungsnachweise im GS
      */
     public double getLeistungsnachweisnote() {
         return leistungsnachweisnote;
     }
 
     /**
-     *
-     * @param leistungsnachweisnote
+     * Setzt Note der LEistungsnachweise auf den übergebenen Wert
+     * @param leistungsnachweisnote Entspricht der LEistungsnachweisnote des GS
      */
     public void setLeistungsnachweisnote(double leistungsnachweisnote) {
         this.leistungsnachweisnote = leistungsnachweisnote;
     }
 
     /**
-     *
-     * @return
+     * Liste aller Noten des Grundstudiums wird geholt
+     * @return Liste aller Noten des Grundstudiums
      */
     public List<Noten> getNotenListe() {
         return notenListe;
     }
 
     /**
-     *
-     * @param notenListe
+     * Setzt Liste aller Noten des Grundstudiums auf die Übergebene Liste
+     * @param notenListe Liste aller Noten des Grundstudiums muss übergeben werden. Muss Noten enthalten
      */
     public void setNotenListe(List<Noten> notenListe) {
         this.notenListe = notenListe;
     }
 
     /**
-     *
-     * @return
+     * Summe aller noten der Zwischenprüfung inclusive richtiger Geichtung
+     * @return Zwischenprüfungsnote mit Gewichtung
      */
-    public long getNoteMultiGewichtung() {
-        return noteMultiGewichtung;
+    public long getSummeZPNoteMitGewichtung() {
+        return summeZPNoteMitGewichtung;
     }
 
     /**
-     *
-     * @return
+     * Zwischenprüfungsnote wird inclusive aller gesetzten Werte als String ausgegeben
+     * @return String einer Zwischenprüfungsnote mit den gesetzten Werten
      */
     @Override
     public String toString() {
-        return "Zwischenpruefungsnote{" + "zwischenpruefungsnote=" + zwischenpruefungsnote + ", leistungsnachweisnote=" + leistungsnachweisnote + ", notenListe.size()=" + notenListe.size() + ", summeGewichtung=" + summeGewichtung + ", noteMultiGewichtung=" + noteMultiGewichtung + ", mitWunschnoten=" + mitWunschnoten + ", bisGrundstudium=" + bisGrundstudium + ", istGueltig=" + istGueltig + '}';
+        return "Zwischenpruefungsnote{" + "zwischenpruefungsnote=" + zwischenpruefungsnote + ", leistungsnachweisnote=" + leistungsnachweisnote + ", notenListe.size()=" + notenListe.size() + ", summeGewichtung=" + summeGewichtung + ", noteMultiGewichtung=" + summeZPNoteMitGewichtung + ", mitWunschnoten=" + mitWunschnoten + ", bisGrundstudium=" + dauerGrundstudiumBisSemester + ", istGueltig=" + istGueltig + '}';
     }
 
     /**
-     *
-     * @param noteMultiGewichtung
+     * Setzt die Richtig gewichtete Zwischenprüfungsnote auf den übergebenen Wertt
+     * @param summeZPNoteMitGewichtung Zwischenprüfungsnote mit richiger Gewichtung
      */
-    public void setNoteMultiGewichtung(long noteMultiGewichtung) {
-        this.noteMultiGewichtung = noteMultiGewichtung;
+    public void setSummeZPNoteMitGewichtung(long summeZPNoteMitGewichtung) {
+        this.summeZPNoteMitGewichtung = summeZPNoteMitGewichtung;
     }
 
     /**
-     *
-     * @return
+     * Gibt die Summe der Gewichtungen zurück. Durch diesen Wert muss geteilt werden um die richtig
+     * gewerteten Note der Zwischenprüfung zu berechnen
+     * @return Summe aller Gewichtungen, durch die geteilt werden muss
      */
     public long getSummeGewichtung() {
         return summeGewichtung;
     }
 
     /**
-     *
-     * @param summeGewichtung
+     * Setzt die Summe der Gewichtungen aller ZP Noten durch welche geteilt weren muss
+     * @param summeGewichtung Wert durch den Die Summe de rNoten geteilt werden muss
      */
     public void setSummeGewichtung(long summeGewichtung) {
         this.summeGewichtung = summeGewichtung;
     }
 
     /**
-     *
-     * @return
+     * Student hat wunschnoten gesezt?
+     * @return boolean ob Wunschnoten gesetzt
      */
     public boolean isMitWunschnoten() {
         return mitWunschnoten;
     }
 
     /**
-     *
-     * @param mitWunschnoten
+     * Setzt ob Studen Wunschnoten eingetragen hat, die zur berechnung herangezogen werden müssen
+     * @param mitWunschnoten wenn Student Wunschnoten eingetragen hat
      */
     public void setMitWunschnoten(boolean mitWunschnoten) {
         this.mitWunschnoten = mitWunschnoten;
     }
 
     /**
-     *
-     * @return
+     * Bis inklusive dieses Semesters dauert das Grundstudium
+     * @return Bis zu diesem Semster dauer das Grundstudium
      */
-    public int getBisGrundstudium() {
-        return bisGrundstudium;
+    public int getDauerGrundstudiumBisSemester() {
+        return dauerGrundstudiumBisSemester;
     }
 
     /**
-     *
-     * @param bisGrundstudium
+     * Setzt dauer des Grundstudiums auf den übergebenen Wert. Bis inclusive des angegebenen Semesters
+     * @param dauerGrundstudiumBisSemester bis zu diesem Semester dauert das Grundstudium
      */
-    public void setBisGrundstudium(int bisGrundstudium) {
-        this.bisGrundstudium = bisGrundstudium;
+    public void setDauerGrundstudiumBisSemester(int dauerGrundstudiumBisSemester) {
+        this.dauerGrundstudiumBisSemester = dauerGrundstudiumBisSemester;
     }
 
     /**
-     *
-     * @return
+     * Berechneten Werte sind gültig
+     * @return Ob die Werte die berechnet wurden gültig sind.
      */
     public boolean isIstGueltig() {
         return istGueltig;
     }
 
     /**
-     *
-     * @param istGueltig
+     * Wenn berechnung aller Werte richtig ist kann auf gültig gesetzt werden
+     * @param istGueltig gibt an ob die berechneten Werte rictig sind
      */
     public void setIstGueltig(boolean istGueltig) {
         this.istGueltig = istGueltig;
