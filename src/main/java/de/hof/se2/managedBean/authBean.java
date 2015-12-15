@@ -39,7 +39,7 @@ public class authBean {
     private User user;
     
     /**
-     *Login per localSession Bean
+     *Login per localSession Bean. Erzeugt einen User, der Injected werden kann
      */
     @Named 
     public void login() {
@@ -68,7 +68,7 @@ public class authBean {
     /**
      * Gibt den momentan eingeloggten BEnutzer zurück
      * Bedient sich der SessionBean authSession
-     * @return
+     * @return Den momentanen BEnutzer, der Injected werden kann
      */
     @Produces
     @LoggedIn

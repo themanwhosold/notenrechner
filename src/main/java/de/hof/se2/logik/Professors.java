@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.test;
+package de.hof.se2.logik;
 
 import de.hof.se2.entity.Noten;
 import de.hof.se2.entity.Personen;
@@ -16,7 +16,8 @@ import javax.persistence.PersistenceContext;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * Erzeugt für einen spezifischen Dozenten die Notenlisten sowie die Studienfächer, die 
+ * er bearbeiten darf
  * @author Christoph
  */
 public class Professors implements Serializable {
@@ -26,23 +27,34 @@ public class Professors implements Serializable {
     
     private Personen person;
     
-    
+    /**
+     * Erzeugt einen Professor
+     * @param person Person der Professor ist
+     */
     public Professors(Personen person) {
         this.person = person;
     }
 
+    /**
+     * gibt den Professor als Person zurück
+     * @return Professor als Person-Objekt
+     */
     public Personen getPerson() {
         return person;
     }
 
+    /**
+     * Setzt den Professor auf die übergebene Person
+     * @param person Der Professor, der gesetzt sein soll
+     */
     public void setPerson(Personen person) {
         this.person = person;
     }
     
     /**
-     *
-     * @param person
-     * @return
+     * Gibt eine Notenliste zurück, die alle Noten enthält, für die der Professor zuständig ist
+     * @param person Professor, der die Noten managen darf
+     * @return Liste aller Noten, die vom PRofessor betreut werden.
      */
     @Named
    public List<Noten> getNotenlistByDozentId (Personen person) {
@@ -53,7 +65,10 @@ public class Professors implements Serializable {
         
     }
     
-    
+    /**
+     * Holt die Notenliste eines Professor
+     * @return Notenliste des Professors
+     */
     @XmlTransient
     public List<Noten> getNotenListByProfessor() {
        return person.getNotenList();

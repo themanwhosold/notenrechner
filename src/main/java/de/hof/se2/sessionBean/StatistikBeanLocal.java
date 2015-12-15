@@ -6,7 +6,7 @@
 package de.hof.se2.sessionBean;
 
 import de.hof.se2.entity.Noten;
-import de.hof.se2.test.Statistik;
+import de.hof.se2.logik.Statistik;
 import java.util.List;
 
 /**
@@ -19,23 +19,23 @@ import java.util.List;
 public interface StatistikBeanLocal {
 
     /**
-     *
+     * Holt Liste der Statistiken eines Studienfaches
      * @param idStudienfach
-     * @return
+     * @return Liste der Statistiken eines Studienfaches
      */
     public List<Statistik> getStatistik(int idStudienfach);
 
     /**
-     *
+     * Erzeugt Statistik für eine Liste von Noten
      * @param notenListe
-     * @return
+     * @return Statistikobjekt für die Notenliste
      */
     public Statistik getStatistik(List<Noten> notenListe);
 
     /**
-     *
+     * Holt anzahl der Notenarten aus der DB
      * @param idStudienfach
-     * @return
+     * @return Anzahl der Notenarten
      */
     public int getAnzahlNotenArten(int idStudienfach);
 }

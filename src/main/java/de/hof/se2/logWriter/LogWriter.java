@@ -12,7 +12,7 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 
 /**
- *
+ * Logwriter schreibt ein log, dass zur Fehlerklärung ausgewertet werden kann
  * @author Schmidbauer
  */
 public class LogWriter {

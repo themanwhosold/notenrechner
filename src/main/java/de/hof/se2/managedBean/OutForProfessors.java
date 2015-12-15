@@ -10,7 +10,7 @@ import de.hof.se2.entity.Personen;
 import de.hof.se2.entity.Studienfaecher;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
-import de.hof.se2.test.Statistik;
+import de.hof.se2.logik.Statistik;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -76,9 +76,9 @@ public class OutForProfessors implements Serializable {
     }
 
     /**
-     *
-     * @param dozentID
-     * @return
+     * Erzeugt Notenliste für einen Professor
+     * @param dozentID Professor, dem die Noten gehören
+     * @return Notenliste des Professors
      */
     @Named
     public List<Noten> notenListByProfessor(int dozentID) {
@@ -92,9 +92,9 @@ public class OutForProfessors implements Serializable {
     }
     
     /**
-     * 
-     * @param dozentID
-     * @return 
+     * Erzeugt Liste der Studienfächer des übergebenen Dozenten
+     * @param dozentID Dozent, dessen Studienfachliste erzeugt werden soll
+     * @return  Liste von Studienfächern
      */
     public List <Studienfaecher>  StudienfaecherListByProfessor (int dozentID){
         
@@ -104,10 +104,10 @@ public class OutForProfessors implements Serializable {
     }
 
     /**
-     *
-     * @param dozentID
-     * @param studienfachID
-     * @return
+     * Erzeugt die Noten eines Studienfaches für einen spezifischen Dozenten
+     * @param dozentID ID des Dozenten, dem die Notenliste gehören soll
+     * @param studienfachID ID des Studienfaches, für das die Notenliste erzeugt werden soll
+     * @return Notenliste eines Studienfaches für einen spezifischen Dozenten
      */
     public List <Noten> notenListByProfessorStudienfach (int dozentID, int studienfachID){
         
@@ -118,13 +118,14 @@ public class OutForProfessors implements Serializable {
     }
 
     /**
+     * Gibt den PRofessor aus der Datenbank zurück für den die ID angegeben wurde
      * @author max
      * @param personId
-     * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten
-     * Bean
+     * @return Person, in diesem Fall der Professor
      */
 
     @Named
+    @Deprecated
     public Personen getPerson(int personId) {
         List person = em.createNativeQuery("select * from personen where idPersonen = " + personId, Personen.class).getResultList();
         return (Personen) person.get(0);

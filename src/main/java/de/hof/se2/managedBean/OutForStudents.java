@@ -12,7 +12,7 @@ import de.hof.se2.entity.Noten;
 import de.hof.se2.entity.Personen;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
-import de.hof.se2.test.Statistik;
+import de.hof.se2.logik.Statistik;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -111,6 +111,7 @@ public class OutForStudents implements Serializable {
     }
 
     /**
+     * Gibt das Arithmetische Mittel eines Studienfaches zurück
      * @author max
      * @param idStudienfach
      * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten
@@ -122,6 +123,7 @@ public class OutForStudents implements Serializable {
     }
 
     /**
+     * Holt Varianz des übergebenen Studienfaches
      * @author max
      * @param idStudienfach
      * @return Varianz des Studiengangs aus der berechnungNoten Bean
@@ -132,6 +134,7 @@ public class OutForStudents implements Serializable {
     }
 
     /**
+     * Holt Standardabweichung für das übergebene Studienfach
      * @author max
      * @param idStudienfach
      * @return Standardabweichung des Studiengangs aus der berechnungNoten Bean
@@ -142,6 +145,7 @@ public class OutForStudents implements Serializable {
     }
 
     /**
+     * Holt MEdian des Studienfachs ab
      * @author max
      * @param idStudienfach
      * @return Median des Studiengangs aus der berechnungNoten Bean
@@ -165,9 +169,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
-     * @param personId
-     * @return
+     * Holt Ednote des Studenten ab
+     * @param personId Student
+     * @return berechnete Endnote des Studenten
      */
     @Named
     public Endnote getEndnote(int personId) {
@@ -175,9 +179,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
-     * @param personId
-     * @return
+     * Holt die Endnote mit den Wuschnoten des Studenten ab
+     * @param personId Student
+     * @return Berechnete Endnote mit Wunschnoten
      */
     @Named
     public double getWunschEndnote(int personId) {
@@ -185,9 +189,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
-     * @param personId
-     * @return
+     * Holt Person aus der Datenbank, die dem Studenten entspricht aus der Datenbank
+     * @param personId Studenten ID
+     * @return Person, die eingeloggt ist
      */
     @Named
     public Personen getPerson(int personId) {
@@ -196,9 +200,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
-     * @param notenListe
-     * @return
+     * Erzeugt Statistik für eine Notenliste über die StatistikBean
+     * @param notenListe Notenliste aus der die Statistik erzeugt werden soll
+     * @return Statistik der Notenliste
      * @deprecated
      */
     @Named
@@ -214,10 +218,10 @@ public class OutForStudents implements Serializable {
 //    }
 
     /**
-     *
-     * @param note
-     * @param endnote
-     * @return
+     * Holt Note mit Relativer gewichtung zur Endnote
+     * @param note Die Einzelnote, deren gewichtung berechnet werden soll
+     * @param endnote Endnote
+     * @return Gewichtung der jeweiligen Note
      */
 
     @Named
@@ -236,9 +240,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     *
-     * @param personID
-     * @return
+     * Erzeut eine Notenliste, geordnet nach Semestern der PErson, die abgefragt wird
+     * @param personID Student für den die Liste erzeugt werden soll
+     * @return Notenliste, sortiert nach Semestern für einen Studenten
      */
     @Named
     public List<Noten> getNotenListSortedSemester(int personID){
