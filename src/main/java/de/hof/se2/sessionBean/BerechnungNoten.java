@@ -17,11 +17,16 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
 /**
  * Logik für die Berechnung der Noten anhand der in der DB angegebenen
@@ -34,7 +39,8 @@ import javax.persistence.PersistenceContext;
 @Singleton
 @Local(BerechnungNotenLocal.class)
 public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
-
+    @EJB
+    BerechneteNoten instance;
     @Resource
     SessionContext sessionContext;
 
@@ -44,10 +50,29 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     LogWriter logBerechnungWriter;
     Logger logBerechnung;
 
+    /**
+     *
+     * @throws IOException
+     */
     public BerechnungNoten() throws IOException {
         this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();
     }
+    
+    /**
+     *
+     * @return
+     */
+    @Deployment
+public static JavaArchive createDeployment() {
+
+    JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
+    jar.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
+    jar.addPackage("com.demopack.demoproj");
+    jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+
+    return jar;
+}
 
     /**
      * @author max
@@ -150,7 +175,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
 
         Zwischenpruefungsnote zwischenpruefungsnote = this.getNoteGrundstudium(matrikelNr);
 
-        int bisGrundstudium = zwischenpruefungsnote.getBisGrundstudium();   //Sparen einer DB Abfrage
+        int bisGrundstudium = zwischenpruefungsnote.getDauerGrundstudiumBisSemester();   //Sparen einer DB Abfrage
         List<Noten> notenListe = em.createNativeQuery("select n.* from noten n,studienfaecher s where n.Matrikelnr = " + matrikelNr + " and n.studienfach_id = s.idStudienfach and s.semester > " + bisGrundstudium, Noten.class).getResultList();
 
         BerechneteWerte berechneteWerte = this.getBerechneteWerte(notenListe);
@@ -300,6 +325,11 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
         return (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
     }
 
+    /**
+     *
+     * @param matrikelNr
+     * @return
+     */
     @Override
     public BerechneteNoten getBerechneteNoten(int matrikelNr) {
 

@@ -11,6 +11,10 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Schmidbauer
+ */
 public class LogWriter {
 
     private final File logPath; //File Objekt in dem das Logfile abgespeichert wird

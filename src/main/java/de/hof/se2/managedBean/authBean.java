@@ -40,12 +40,10 @@ public class authBean {
     
     /**
      *Login per localSession Bean
-     * @param id
-     * @param password
      */
     @Named 
-    public void login(int id, String password) {
-        this.localSession.login(id, password);
+    public void login() {
+        this.localSession.login();
     }
 
     /**

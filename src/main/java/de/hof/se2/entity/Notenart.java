@@ -53,51 +53,99 @@ public class Notenart implements Serializable {
     @ManyToOne(optional = false)
     private Studiengang studiengangId;
 
+    /**
+     *
+     */
     public Notenart() {
     }
 
+    /**
+     *
+     * @param idNotenart
+     */
     public Notenart(Integer idNotenart) {
         this.idNotenart = idNotenart;
     }
 
+    /**
+     *
+     * @param idNotenart
+     * @param bezeichnung
+     */
     public Notenart(Integer idNotenart, String bezeichnung) {
         this.idNotenart = idNotenart;
         this.bezeichnung = bezeichnung;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdNotenart() {
         return idNotenart;
     }
 
+    /**
+     *
+     * @param idNotenart
+     */
     public void setIdNotenart(Integer idNotenart) {
         this.idNotenart = idNotenart;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBezeichnung() {
         return bezeichnung;
     }
 
+    /**
+     *
+     * @param bezeichnung
+     */
     public void setBezeichnung(String bezeichnung) {
         this.bezeichnung = bezeichnung;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Noten> getNotenList() {
         return notenList;
     }
 
+    /**
+     *
+     * @param notenList
+     */
     public void setNotenList(List<Noten> notenList) {
         this.notenList = notenList;
     }
 
+    /**
+     *
+     * @return
+     */
     public Studiengang getStudiengangId() {
         return studiengangId;
     }
 
+    /**
+     *
+     * @param studiengangId
+     */
     public void setStudiengangId(Studiengang studiengangId) {
         this.studiengangId = studiengangId;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -105,6 +153,11 @@ public class Notenart implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -118,6 +171,10 @@ public class Notenart implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "de.hof.se2.Notenart[ idNotenart=" + idNotenart + " ]";

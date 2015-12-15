@@ -12,11 +12,11 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <junit-version>4.11</junit-version>
-    <arquillian-version>1.1.4.Final</arquillian-version>
-    <arquillian-wildfly-version>8.1.0.Final</arquillian-wildfly-version>
-    <arquillian-transaction-version>1.0.1.Final</arquillian-transaction-version>  
-    <javaee-server-home>/Java/wildfly-8.1.0.Final</javaee-server-home>
+        <junit-version>4.11</junit-version>
+        <arquillian-version>1.1.4.Final</arquillian-version>
+        <arquillian-wildfly-version>8.1.0.Final</arquillian-wildfly-version>
+        <arquillian-transaction-version>1.0.1.Final</arquillian-transaction-version>  
+        <javaee-server-home>/Java/wildfly-8.1.0.Final</javaee-server-home>
     </properties>
     
     <dependencies>
@@ -47,7 +47,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -74,7 +74,7 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
@@ -106,6 +106,18 @@
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-embedded</artifactId>
             <version>${arquillian-wildfly-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-arquillian-container-managed</artifactId>
+            <version>7.1.1.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.core</groupId>
+            <artifactId>arquillian-core-api</artifactId>
+            <version>1.1.4.Final</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -157,26 +169,26 @@
                 </executions>
             </plugin>
             <plugin>
-            <groupId>org.wildfly.plugins</groupId>
-            <artifactId>wildfly-maven-plugin</artifactId>
-            <version>1.0.2.Final</version>
-            <configuration>
-               <groupId>mysql</groupId>
-               <artifactId>mysql-connector-java</artifactId>
-               <fileName>mysql-connector-java-5.1.37-bin.jar</fileName>
-               <executions>
-                  <execution>
-                     <id>deploy-driver-MySQL</id>
-                     <phase>package</phase>
-                     <goals>
-                        <goal>deploy-artifact</goal>
-                     </goals>
-                     <configuration />
-                  </execution>
-               </executions>
-               <filename>${project.build.finalName}.war</filename>
-            </configuration>
-         </plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.0.2.Final</version>
+                <configuration>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <fileName>mysql-connector-java-5.1.37-bin.jar</fileName>
+                    <executions>
+                        <execution>
+                            <id>deploy-driver-MySQL</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>deploy-artifact</goal>
+                            </goals>
+                            <configuration />
+                        </execution>
+                    </executions>
+                    <filename>${project.build.finalName}.war</filename>
+                </configuration>
+            </plugin>
             <!-- maven ear plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -202,7 +214,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.17</version>
             </plugin>

@@ -26,9 +26,22 @@ public interface authSessionLocal {
 //
 //    return jar;
 //    }
-    public User getCurrentUser();
-    public void login(int id, String password);
 
+    /**
+     *
+     * @return
+     */
+    public User getCurrentUser();
+
+    /**
+     *
+     */
+    public void login();
+
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user);
     
 }

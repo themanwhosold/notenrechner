@@ -34,6 +34,10 @@ public class NotenManaged implements Serializable {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Named
     public List<Noten> getAllNoten() {
         List<Noten> rc = new ArrayList<>();

@@ -24,16 +24,28 @@ public class Credentials {
 
     private String password;
 
-    
-
+    /**
+     *
+     * @return
+     */
     public int getUsername() { return username; }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(int username) { this.username = username; }
 
-    
-
+    /**
+     *
+     * @return
+     */
     public String getPassword() { return password; }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) { this.password = password; }
 
     

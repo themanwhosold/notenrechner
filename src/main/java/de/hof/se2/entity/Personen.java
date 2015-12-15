@@ -85,13 +85,29 @@ public class Personen implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matrikelnr",fetch = EAGER)
     private List<Noten> notenList;
 
+    /**
+     *
+     */
     public Personen() {
     }
 
+    /**
+     *
+     * @param idPersonen
+     */
     public Personen(Integer idPersonen) {
         this.idPersonen = idPersonen;
     }
 
+    /**
+     *
+     * @param idPersonen
+     * @param nachname
+     * @param vorname
+     * @param bioGeschlecht
+     * @param geburtsdatum
+     * @param passwort
+     */
     public Personen(Integer idPersonen, String nachname, String vorname, boolean bioGeschlecht, Date geburtsdatum, String passwort) {
         this.idPersonen = idPersonen;
         this.nachname = nachname;
@@ -101,88 +117,172 @@ public class Personen implements Serializable {
         this.passwort = passwort;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdPersonen() {
         return idPersonen;
     }
 
+    /**
+     *
+     * @param idPersonen
+     */
     public void setIdPersonen(Integer idPersonen) {
         this.idPersonen = idPersonen;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNachname() {
         return nachname;
     }
 
+    /**
+     *
+     * @param nachname
+     */
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getVorname() {
         return vorname;
     }
 
+    /**
+     *
+     * @param vorname
+     */
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getBioGeschlecht() {
         return bioGeschlecht;
     }
 
+    /**
+     *
+     * @param bioGeschlecht
+     */
     public void setBioGeschlecht(boolean bioGeschlecht) {
         this.bioGeschlecht = bioGeschlecht;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getGeburtsdatum() {
         return geburtsdatum;
     }
 
+    /**
+     *
+     * @param geburtsdatum
+     */
     public void setGeburtsdatum(Date geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPasswort() {
         return passwort;
     }
 
+    /**
+     *
+     * @param passwort
+     */
     public void setPasswort(String passwort) {
         this.passwort = passwort;
     }
 
+    /**
+     *
+     * @return
+     */
     public Short getRolle() {
         return rolle;
     }
 
+    /**
+     *
+     * @param rolle
+     */
     public void setRolle(Short rolle) {
         this.rolle = rolle;
     }
 
+    /**
+     *
+     * @return
+     */
     public Studiengang getStudiengangId() {
         return studiengangId;
     }
 
+    /**
+     *
+     * @param studiengangId
+     */
     public void setStudiengangId(Studiengang studiengangId) {
         this.studiengangId = studiengangId;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Studienfaecher> getStudienfaecherList() {
         return studienfaecherList;
     }
 
+    /**
+     *
+     * @param studienfaecherList
+     */
     public void setStudienfaecherList(List<Studienfaecher> studienfaecherList) {
         this.studienfaecherList = studienfaecherList;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Noten> getNotenList() {
         return notenList;
     }
 
+    /**
+     *
+     * @param notenList
+     */
     public void setNotenList(List<Noten> notenList) {
         this.notenList = notenList;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -190,6 +290,11 @@ public class Personen implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -203,6 +308,10 @@ public class Personen implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "de.hof.se2.Personen[ idPersonen=" + idPersonen + " ]";

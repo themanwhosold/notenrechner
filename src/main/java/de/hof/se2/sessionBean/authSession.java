@@ -18,9 +18,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.runner.RunWith;
 
 /**
  * Klasse legt Benutzer an, der in alle Seitenaufrufe injected werden kann
@@ -35,9 +37,10 @@ public class authSession implements authSessionLocal, Serializable{
 
     private User user;
     
-
-    
-    
+    /**
+     *
+     * @return
+     */
     @Deployment
 public static JavaArchive createDeployment() {
 
@@ -52,10 +55,9 @@ public static JavaArchive createDeployment() {
     /**
      * Methode wird zum Login aufgerufen und erwartet als Parameter die USer ID und das Passwort in der DB
      * @param id
-     * @param password
      */
     @Override
-    public void login(int id, String password) {
+    public void login() {
 //        User test= new User();
 //        test.setPassword("passwort");
 //        test.setUserId(1);

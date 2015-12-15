@@ -67,13 +67,28 @@ public class Studiengang implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studiengangId")
     private List<Notenart> notenartList;
 
+    /**
+     *
+     */
     public Studiengang() {
     }
 
+    /**
+     *
+     * @param idStudiengang
+     */
     public Studiengang(Integer idStudiengang) {
         this.idStudiengang = idStudiengang;
     }
 
+    /**
+     *
+     * @param idStudiengang
+     * @param studiengangsleiter
+     * @param bezeichnung
+     * @param anzSemester
+     * @param grundstudiumBis
+     */
     public Studiengang(Integer idStudiengang, int studiengangsleiter, String bezeichnung, int anzSemester, int grundstudiumBis) {
         this.idStudiengang = idStudiengang;
         this.studiengangsleiter = studiengangsleiter;
@@ -82,73 +97,141 @@ public class Studiengang implements Serializable {
         this.grundstudiumBis = grundstudiumBis;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdStudiengang() {
         return idStudiengang;
     }
 
+    /**
+     *
+     * @param idStudiengang
+     */
     public void setIdStudiengang(Integer idStudiengang) {
         this.idStudiengang = idStudiengang;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getStudiengangsleiter() {
         return studiengangsleiter;
     }
 
+    /**
+     *
+     * @param studiengangsleiter
+     */
     public void setStudiengangsleiter(int studiengangsleiter) {
         this.studiengangsleiter = studiengangsleiter;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBezeichnung() {
         return bezeichnung;
     }
 
+    /**
+     *
+     * @param bezeichnung
+     */
     public void setBezeichnung(String bezeichnung) {
         this.bezeichnung = bezeichnung;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAnzSemester() {
         return anzSemester;
     }
 
+    /**
+     *
+     * @param anzSemester
+     */
     public void setAnzSemester(int anzSemester) {
         this.anzSemester = anzSemester;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getGrundstudiumBis() {
         return grundstudiumBis;
     }
 
+    /**
+     *
+     * @param grundstudiumBis
+     */
     public void setGrundstudiumBis(int grundstudiumBis) {
         this.grundstudiumBis = grundstudiumBis;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Personen> getPersonenList() {
         return personenList;
     }
 
+    /**
+     *
+     * @param personenList
+     */
     public void setPersonenList(List<Personen> personenList) {
         this.personenList = personenList;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Studienfaecher> getStudienfaecherList() {
         return studienfaecherList;
     }
 
+    /**
+     *
+     * @param studienfaecherList
+     */
     public void setStudienfaecherList(List<Studienfaecher> studienfaecherList) {
         this.studienfaecherList = studienfaecherList;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Notenart> getNotenartList() {
         return notenartList;
     }
 
+    /**
+     *
+     * @param notenartList
+     */
     public void setNotenartList(List<Notenart> notenartList) {
         this.notenartList = notenartList;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -156,6 +239,11 @@ public class Studiengang implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -169,6 +257,10 @@ public class Studiengang implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "de.hof.se2.Studiengang[ idStudiengang=" + idStudiengang + " ]";
