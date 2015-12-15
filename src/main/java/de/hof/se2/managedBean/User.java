@@ -9,7 +9,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
- *
+ *Erzeugt einen User, der für die Session Persistent eingeloggt bleibt und in andere
+ * BEans Injected werden kann.
  * @author Schmidbauer
  */
 @Named(value = "user")
@@ -25,60 +26,60 @@ public class User{
     private String nachname;
     
     /**
-     *
-     * @return
+     * Holt vornamen des Benutzers
+     * @return Vorname des BEnutzers
      */
     public String getVorname() {
         return vorname;
     }
 
     /**
-     *
-     * @param vorname
+     * Setzt vornamen des BEnutzers
+     * @param vorname Vorname des BEnutzers
      */
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
 
     /**
-     *
-     * @return
+     * Holt NAchnamen eines USers ab
+     * @return Nachname eines BEnutzers
      */
     public String getNachname() {
         return nachname;
     }
 
     /**
-     *
-     * @param nachname
+     * Setzt NAchname des Users auf den übergebenen String
+     * @param nachname Nachname des Users
      */
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
 
     /**
-     *
-     * @return
+     * Welche Rolle hat der Benutzer? Admin, Student oder Professor
+     * @return Rolle des Users
      */
     public int getRolle() {
         return rolle;
     }
 
     /**
-     *
-     * @param rolle
+     * Setzt Rolle auf den angegebenen Wert
+     * @param rolle Integerwert der Rolle
      */
     public void setRolle(int rolle) {
         this.rolle = rolle;
     }
 
     /**
-     *
+     * Holt Userid mit der sich der Benutzer eingeloggt hat
      * @return
      */
     public int getUserId() {
-        if (userId==0) return 1;
-        else return userId;
+//        if (userId==0) return 1;
+        return userId;
     }
 
     /**
