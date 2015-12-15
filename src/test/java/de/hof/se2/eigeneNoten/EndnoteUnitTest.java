@@ -41,10 +41,9 @@ public class EndnoteUnitTest {
     @Test
     public void testGetEndnote() {
         System.out.println("getEndnote");
-        
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.getEndnote());
 //        fail("Endnote nicht erfolgreich geholt.");
     }
@@ -58,8 +57,8 @@ public class EndnoteUnitTest {
         double endnote = 0.0;
         
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         instance.setEndnote(endnote);
 //        fail("Endnote nicht erfolgreich gesetzt");
     }
@@ -72,8 +71,8 @@ public class EndnoteUnitTest {
         System.out.println("getLeistungsnachweisnote");
         
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.getLeistungsnachweisnote());
 //        fail("Lestungsnachweisnote nicht erfolgreich geholt.");
     }
@@ -86,8 +85,8 @@ public class EndnoteUnitTest {
         System.out.println("setLeistungsnachweisnote");
         double leistungsnachweisnote = 0.0;
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         instance.setLeistungsnachweisnote(leistungsnachweisnote);
 //        fail("Lestungsnachweisnote nicht erfolgreich gesetzt");
     }
@@ -100,8 +99,8 @@ public class EndnoteUnitTest {
         System.out.println("getZwischenpruefungsnote");
         
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.getZwischenpruefungsnote());
 //        fail("Zwischenprüfungsnte nicht erfolgreich geholt.");
     }
@@ -113,11 +112,11 @@ public class EndnoteUnitTest {
     public void testSetZwischenpruefungsnote() {
         System.out.println("setZwischenpruefungsnote");
         Zwischenpruefungsnote zwischenpruefungsnote = new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true,true);
         
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         instance.setZwischenpruefungsnote(zwischenpruefungsnote);
 //        fail("Zwischenprüfungsnte nicht erfolgreich gesetzt");
     }
@@ -129,8 +128,8 @@ public class EndnoteUnitTest {
     public void testGetNotenListe() {
         System.out.println("getNotenListe");
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.getNotenListe());
 //        fail("Notenliste nicht erfolgreich geholt");
     }
@@ -143,8 +142,8 @@ public class EndnoteUnitTest {
         System.out.println("setNotenListe");
         List<Noten> notenListe = new ArrayList<>();
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         instance.setNotenListe(notenListe);
 //        fail("Notenliste nicht erfolgreich gesetzt");
     }
@@ -156,8 +155,8 @@ public class EndnoteUnitTest {
     public void testToString() {
         System.out.println("toString");
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.toString());
 //        fail("ToString nicht erfolgreich");
     }
@@ -169,8 +168,8 @@ public class EndnoteUnitTest {
     public void testGetNoteMultiGewichtung() {
         System.out.println("getNoteMultiGewichtung");
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.getNoteMultiGewichtung());
 //        fail("Summe der MultiNotenGewichtungen nicht erfolgreich gehholt");
     }
@@ -183,8 +182,8 @@ public class EndnoteUnitTest {
         System.out.println("setNoteMultiGewichtung");
         double noteMultiGewichtung = 0.0;
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         instance.setNoteMultiGewichtung(noteMultiGewichtung);
 //        fail("Summe der MultiNotenGewichtungen nicht erfolgreich gesetzt");
     }
@@ -196,8 +195,8 @@ public class EndnoteUnitTest {
     public void testGetSummeGewichtung() {
         System.out.println("getSummeGewichtung");
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         assertNotNull(instance.getSummeGewichtung());
 //        fail("Summe der Gewichtungen nicht erfolgreich geholt");
     }
@@ -210,8 +209,8 @@ public class EndnoteUnitTest {
         System.out.println("setSummeGewichtung");
         long summeGewichtung = 0L;
         Endnote instance = new Endnote(0, 0, new Zwischenpruefungsnote(
-                0, 0, new ArrayList<Noten>(), 0)
-                , new ArrayList<Noten>(), 0, 0);
+                0, 0, new ArrayList<Noten>(), 0,0,true, true)
+                , new ArrayList<Noten>(),0,0, true, true);
         instance.setSummeGewichtung(summeGewichtung);
 //        fail("Summe der Gewichtungen nicht erfolgreich gesetzt");
     }

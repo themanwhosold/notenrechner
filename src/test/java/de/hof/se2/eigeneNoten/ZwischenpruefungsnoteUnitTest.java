@@ -5,6 +5,7 @@
  */
 package de.hof.se2.eigeneNoten;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import de.hof.se2.entity.Noten;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testSetZwischenpruefungsnote() {
         System.out.println("setZwischenpruefungsnote");
 //        double zwischenpruefungsnote = 0.0;
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         instance.setZwischenpruefungsnote(15);
 //        fail("Zwischenprüfungsnote nicht erfolgreich gesetzt");
     }
@@ -51,7 +52,7 @@ public class ZwischenpruefungsnoteUnitTest {
     @Test
     public void testGetZwischenpruefungsnote() {
         System.out.println("getZwischenpruefungsnote");
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(2.0 , 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         assertNotNull(instance.getZwischenpruefungsnote());
 //        fail("Zwischenprüfungsnote nicht erfolgreich geholt");
     }
@@ -67,7 +68,7 @@ public class ZwischenpruefungsnoteUnitTest {
     @Test
     public void testGetLeistungsnachweisnote() {
         System.out.println("getLeistungsnachweisnote");
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 2.0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         assertNotNull(instance.getLeistungsnachweisnote());
 //        fail("Leistungsnachweisnote erfolgreich geholt");
     }
@@ -79,7 +80,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testSetLeistungsnachweisnote() {
         System.out.println("setLeistungsnachweisnote");
         double leistungsnachweisnote = 3.0;
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         instance.setLeistungsnachweisnote(leistungsnachweisnote);
 //        fail("Leistungsnachweisnote nicht erfolgreich gesetzt");
     }
@@ -92,7 +93,7 @@ public class ZwischenpruefungsnoteUnitTest {
         System.out.println("getNotenListe");
         
         List<Noten> inputNoten = new ArrayList<>();
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, inputNoten, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         assertNotNull(instance.getNotenListe());
 //        fail("Notenliste erfolgreich geholt");
     }
@@ -104,7 +105,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testSetNotenListe() {
         System.out.println("setNotenListe");
         List<Noten> notenListe = new ArrayList();
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         instance.setNotenListe(notenListe);
 //        fail("Setzen der Notenlister nicht erfolgreich");
     }
@@ -115,7 +116,7 @@ public class ZwischenpruefungsnoteUnitTest {
     @Test
     public void testGetNoteMultiGewichtung() {
         System.out.println("getNoteMultiGewichtung");
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         assertNotNull(instance.getNoteMultiGewichtung());
 //        fail("Gesamtgewichtung nicht erfolgreich geholt");
     }
@@ -127,7 +128,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testToString() {
         System.out.println("toString");
                 List<Noten> notenListe = new ArrayList();
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, notenListe , 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         assertNotNull(instance.toString());
 //        fail("Tostring nicht erfolgreich");
     }
@@ -139,7 +140,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testSetNoteMultiGewichtung() {
         System.out.println("setNoteMultiGewichtung");
         long noteMultiGewichtung = 0L;
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         instance.setNoteMultiGewichtung(noteMultiGewichtung);
 //        fail("Notengewichtung nicht erfolgreich");
     }
@@ -150,7 +151,7 @@ public class ZwischenpruefungsnoteUnitTest {
     @Test
     public void testGetSummeGewichtung() {
         System.out.println("getSummeGewichtung");
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(2, 0, null, 1);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         assertNotNull(instance.getSummeGewichtung());
 //        fail("Gwichtungssumme nicht erfolgreich geholt");
     }
@@ -162,7 +163,7 @@ public class ZwischenpruefungsnoteUnitTest {
     public void testSetSummeGewichtung() {
         System.out.println("setSummeGewichtung");
         long summeGewichtung = 0L;
-        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, null, 0);
+        Zwischenpruefungsnote instance = new Zwischenpruefungsnote(0, 0, new ArrayList<Noten>(), 0, 0, true, true);
         instance.setSummeGewichtung(summeGewichtung);
 //        fail("summeGewichtung nicht erfolgreich geholt");
     }
