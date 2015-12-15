@@ -18,7 +18,24 @@ import java.util.List;
  */
 public interface StatistikBeanLocal {
 
+    /**
+     *
+     * @param idStudienfach
+     * @return
+     */
     public List<Statistik> getStatistik(int idStudienfach);
+
+    /**
+     *
+     * @param notenListe
+     * @return
+     */
     public Statistik getStatistik(List<Noten> notenListe);
+
+    /**
+     *
+     * @param idStudienfach
+     * @return
+     */
     public int getAnzahlNotenArten(int idStudienfach);
 }

@@ -57,74 +57,146 @@ public class Noten implements Serializable {
     @ManyToOne(optional = false)
     private Studienfaecher studienfachId;
 
+    /**
+     *
+     */
     public Noten() {
     }
 
+    /**
+     *
+     * @param idNoten
+     */
     public Noten(Integer idNoten) {
         this.idNoten = idNoten;
     }
 
+    /**
+     *
+     * @param idNoten
+     * @param einzelgewicht
+     */
     public Noten(Integer idNoten, int einzelgewicht) {
         this.idNoten = idNoten;
         this.einzelgewicht = einzelgewicht;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdNoten() {
         return idNoten;
     }
 
+    /**
+     *
+     * @param idNoten
+     */
     public void setIdNoten(Integer idNoten) {
         this.idNoten = idNoten;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getNote() {
         return note;
     }
 
+    /**
+     *
+     * @param note
+     */
     public void setNote(Integer note) {
         this.note = note;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getWunschnote() {
         return wunschnote;
     }
 
+    /**
+     *
+     * @param wunschnote
+     */
     public void setWunschnote(Integer wunschnote) {
         this.wunschnote = wunschnote;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getEinzelgewicht() {
         return einzelgewicht;
     }
 
+    /**
+     *
+     * @param einzelgewicht
+     */
     public void setEinzelgewicht(int einzelgewicht) {
         this.einzelgewicht = einzelgewicht;
     }
 
+    /**
+     *
+     * @return
+     */
     public Personen getMatrikelnr() {
         return matrikelnr;
     }
 
+    /**
+     *
+     * @param matrikelnr
+     */
     public void setMatrikelnr(Personen matrikelnr) {
         this.matrikelnr = matrikelnr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Notenart getNotenartId() {
         return notenartId;
     }
 
+    /**
+     *
+     * @param notenartId
+     */
     public void setNotenartId(Notenart notenartId) {
         this.notenartId = notenartId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Studienfaecher getStudienfachId() {
         return studienfachId;
     }
 
+    /**
+     *
+     * @param studienfachId
+     */
     public void setStudienfachId(Studienfaecher studienfachId) {
         this.studienfachId = studienfachId;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -132,6 +204,11 @@ public class Noten implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -145,6 +222,10 @@ public class Noten implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "de.hof.se2.Noten[ idNoten=" + idNoten + " ]";

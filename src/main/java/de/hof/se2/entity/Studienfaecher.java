@@ -61,68 +61,133 @@ public class Studienfaecher implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studienfachId")
     private List<Noten> notenList;
 
+    /**
+     *
+     */
     public Studienfaecher() {
     }
 
+    /**
+     *
+     * @param idStudienfach
+     */
     public Studienfaecher(Integer idStudienfach) {
         this.idStudienfach = idStudienfach;
     }
 
+    /**
+     *
+     * @param idStudienfach
+     * @param bezeichnung
+     * @param semester
+     */
     public Studienfaecher(Integer idStudienfach, String bezeichnung, int semester) {
         this.idStudienfach = idStudienfach;
         this.bezeichnung = bezeichnung;
         this.semester = semester;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdStudienfach() {
         return idStudienfach;
     }
 
+    /**
+     *
+     * @param idStudienfach
+     */
     public void setIdStudienfach(Integer idStudienfach) {
         this.idStudienfach = idStudienfach;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBezeichnung() {
         return bezeichnung;
     }
 
+    /**
+     *
+     * @param bezeichnung
+     */
     public void setBezeichnung(String bezeichnung) {
         this.bezeichnung = bezeichnung;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSemester() {
         return semester;
     }
 
+    /**
+     *
+     * @param semester
+     */
     public void setSemester(int semester) {
         this.semester = semester;
     }
 
+    /**
+     *
+     * @return
+     */
     public Personen getDozentId() {
         return dozentId;
     }
 
+    /**
+     *
+     * @param dozentId
+     */
     public void setDozentId(Personen dozentId) {
         this.dozentId = dozentId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Studiengang getStudiengangId() {
         return studiengangId;
     }
 
+    /**
+     *
+     * @param studiengangId
+     */
     public void setStudiengangId(Studiengang studiengangId) {
         this.studiengangId = studiengangId;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Noten> getNotenList() {
         return notenList;
     }
 
+    /**
+     *
+     * @param notenList
+     */
     public void setNotenList(List<Noten> notenList) {
         this.notenList = notenList;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -130,6 +195,11 @@ public class Studienfaecher implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -143,6 +213,10 @@ public class Studienfaecher implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "de.hof.se2.Studienfaecher[ idStudienfach=" + idStudienfach + " ]";

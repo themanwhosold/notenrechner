@@ -37,9 +37,10 @@ public class authSession implements authSessionLocal, Serializable{
 
     private User user;
     
-
-    
-    
+    /**
+     *
+     * @return
+     */
     @Deployment
 public static JavaArchive createDeployment() {
 
@@ -54,7 +55,6 @@ public static JavaArchive createDeployment() {
     /**
      * Methode wird zum Login aufgerufen und erwartet als Parameter die USer ID und das Passwort in der DB
      * @param id
-     * @param password
      */
     @Override
     public void login() {

@@ -44,6 +44,10 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     LogWriter logBerechnungWriter;
     Logger logBerechnung;
 
+    /**
+     *
+     * @throws IOException
+     */
     public StatistikBean() throws IOException {
         this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/statistikLog"), Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();

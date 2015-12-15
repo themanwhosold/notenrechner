@@ -31,6 +31,9 @@ public class DBWriter implements DBWriterLocal, Serializable {
     OutForStudents outStudents;
     OutForProfessors outProfessor;
 
+    /**
+     *
+     */
     public DBWriter() {
     }
 

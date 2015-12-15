@@ -164,22 +164,43 @@ public class OutForStudents implements Serializable {
         return this.statistikBeanLocal.getStatistik(idStudienfach);
     }
 
+    /**
+     *
+     * @param personId
+     * @return
+     */
     @Named
     public Endnote getEndnote(int personId) {
         return this.berechnungNoten.getEndnote(personId);
     }
 
+    /**
+     *
+     * @param personId
+     * @return
+     */
     @Named
     public double getWunschEndnote(int personId) {
         return this.berechnungNoten.getWunschEndnote(personId);
     }
 
+    /**
+     *
+     * @param personId
+     * @return
+     */
     @Named
     public Personen getPerson(int personId) {
         List<Personen> liste = em.createNativeQuery("select * from personen where idPersonen = " + personId, Personen.class).getResultList();
         return liste.get(0);
     }
 
+    /**
+     *
+     * @param notenListe
+     * @return
+     * @deprecated
+     */
     @Named
     @Deprecated
     public Statistik getStatistik(List<Noten> notenListe) {
@@ -192,17 +213,33 @@ public class OutForStudents implements Serializable {
 //        return this.berechnungNoten.getNoteGrundstudium(personID);
 //    }
 
+    /**
+     *
+     * @param note
+     * @param endnote
+     * @return
+     */
+
     @Named
     public double getRelativeGewichtung(Noten note, Endnote endnote){
         return this.berechnungNoten.getRelativeGewichtung(note, endnote);
     }
     
-    
+    /**
+     *
+     * @param personID
+     * @return
+     */
     @Named
     public BerechneteNoten getBerechneteNoten(int personID) {
         return this.berechnungNoten.getBerechneteNoten(personID);
     }
 
+    /**
+     *
+     * @param personID
+     * @return
+     */
     @Named
     public List<Noten> getNotenListSortedSemester(int personID){
         return  this.em.createNativeQuery("select n.* from noten n, studienfaecher s where Matrikelnr = " + personID + " and s.idStudienfach = n.studienfach_id order by s.semester", Noten.class).getResultList();

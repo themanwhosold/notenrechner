@@ -50,12 +50,20 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     LogWriter logBerechnungWriter;
     Logger logBerechnung;
 
+    /**
+     *
+     * @throws IOException
+     */
     public BerechnungNoten() throws IOException {
         this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();
     }
     
-        @Deployment
+    /**
+     *
+     * @return
+     */
+    @Deployment
 public static JavaArchive createDeployment() {
 
     JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
@@ -317,6 +325,11 @@ public static JavaArchive createDeployment() {
         return (Integer) em.createNativeQuery("select s.grundstudiumBis from studiengang s, personen p where p.studiengang_id = s.idStudiengang and p.idPersonen = " + matrikelNr).getResultList().get(0);
     }
 
+    /**
+     *
+     * @param matrikelNr
+     * @return
+     */
     @Override
     public BerechneteNoten getBerechneteNoten(int matrikelNr) {
 
