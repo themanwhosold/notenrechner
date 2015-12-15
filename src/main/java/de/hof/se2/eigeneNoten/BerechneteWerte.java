@@ -21,13 +21,13 @@ public class BerechneteWerte {
     private boolean erfolgreichGerechnet;
 
     /**
-     *
-     * @param summeGewichtung
-     * @param summeNoten
-     * @param anzahlLeistungsnachweise
-     * @param summeLeistungsnachweise
-     * @param mitWunschnoten
-     * @param erfolgreichGerechnet
+     * Konstrutor zum setzen aller berechneten Werte
+     * @param summeGewichtung die Summe aller Gewichtungen
+     * @param summeNoten die Summe aller Noten
+     * @param anzahlLeistungsnachweise die Anzahl aller Leistungsnachweise
+     * @param summeLeistungsnachweise die Summe aller Leistungsnachweise
+     * @param mitWunschnoten es sind Wunschnoten angegeben worden
+     * @param erfolgreichGerechnet Berechnung wurde erfolgreich abgeschlossen
      */
     public BerechneteWerte(long summeGewichtung, long summeNoten, long anzahlLeistungsnachweise, long summeLeistungsnachweise, boolean mitWunschnoten, boolean erfolgreichGerechnet) {
         this.summeGewichtung = summeGewichtung;
@@ -39,55 +39,55 @@ public class BerechneteWerte {
     }
 
     /**
-     *
-     * @return
+     * Holt die Gesamtsumme der Gewichtung
+     * @return Longwert, Gewichtungssumme
      */
     public long getSummeGewichtung() {
         return summeGewichtung;
     }
 
     /**
-     *
-     * @param summeGewichtung
+     * setzt die Gesamtgewichtung auf den übergebenen Parameter
+     * @param summeGewichtung Longwert zum setzen der Gesamtgewichtung
      */
     public void setSummeGewichtung(long summeGewichtung) {
         this.summeGewichtung = summeGewichtung;
     }
 
     /**
-     *
-     * @return
+     * Summe aller Noten holen
+     * @return Summe der Noten wird als Long zurückgegeben
      */
     public long getSummeNoten() {
         return summeNoten;
     }
 
     /**
-     *
-     * @param summeNoten
+     * Summe aller Noten setzen
+     * @param summeNoten longwert der zu setzenden Summe
      */
     public void setSummeNoten(long summeNoten) {
         this.summeNoten = summeNoten;
     }
 
     /**
-     *
-     * @return
+     * Die Anzahl der Gesamten Leistungsnachweise wird geholt. Du diese wird die Summe der Leistungsnachweise geteilt
+     * @return longwert mit Anzahl der Leistungsnachweise. Durch diese wird die Summer der Leistungsnachweise geteilt
      */
     public long getAnzahlLeistungsnachweise() {
         return anzahlLeistungsnachweise;
     }
 
     /**
-     *
-     * @param anzahlLeistungsnachweise
+     * Setzt Anzahl Leistungsnachweise auf den übergebenen Wert. Durch diesen wird die Summe geteilt
+     * @param anzahlLeistungsnachweise Durch diesen Wert wird die Summe der Leistungsnachweise geteilt
      */
     public void setAnzahlLeistungsnachweise(long anzahlLeistungsnachweise) {
         this.anzahlLeistungsnachweise = anzahlLeistungsnachweise;
     }
 
     /**
-     *
+     * Holt Summe
      * @return
      */
     public long getSummeLeistungsnachweise() {
