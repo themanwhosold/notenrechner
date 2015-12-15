@@ -45,7 +45,7 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     Logger logBerechnung;
 
     /**
-     *
+     * Logger für die Statistikberechnugn
      * @throws IOException
      */
     public StatistikBean() throws IOException {
@@ -54,12 +54,12 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     }
 
     /**
-     *
+     * Holt Liste der Noten eines Studienfaches aus der Datenbank
      * @param idStudienfach
      * @return List<Noten> -> Noten aus der Datenbank, die zum Studienfach
      * (idStudienfach) gehoeren
      */
-    private List<Noten> dbAbfrage(int idStudienfach) {
+    private List<Noten> dbAbfrageAllerNoten(int idStudienfach) {
         List<Noten> liste = null;
         try {
             //Gibt die notenListe aufsteigend sortiert zurueck (muss man spaeter nicht nochmal sortieren):
@@ -77,7 +77,8 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     }
 
     /**
-     * @author max Wert des Arithmetischen Mittels des Studienfaches
+     * Wert des Arithmetischen Mittels des Studienfaches
+     * @author max 
      */
     private double berechneArithmetischesMittel(List<Noten> notenListe) {
 
@@ -91,7 +92,8 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     }
 
     /**
-     * @author max Wert der Standardabweichung des Studienfaches
+     * Wert der Standardabweichung des Studienfaches
+     * @author max 
      */
     private double berechneStandardabweichung(double varianz) {
 //        this.standardabweichung = Math.sqrt(varianz);
@@ -99,7 +101,8 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     }
 
     /**
-     * @author max den Median des Studiengangs
+     * den Median des Studiengangs
+     * @author max 
      */
     private int berechneMedian(List<Noten> notenListe) {
         int median = 0;
@@ -109,7 +112,8 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     }
 
     /**
-     * @author max Wert der Varianz des Studiengangs
+     * Wert der Varianz des Studiengangs
+     * @author max 
      */
     private double berechneVarianz(List<Noten> notenListe, double arithmetischesMittel) {
 
@@ -124,8 +128,9 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     }
 
     /**
-     *
+     * Holt minimale und Maximale Note der Liste, die übergeben wurde
      * @author max
+     * @param List<Noten> Liste der Noten, deren Maximum, Minimum ermittelt werden soll
      * @return ein int[] -> erster Eintrag = Minimum, zweiter Eintrag = Maximum
      */
     private int[] getMinMaxNoten(List<Noten> notenListe) {
@@ -199,7 +204,7 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
     public List<Statistik> getStatistik(int idStudienfach) {
         List<Statistik> rc = new ArrayList<>();
 
-        List<Noten> notenListe = this.dbAbfrage(idStudienfach); //Liefert sortierte NotenListe, aber nicht unterschieden nach Art
+        List<Noten> notenListe = this.dbAbfrageAllerNoten(idStudienfach); //Liefert sortierte NotenListe, aber nicht unterschieden nach Art
         for (int i : this.getIDsNotenarten(idStudienfach)) {
             ArrayList<Noten> temp = new ArrayList<>();
             for (Noten noten : notenListe) {

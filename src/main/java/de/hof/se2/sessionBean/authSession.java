@@ -38,8 +38,8 @@ public class authSession implements authSessionLocal, Serializable{
     private User user;
     
     /**
-     *
-     * @return
+     * Hilfskonstrukt zum testen von BEans
+     * @return jar
      */
     @Deployment
 public static JavaArchive createDeployment() {
@@ -97,7 +97,7 @@ public static JavaArchive createDeployment() {
 
     /**
      * Gibt zurück ob ein User eingelogt ist
-     * @return
+     * @return boolean ob ein Benutzer eingeloggt ist
      */
     public boolean isLoggedIn() {
 
@@ -107,7 +107,7 @@ public static JavaArchive createDeployment() {
 
     /**
      * Gibt den aktuellen User der Session zurück
-     * @return
+     * @return User kann Injected werden
      */
     @Produces
     @LoggedIn
@@ -121,7 +121,8 @@ public static JavaArchive createDeployment() {
 
     /**
      * Gibt den User zurück. Ist Deprecated
-     * @return
+     * @return User
+     * @deprecated getCurrentUser benutzen
      */
    @Deprecated
     public User getUser() {

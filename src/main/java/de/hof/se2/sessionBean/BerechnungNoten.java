@@ -51,7 +51,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     Logger logBerechnung;
 
     /**
-     *
+     * Logging für die berechnung der Noten
      * @throws IOException
      */
     public BerechnungNoten() throws IOException {
@@ -60,10 +60,12 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     }
     
     /**
-     *
+     * Mathode die zum Testen von BEans notewendig ist
      * @return
+     * @deprecated 
      */
     @Deployment
+    @Deprecated
 public static JavaArchive createDeployment() {
 
     JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
@@ -75,6 +77,7 @@ public static JavaArchive createDeployment() {
 }
 
     /**
+     * Erzeugt Arithmetisches Mittel eines Studienfaches
      * @author max
      * @param idStudienfach
      * @return arithmetisches Mittel des Studienfaches
@@ -98,8 +101,9 @@ public static JavaArchive createDeployment() {
     }
 
     /**
+     * Holt standardabweichung eines Studienfaches
      * @author max
-     * @param idStudienfach
+     * @param idStudienfach 
      * @return Wert der Standardabweichung des Studienfaches
      */
     @Override
@@ -112,6 +116,7 @@ public static JavaArchive createDeployment() {
     }
 
     /**
+     * Holt MEdian eines Studienfaches
      * @author max
      * @param idStudienfach
      * @return den Median des Studiengangs
@@ -131,6 +136,7 @@ public static JavaArchive createDeployment() {
     }
 
     /**
+     * Holt Varianz eines Studienganges
      * @author max
      * @param idStudienfach
      * @return Den Wert der Varianz des Studiengangs
@@ -326,9 +332,10 @@ public static JavaArchive createDeployment() {
     }
 
     /**
-     *
-     * @param matrikelNr
-     * @return
+     * Berechnet Noten für einen bestimmten Studenten, Unterscheidung in 4 Fälle, je nachdem ob 
+     * Wunschnoten gesetzt sind oder nicht
+     * @param matrikelNr ID Dest Studenten, für den die berechnung durchgeführt werden soll
+     * @return Berechnete Noten eines Studenten
      */
     @Override
     public BerechneteNoten getBerechneteNoten(int matrikelNr) {
