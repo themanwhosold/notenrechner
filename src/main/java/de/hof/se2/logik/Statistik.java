@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.hof.se2.test;
+package de.hof.se2.logik;
 
 import de.hof.se2.entity.Notenart;
 import de.hof.se2.entity.Studienfaecher;
@@ -28,15 +28,15 @@ public class Statistik {
     private Notenart notenart;
 
     /**
-     *
-     * @param arithmetischesMittel
-     * @param standardabweichung
-     * @param median
-     * @param varianz
-     * @param maxNote
-     * @param minNote
-     * @param studienfach
-     * @param notenart
+     * Erzeungt eine Staristik inklusive aller Werte, die für eine Studienfach berechnet werden können
+     * @param arithmetischesMittel arithmetisches Mittel eines Studienganges
+     * @param standardabweichung Standardabweichung eines Studienganges 
+     * @param median Median eines Studienganges
+     * @param varianz Varaianz der Werte
+     * @param maxNote Höchste Note
+     * @param minNote Kleinste Note 
+     * @param studienfach Das Studienfach für das die berechneten Werte Gelten
+     * @param notenart Leistungsnachweis oder Prüfung
      */
     public Statistik(double arithmetischesMittel, double standardabweichung, int median, double varianz, int maxNote, int minNote, Studienfaecher studienfach, Notenart notenart) {
         this.arithmetischesMittel = arithmetischesMittel;
@@ -50,72 +50,72 @@ public class Statistik {
     }
 
     /**
-     *
-     * @return
+     * Holt das Artihmetische Mittel eines Studienfaches
+     * @return Artithmetisches Mittel eines Studienfaches
      */
     public double getArithmetischesMittel() {
         return arithmetischesMittel;
     }
 
     /**
-     *
-     * @return
+     * Holt Standardabweichung eines Studienfaches ab
+     * @return Standardabeweichung von Noten eines Studienfaches
      */
     public double getStandardabweichung() {
         return standardabweichung;
     }
 
     /**
-     *
-     * @return
+     * Holt MEdian eines Studienfaches ab
+     * @return Median des jeweiligen Studienfaches
      */
     public int getMedian() {
         return median;
     }
 
     /**
-     *
-     * @return
+     * Holt Varianz des jeweiligen Studienfaches ab
+     * @return Varianz des Studienfaches
      */
     public double getVarianz() {
         return varianz;
     }
 
     /**
-     *
-     * @return
+     * Holt die Höchste Punktzahl eines Studienfaches ab
+     * @return Höchste Note
      */
     public int getMaxNote() {
         return maxNote;
     }
 
     /**
-     *
-     * @return
+     * Holt Minimale Note eines Studienfaches ab
+     * @return kleinste Note eines Studienfaches
      */
     public int getMinNote() {
         return minNote;
     }
 
     /**
-     *
-     * @return
+     * Gibt das Studienfach zurück, für welches die berechneten Werte gelten
+     * @return Studienfach ID so wie es in der Datenbank steht
      */
     public Studienfaecher getStudienfachID() {
         return this.studienfach;
     }
 
     /**
-     *
-     * @return
+     * Gibt die Notenart zurück, für die die berechneten Werte gelten
+     * @return Notenart, Leistungsnachweis, Note oder Seminararbeit
      */
     public Notenart getNotenartID() {
         return this.notenart;
     }
 
     /**
-     *
-     * @return
+     * Gibt die komplette Statistik eines Studienfaches als String zurück
+     * @return String der Statistik eines Studienfaches
      */
     @Override
     public String toString() {

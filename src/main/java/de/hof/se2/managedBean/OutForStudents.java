@@ -12,7 +12,7 @@ import de.hof.se2.entity.Noten;
 import de.hof.se2.entity.Personen;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
-import de.hof.se2.test.Statistik;
+import de.hof.se2.logik.Statistik;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;

@@ -6,7 +6,7 @@
 package de.hof.se2.sessionBean;
 
 import de.hof.se2.entity.Noten;
-import de.hof.se2.test.Statistik;
+import de.hof.se2.logik.Statistik;
 import java.util.List;
 
 /**

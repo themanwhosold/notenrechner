@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Testklasse um zu überprüfen ob alle Noten aus der Datenbank abgeholt werden können
  * @author markus
  */
 @Named(value = "notenManaged")
@@ -39,6 +39,7 @@ public class NotenManaged implements Serializable {
      * @return
      */
     @Named
+    @Deprecated
     public List<Noten> getAllNoten() {
         List<Noten> rc = new ArrayList<>();
 //        rc = em.createNamedQuery("Noten.findAll").getResultList();
