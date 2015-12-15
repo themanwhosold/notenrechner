@@ -29,16 +29,19 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
-                            <h:inputText id="Wunschnote" value="#{noten.wunschnote}" onblur="#{noten.wunschnote}"/>
+                            <c:set var="notenID" value="${noten.idNoten}"/>
+                            <h:inputText id="wunschnote" value="${noten.wunschnote}" onblur="${outForStudents.setWunschnote(notenID, wunschnote.value)}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
+                                <f:validateDoubleRange minimum="0" maximum="15" for="wunschnote"/>
+                            </h:inputText>
                         </h:column>
                     </h:dataTable>
                     <br>
-                        <h:outputText value="Endnote: #{outForStudents.getEndnote(student.getIdPersonen())}"/>
+                        <h:outputText value="Endnote: #{outForStudents.getEndnote(student.getIdPersonen()).getEndnote()}"/>
                         <br />
                         <h:outputText value="Endnote (Wunschnoten): #{outForStudents.getWunschEndnote(student.getIdPersonen())}"/>
                     </br>
                     <br />
-                    <h:commandButton value="Wunschnoten speichern..." action="WunschnotenGespeichert" />
+                    <h:commandButton value="Wunschnoten speichern..." action="#{outForStudents.save()}" />
                     <h:commandButton value="Endnote neu berechnen" onclick="#{outForStudents.getWunschEndnote(student.getIdPersonen())}"/>
                 </h:form>
             </ui:define>

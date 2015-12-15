@@ -7,12 +7,11 @@ package de.hof.se2.managedBean;
 
 import de.hof.se2.eigeneNoten.BerechneteNoten;
 import de.hof.se2.eigeneNoten.Endnote;
-import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
 import de.hof.se2.entity.Personen;
+import de.hof.se2.logik.Statistik;
 import de.hof.se2.sessionBean.BerechnungNotenLocal;
 import de.hof.se2.sessionBean.StatistikBeanLocal;
-import de.hof.se2.logik.Statistik;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -21,14 +20,16 @@ import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import org.w3c.dom.Document;
 
 /**
  * Managed Bean mit der die Funktionalität für Studierende erzeugt wird
  *
  * @author markus
- * @version 0.2
- * @since 09.11.2015
+ * @version 0.3
+ * @since 14.12.2015
  */
 @Named(value = "outForStudents")
 @Dependent
@@ -51,12 +52,18 @@ public class OutForStudents implements Serializable {
     @PersistenceContext
     EntityManager em;
 
-    /**
-     * Creates a new instance of OutForStudents
-     */
+    //private Personen student;
     public OutForStudents() {
     }
 
+    /**
+     * Creates a new instance of OutForStudents
+     *
+     * @param matrikelNr
+     */
+    //public OutForStudents(int matrikelNr) {
+    //    student = em.createNamedQuery("Personen.findByIdPersonen", Personen.class).setParameter("idPersonen", matrikelNr).getResultList().get(0);
+    //}
     /**
      * Gibt eine Liste der Noten für den jeweiligen Studierenden zurück
      *
@@ -98,15 +105,21 @@ public class OutForStudents implements Serializable {
         // To do: 
         // - andere Lösung suchen
         List<Personen> person = em.createNamedQuery("Personen.findByIdPersonen", Personen.class).setParameter("idPersonen", matrikelNr).getResultList();
+        //student =  person.get(0);
+        //return student;
         return person.get(0);
     }
 
     /**
      * Methode um Änderungen an den Wunschnoten in die DB zu schreiben
      *
-     * @param matrikelNr
+     * @author markus
+     *
+     *
      */
-    public void setStudent(int matrikelNr) {
+    @Transactional
+    public void setStudent() {
+        em.persist(this);
 
     }
 
@@ -216,19 +229,17 @@ public class OutForStudents implements Serializable {
 //    public Zwischenpruefungsnote getZwischenpruefungsnote(int personID) {
 //        return this.berechnungNoten.getNoteGrundstudium(personID);
 //    }
-
     /**
      * Holt Note mit Relativer gewichtung zur Endnote
      * @param note Die Einzelnote, deren gewichtung berechnet werden soll
      * @param endnote Endnote
      * @return Gewichtung der jeweiligen Note
      */
-
     @Named
-    public double getRelativeGewichtung(Noten note, Endnote endnote){
+    public double getRelativeGewichtung(Noten note, Endnote endnote) {
         return this.berechnungNoten.getRelativeGewichtung(note, endnote);
     }
-    
+
     /**
      *
      * @param personID
@@ -245,8 +256,35 @@ public class OutForStudents implements Serializable {
      * @return Notenliste, sortiert nach Semestern für einen Studenten
      */
     @Named
-    public List<Noten> getNotenListSortedSemester(int personID){
-        return  this.em.createNativeQuery("select n.* from noten n, studienfaecher s where Matrikelnr = " + personID + " and s.idStudienfach = n.studienfach_id order by s.semester", Noten.class).getResultList();
+    public List<Noten> getNotenListSortedSemester(int personID) {
+        return this.em.createNativeQuery("select n.* from noten n, studienfaecher s where Matrikelnr = " + personID + " and s.idStudienfach = n.studienfach_id order by s.semester", Noten.class).getResultList();
     }
-    
+
+    /**
+     * @param notenID
+     * @param wunschNote
+     * @todo Native Query umbauen
+     */
+    @Transactional
+    public void setWunschnote(int notenID, int wunschNote) {
+        //wunschNote = 5;
+        //Query update_query_wunschnote = em.createNativeQuery("update noten.noten set Wunschnote=" + wunschNote + " where idNoten=" + notenID);
+        //int wunschNoteI = Integer.parseInt(wunschNote);
+        Query update_query_wunschnote = em.createNativeQuery("update noten.noten set Wunschnote= ? where idNoten= ?");
+        update_query_wunschnote.setParameter(2, notenID);
+        update_query_wunschnote.setParameter(1, 10);
+        update_query_wunschnote.executeUpdate();
+    }
+
+    /**
+     * Methode um die komplette Seite zu speichern
+     * http://stackoverflow.com/questions/19002570/retrieving-value-of-jsf-input-field-without-managed-bean-property
+     */
+    @Transactional
+    public void save() {
+        //em.persist(student);
+        //ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        //ec.getRequestParameterMap().get("");
+    }
+
 }
