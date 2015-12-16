@@ -17,7 +17,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
@@ -33,51 +32,56 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
  * Verhältnisse
  *
  * @author markus
- * @version 0.1
- * @since 03.11.2015
+ * @version 0.2
+ * @since 16.12.2015
  */
 @Singleton
 @Local(BerechnungNotenLocal.class)
 public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
-    @EJB
-    BerechneteNoten instance;
+    //Auskommentiert wegen Fehler WFLYEJB0406 Interface nicht gefunden
+    //@EJB
+    //BerechneteNoten instance;
     @Resource
     SessionContext sessionContext;
 
     @PersistenceContext
     EntityManager em;
-    
+
     LogWriter logBerechnungWriter;
     Logger logBerechnung;
 
     /**
      * Logging für die berechnung der Noten
+     *
      * @throws IOException
      */
     public BerechnungNoten() throws IOException {
-        this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
+        //this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
+        this.logBerechnungWriter = new LogWriter(new File("/home/markus/berechnungNotenLog"), Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();
     }
-    
+
     /**
      * Mathode die zum Testen von BEans notewendig ist
+     *
      * @return
-     * @deprecated 
+     * @deprecated
      */
     @Deployment
     @Deprecated
-public static JavaArchive createDeployment() {
+    public static JavaArchive createDeployment() {
 
-    JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
-    jar.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
-    jar.addPackage("com.demopack.demoproj");
-    jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
+        jar.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
+        jar.addPackage("com.demopack.demoproj");
+        jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 
-    return jar;
-}
+        return jar;
+    }
 
     /**
      * Erzeugt Arithmetisches Mittel eines Studienfaches
+     *
      * @author max
      * @param idStudienfach
      * @return arithmetisches Mittel des Studienfaches
@@ -102,8 +106,9 @@ public static JavaArchive createDeployment() {
 
     /**
      * Holt standardabweichung eines Studienfaches
+     *
      * @author max
-     * @param idStudienfach 
+     * @param idStudienfach
      * @return Wert der Standardabweichung des Studienfaches
      */
     @Override
@@ -117,6 +122,7 @@ public static JavaArchive createDeployment() {
 
     /**
      * Holt MEdian eines Studienfaches
+     *
      * @author max
      * @param idStudienfach
      * @return den Median des Studiengangs
@@ -137,6 +143,7 @@ public static JavaArchive createDeployment() {
 
     /**
      * Holt Varianz eines Studienganges
+     *
      * @author max
      * @param idStudienfach
      * @return Den Wert der Varianz des Studiengangs
@@ -261,7 +268,7 @@ public static JavaArchive createDeployment() {
             }
 
         }
-        
+
         BerechneteWerte rc = new BerechneteWerte(summeGewichtung, summeNoten, anzahlLeistungsnachweise, summeLeistungsnachweise, mitWunschnoten, erfolgreichGerechnet);
 //        logBerechnung.info(rc.toString());
         return rc;
@@ -332,9 +339,11 @@ public static JavaArchive createDeployment() {
     }
 
     /**
-     * Berechnet Noten für einen bestimmten Studenten, Unterscheidung in 4 Fälle, je nachdem ob 
-     * Wunschnoten gesetzt sind oder nicht
-     * @param matrikelNr ID Dest Studenten, für den die berechnung durchgeführt werden soll
+     * Berechnet Noten für einen bestimmten Studenten, Unterscheidung in 4
+     * Fälle, je nachdem ob Wunschnoten gesetzt sind oder nicht
+     *
+     * @param matrikelNr ID Dest Studenten, für den die berechnung durchgeführt
+     * werden soll
      * @return Berechnete Noten eines Studenten
      */
     @Override
