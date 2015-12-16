@@ -6,13 +6,12 @@
 package de.hof.se2.eigeneNoten;
 
 import de.hof.se2.entity.Noten;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Klasse repraesentiert die Endnote mit der Endnote, der Zwischenpruefungsnote,
  * der Note der Leistungsnachweise und den dazugehoerigen Einzelnoten
- * (List<Noten>)
+ * 
  *
  * @author max
  * @since 25.11.2015

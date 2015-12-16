@@ -7,9 +7,9 @@ package de.hof.se2.sessionBean;
 
 import de.hof.se2.eigeneNoten.BerechneteNoten;
 import de.hof.se2.eigeneNoten.Endnote;
-import de.hof.se2.eigeneNoten.Zwischenpruefungsnote;
 import de.hof.se2.entity.Noten;
 import javax.ejb.Local;
+
 
 /**
  * Hilfsbean um SessionBean der berechneten Noten zu erzeugnen
