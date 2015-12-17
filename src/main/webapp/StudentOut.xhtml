@@ -18,7 +18,7 @@
                 <br />
                 <h:outputText value="Matrikelnummer: #{student.getIdPersonen()}"/>
                 <h:form>
-                    <h:dataTable value="#{outForStudents.getNotenListSortedSemester(student.getIdPersonen())}" var="noten">
+                    <h:dataTable value="#{student.getNotenList()}" var="noten">
                         <h:column headerClass="columnCenter">
                             <f:facet name="header">Fach</f:facet>
                             <h:outputText style="float: left;" value="#{noten.studienfachId.bezeichnung}"/>
@@ -31,7 +31,7 @@
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
                             <c:set var="notenID" value="${noten.idNoten}"/>
-                            <h:inputText id="wunschnote" value="${noten.wunschnote}" onblur="${noten.setWunschnote(10)}" onchange="#{outForStudents.setWunschnote(notenID, 11)}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
+                            <h:inputText id="wunschnote" value="${noten.wunschnote}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
                                 <f:validateDoubleRange minimum="0" maximum="15" for="wunschnote"/>
                             </h:inputText>
                         </h:column>
@@ -43,6 +43,7 @@
                     </br>
                     <br />
                     <h:commandButton value="Wunschnoten speichern..." action="#{outForStudents.save()}" />
+                    <h:commandButton value="User speichern..." action="#{outForStudents.setStudent(student)}" />
                     <h:commandButton value="Endnote neu berechnen" onclick="#{outForStudents.getWunschEndnote(student.getIdPersonen())}"/>
                 </h:form>
             </ui:define>

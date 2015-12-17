@@ -15,7 +15,9 @@ import de.hof.se2.sessionBean.StatistikBeanLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.Dependent;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -32,7 +34,7 @@ import org.w3c.dom.Document;
  * @since 14.12.2015
  */
 @Named(value = "outForStudents")
-@Dependent
+@SessionScoped
 
 public class OutForStudents implements Serializable {
 
@@ -51,6 +53,8 @@ public class OutForStudents implements Serializable {
 
     @PersistenceContext
     EntityManager em;
+
+    private Personen student;
 
     //private Personen student;
     public OutForStudents() {
@@ -104,30 +108,41 @@ public class OutForStudents implements Serializable {
         // aber derzeit die stressfreiste
         // To do: 
         // - andere Lösung suchen
-        List<Personen> person = em.createNamedQuery("Personen.findByIdPersonen", Personen.class).setParameter("idPersonen", matrikelNr).getResultList();
-        //student =  person.get(0);
-        //return student;
-        return person.get(0);
+        //List<Personen> person = em.createNamedQuery("Personen.findByIdPersonen", Personen.class).setParameter("idPersonen", matrikelNr).getResultList();
+
+        student = em.find(Personen.class, matrikelNr); //person.get(0);
+        return student;
+        //return person.get(0);
     }
 
     /**
      * Methode um Änderungen am Objekt "Student" in die DB zu schreiben
      *
-     *@author markus
-     *@version 0.1
-     *@since 15.12.2015
-     *@deprecated Derzeit nicht funktionsfähig
+     * @author markus
+     * @version 0.2
+     * @param student
+     * @since 17.12.2015
+     * @deprecated Derzeit nicht funktionsfähig
      *
      */
     @Deprecated
     @Transactional
-    public void setStudent() {
-        em.persist(this);
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void setStudent(Personen student) {
+    //public void setStudent() {
+        //em.persist(student);
+        System.out.println(student.getNotenList().toString());
+        em.merge(student);
+        em.flush();
+        /*em.merge(student);
+        em.persist(student);
+        em.flush();*/
 
     }
 
     /**
      * Gibt das Arithmetische Mittel eines Studienfaches zurück
+     *
      * @author max
      * @param idStudienfach
      * @return Arithmetisches Mittel des Studiengangs aus der berechnungNoten
@@ -140,6 +155,7 @@ public class OutForStudents implements Serializable {
 
     /**
      * Holt Varianz des übergebenen Studienfaches
+     *
      * @author max
      * @param idStudienfach
      * @return Varianz des Studiengangs aus der berechnungNoten Bean
@@ -151,6 +167,7 @@ public class OutForStudents implements Serializable {
 
     /**
      * Holt Standardabweichung für das übergebene Studienfach
+     *
      * @author max
      * @param idStudienfach
      * @return Standardabweichung des Studiengangs aus der berechnungNoten Bean
@@ -162,6 +179,7 @@ public class OutForStudents implements Serializable {
 
     /**
      * Holt MEdian des Studienfachs ab
+     *
      * @author max
      * @param idStudienfach
      * @return Median des Studiengangs aus der berechnungNoten Bean
@@ -186,6 +204,7 @@ public class OutForStudents implements Serializable {
 
     /**
      * Holt Ednote des Studenten ab
+     *
      * @param personId Student
      * @return berechnete Endnote des Studenten
      */
@@ -196,6 +215,7 @@ public class OutForStudents implements Serializable {
 
     /**
      * Holt die Endnote mit den Wuschnoten des Studenten ab
+     *
      * @param personId Student
      * @return Berechnete Endnote mit Wunschnoten
      */
@@ -205,7 +225,9 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     * Holt Person aus der Datenbank, die dem Studenten entspricht aus der Datenbank
+     * Holt Person aus der Datenbank, die dem Studenten entspricht aus der
+     * Datenbank
+     *
      * @param personId Studenten ID
      * @return Person, die eingeloggt ist
      */
@@ -217,6 +239,7 @@ public class OutForStudents implements Serializable {
 
     /**
      * Erzeugt Statistik für eine Notenliste über die StatistikBean
+     *
      * @param notenListe Notenliste aus der die Statistik erzeugt werden soll
      * @return Statistik der Notenliste
      * @deprecated
@@ -234,6 +257,7 @@ public class OutForStudents implements Serializable {
 //    }
     /**
      * Holt Note mit Relativer gewichtung zur Endnote
+     *
      * @param note Die Einzelnote, deren gewichtung berechnet werden soll
      * @param endnote Endnote
      * @return Gewichtung der jeweiligen Note
@@ -254,8 +278,10 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-
-     * Erzeut eine Notenliste, geordnet nach Semestern der PErson, die abgefragt wird
+     *
+     * Erzeut eine Notenliste, geordnet nach Semestern der PErson, die abgefragt
+     * wird
+     *
      * @param personID Student für den die Liste erzeugt werden soll
      * @return Notenliste, sortiert nach Semestern für einen Studenten
      */
@@ -265,7 +291,10 @@ public class OutForStudents implements Serializable {
     }
 
     /**
-     * Methode um die Wunschnote in die Datenbank zu schreiben, soll aus der JSF Seite mit bspw. onblur aufgerufen werden und eine(!) Note in die Datenbank schreiben
+     * Methode um die Wunschnote in die Datenbank zu schreiben, soll aus der JSF
+     * Seite mit bspw. onblur aufgerufen werden und eine(!) Note in die
+     * Datenbank schreiben
+     *
      * @param notenID ID der zu ändernden Note
      * @param wunschNote neuer Wert der Wunschnote
      * @author markus
@@ -287,6 +316,7 @@ public class OutForStudents implements Serializable {
     /**
      * Methode um die komplette Seite zu speichern
      * http://stackoverflow.com/questions/19002570/retrieving-value-of-jsf-input-field-without-managed-bean-property
+     *
      * @version 0.1
      * @since 15.12.2015
      */
