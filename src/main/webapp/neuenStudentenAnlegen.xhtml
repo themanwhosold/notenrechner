@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css"/>
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="templates/adminTemplate.xhtml">
+            <ui:define name="title">Neuen Studenten anlegen</ui:define>
+            <ui:define name="top">Studentenverwaltung - neuen Studenten anlegen
+                <c:set var="admin" value="${outForStudents.getStudent(4711)}"/>
+                <br/>
+                <h:outputText value="Sie sind angemeldet als: "/>
+                <br />
+                <h:outputText value="Admin: #{admin.getVorname()}, #{admin.getNachname()}"/>
+                <br />
+                <h:outputText value="Matrikelnummer: #{admin.getIdPersonen()}" rendered="false"/>
+            </ui:define>
+            <ui:define name="content">
+
+                <h1>Neuen Studenten anlegen:</h1>
+                <br/>
+                <h:form>
+                    <h:outputText value="Vorname: "/>
+                    <h:inputText id="vorname" value=""  validatorMessage="Kein gültiger Vorame">
+                        <f:validateBean for="vorname"/>
+                    </h:inputText>
+                    <br/>
+                    <h:outputText value="Nachname: "/>
+                    <h:inputText id="nachname" value="" validatorMessage="Kein gültiger Vorame">
+                        <f:validateBean for="nachname"/>
+                    </h:inputText>
+                    <br/>
+                    <h:outputText value="Geschlecht: "/>
+                    <br/>
+                    <h:outputText value="Geburtsdatum: "/>
+                    <br/>
+                    <p>Date: <input type="text" id="datepicker"/></p>
+
+                    <br/>
+                    <h:outputText value="Studiengang: "/>
+                    <h:selectOneMenu onchange="submit()"
+                                     valueChangeListener="#{adminManagedBean.valueStudiengangChanged}">
+                        <f:selectItems  value="#{adminManagedBean.alleStudiengaenge}" var="studiengang"
+                                        itemLabel="#{studiengang.getBezeichnung()} [#{studiengang.getIdStudiengang()}]" itemValue="#{studiengang}" 
+                                        />
+
+                    </h:selectOneMenu>
+                     
+                    <br/>
+                    <h:outputText value="Passwort: "/>
+                    <br/>
+                    <h:outputText value="Rolle: "/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

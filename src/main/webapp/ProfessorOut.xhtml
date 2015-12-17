@@ -6,10 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        
     </h:head>
     <h:body>
         <ui:composition template="templates/defaultTemplate.xhtml">
+            <ui:define name="title">Dozenten Seite</ui:define>
             <ui:define name="top">Notenübersicht für Dozenten</ui:define>
             <ui:define name="content">
                 <c:set var="professor" value="#{outForProfessors.getProfessor(1)}"/>

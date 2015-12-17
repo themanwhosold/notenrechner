@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/adminTemplate.xhtml">
+            <ui:define name="title">Studentenverwaltung</ui:define>
+
+
+            <ui:define name="top">Studentenverwaltung
+                <c:set var="admin" value="${outForStudents.getStudent(4711)}"/>
+                <br/>
+                <h:outputText value="Sie sind angemeldet als: "/>
+                <br />
+                <h:outputText value="Admin: #{admin.getVorname()}, #{admin.getNachname()}"/>
+                <br />
+                <h:outputText value="Matrikelnummer: #{admin.getIdPersonen()}" rendered="false"/>
+            </ui:define>
+            <ui:define name="content">
+
+                <h:form>
+                    <h:selectOneMenu onchange="submit()"
+                                     valueChangeListener="#{adminManagedBean.valueChanged}">
+                        <f:selectItems  value="#{adminManagedBean.allPersonen}" var="person"
+                                        itemLabel="#{person.vorname} #{person.nachname} [#{person.idPersonen}]" itemValue="#{person}" 
+                                        />
+
+                    </h:selectOneMenu>
+                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" escape="false"/>
+                    <h:button value="neuen Studenten anlegen" outcome="neuenStudentenAnlegen" />
+                </h:form>
+                <h:form>
+                    <c:set var="person" value="${adminManagedBean.ausgewaehltePerson}"/>
+                    <h:outputText value="Ausgewählte Person: " style="font-weight:bold"/>
+                    <br/>
+                    <h:outputText value="Matrikelnummer: #{person.idPersonen}"/>
+                    <br/>
+                    <h:outputText value="Vorname: #{person.vorname}" />
+                    <h:commandButton value="Vorname ändern" type="button" onclick="alert('h:commandButton');" />	
+                    <br/>
+                    <h:outputText value="Nachname: #{person.nachname}" />
+                    <h:commandButton value="Nachname ändern" type="button" onclick="alert('h:commandButton');" />	
+                    <br/>
+                    <h:outputText value="Geschlecht: #{person.bioGeschlecht}"  />
+                    <h:commandButton value="Geschlecht ändern" type="button" onclick="alert('h:commandButton');" />	
+                    <h:outputText value="Geschlecht: weiblich" rendered="{person.bioGeschlecht eq false}"/>
+                    <br/>
+                    <h:outputText value="Geburtsdatum: #{person.geburtsdatum}"/>
+                    <br/>
+                    <h:outputText value="Rolle: #{person.rolle}" />
+                    <h:commandButton value="Rolle ändern" type="button" onclick="alert('h:commandButton');" />	
+                    <br/>
+                    <h:outputText value="Passwort: "/>
+                    <h:commandButton value="Passwort ändern" type="button" onclick="alert('h:commandButton');" />	
+                </h:form>
+
+
+
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

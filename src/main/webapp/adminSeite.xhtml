@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/adminTemplate.xhtml">
+            <ui:define name="title">Admin Seite</ui:define>
+            <ui:define name="top">Übersicht für Administartoren
+                <c:set var="admin" value="${outForStudents.getStudent(4711)}"/>
+                <br/>
+                <h:outputText value="Sie sind angemeldet als: "/>
+                <br />
+                <h:outputText value="Admin: #{admin.getVorname()}, #{admin.getNachname()}"/>
+                <br />
+                <h:outputText value="Matrikelnummer: #{admin.getIdPersonen()}" rendered="false"/>
+            </ui:define>
+            <ui:define name="content">
+                <h1>Wählen Sie eine nachfolgende Aktion:</h1>
+                <br/> 
+                <h:link value="Studentenverwaltung" outcome="studentenVerwalten"/> 
+                <br/> 
+                <h:link value="Studiengangverwaltung" outcome="studiengangVerwalten"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
