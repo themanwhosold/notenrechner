@@ -8,9 +8,10 @@ package de.hof.se2.sessionBean;
 import javax.ejb.Local;
 
 /**
- *
+ * 
  * @author markus
  */
+@Deprecated
 @Local
 public interface DBWriterLocal {
     

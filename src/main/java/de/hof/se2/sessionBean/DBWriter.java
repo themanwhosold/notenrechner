@@ -43,7 +43,10 @@ public class DBWriter implements DBWriterLocal, Serializable {
      * @param matrikelNr
      * @version 0.1
      * @author markus
+     * @deprecated Nicht Sinnvoll, da Student aus DB geholt und gleich wieder geschrieben wird @autor Tobias Schmidbauer
+     * im Rahmen des Refactoring
      */
+    @Deprecated
     public void schreibeStudent(int matrikelNr) {
         Personen student = em.find(Personen.class, matrikelNr);
         
