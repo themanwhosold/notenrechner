@@ -12,7 +12,7 @@ import javax.ejb.Local;
 
 
 /**
- * Hilfsbean um SessionBean der berechneten Noten zu erzeugnen
+ * Hilfsbean um SessionBean der berechneten Noten zu erzeugen
  * @author markus
  */
 @Local
