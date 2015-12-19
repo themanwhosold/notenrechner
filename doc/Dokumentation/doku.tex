@@ -17,7 +17,7 @@
 \tableofcontents
 \chapter{Einleitung \& Motivation}
 \chapter{Lasten- und Pflichtenheft}
-Anforderungsliste an das Projekt \glqq Notenrechner\grqq:
+In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das Projekt \glqq Notenrechner\grqq\ ausgearbeitet, diese wurde im Projektverlauf wie in der Vorlesung gelernt in ein Lasten\- und Pflichtenheft umgearbeitet:
 \begin{itemize}
 \item 2 Frontends (Verwaltung \& Studierende)
 \item individualisierbare Notenliste/-berechnung pro Jahrgang
@@ -49,13 +49,23 @@ Anforderungsliste an das Projekt \glqq Notenrechner\grqq:
 \end{itemize}
 \section{Lastenheft}
 \subsection{Zielbestimmung}
-Es soll eine Software entwickelt werden, die 
+Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden.
 \subsection{Produkteinsatz}
+Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq erreichbar sein.
 \subsection{Produktübersicht}
+Es soll ein Webservice mit drei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten, es sind mindestens drei Rollen vorzusehen:
+\begin{itemize}
+\item Studierende
+\item Dozenten
+\item Administrator
+\end{itemize}
+Für die Speicherung der Noten ist eine geeignete performante Speichermethode vorzusehen (bspw. SQL oder NoSQL).
+Nach Möglichkeit soll für die Realisierung Software eingesetzt werden für die keine Lizensierungskosten anfallen.
 \subsection{Produktfunktionen}
 \subsection{Produktdaten}
 \subsection{Produktleistungen}
 \subsection{Qualitätsanforderungen}
+Es ist sicherzustellen, dass die angebotene Software die Noten entsprechend der gesetzlichen Vorgaben richtig berechnet. Der Datenschutz muss in jeder Betriebssituation gewahrt sein.
 \subsection{Ergänzungen}
 \section{Pflichtenheft}
 \subsection{Zielbestimmung}
