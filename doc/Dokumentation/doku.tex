@@ -24,8 +24,11 @@ Zur Realisierung einer solchen Plattform werden im folgenden Technologien einges
 \item Objektorientiertes Programmieren 1 \& 2
 \item Algorithmen und Datenstrukturen
 \item Serverseitiges Programmieren
+\item Software Engineering 1 \& 2
 \end{itemize}
-erlernt wurden.
+erlernt wurden. 
+
+Details zu den eingesetzten Techniken finden sich in den folgenden Kapiteln.
 \chapter{Lasten- und Pflichtenheft}
 In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das Projekt \glqq Notenrechner\grqq\ ausgearbeitet, diese wurde im Projektverlauf wie in der Vorlesung gelernt in ein Lasten\- und Pflichtenheft umgearbeitet:
 \begin{itemize}
@@ -61,17 +64,49 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \subsection{Zielbestimmung}
 Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden.
 \subsection{Produkteinsatz}
-Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq erreichbar sein.
+Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq erreichbar sein. Die Authentifizierung soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
 \subsection{Produktübersicht}
-Es soll ein Webservice mit drei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten, es sind mindestens drei Rollen vorzusehen:
+Es soll ein Webservice mit mindestens zwei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten, es sind mindestens drei Rollen vorzusehen:
 \begin{itemize}
 \item Studierende
 \item Dozenten
 \item Administrator
 \end{itemize}
 Für die Speicherung der Noten ist eine geeignete performante Speichermethode vorzusehen (bspw. SQL oder NoSQL).
-Nach Möglichkeit soll für die Realisierung Software eingesetzt werden für die keine Lizensierungskosten anfallen.
+Nach Möglichkeit soll für die Realisierung Software eingesetzt werden für die keine Lizensierungskosten anfallen und deren Wartbarkeit und Sicherheit trotzdem auf absehbare Zeit gesichert ist.
 \subsection{Produktfunktionen}
+Es sind folgende Funktionen vorzusehen:
+\begin{itemize}
+\item Speicherung der Daten in einer geeigneten Technologie
+\item Authentifizierungstechnologie muss vorhandenes Active Directory (AD) unterstützen
+\item Rollenbasiertes Zugriffsmodell, Rollen sollen aus dem AD übernommen werden. 
+
+Es sind 3 Rollen mit den folgenden Berechtigungen vorzusehen:
+\begin{itemize}
+\item Administrator
+\begin{itemize}
+\item Anlegen von neuen Studiengängen (inkl. Eingabe der abzulegenden Prüfungsleistungen und Notengewichtung)
+\item Modifizieren von vorhandenen Studiengängen
+\item Eintragung von Noten (ohne Beschränkungen auf bestimmte Fächer)
+\item Anlegen von neuen Nutzern (sofern nicht automatisch realisiert)
+\item Vergabe der Berechtigungen für Dozenten (Zuteilung der Fächer)
+
+\end{itemize}
+\item Dozenten
+\begin{itemize}
+\item Eintragen von abgelegten Prüfungsleistungen für zugewiesene Fächer
+\end{itemize}
+\item Studierende
+\begin{itemize}
+\item Eintragen von Wunschnoten, diese sind genauso zu behandeln wie eingetragene \glqq Echtnoten\grqq
+\end{itemize}
+\end{itemize}
+
+\item Eingabe von Prüfungsleistungen
+\item Für Studierende ist die Möglichkeit der Eingabe von \glqq Wunschnoten\grqq\ vorzusehen, diese sollen genau wie die \glqq echten\grqq\ Noten behandelt werden, d.h. gespeichert werden und es sollen aus diesen Werten die Zwischen- und Endnoten berechnet werden.
+\item Farbliche Markierung für Notenwerte die im Grenzbereich und unterhalb der Anforderungen liegen (niedrige Priorität)
+\item Berechnung muss entsprechend der gesetzlichen Vorgaben umgesetzt werden
+\end{itemize}
 \subsection{Produktdaten}
 \subsection{Produktleistungen}
 \subsection{Qualitätsanforderungen}
