@@ -25,8 +25,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Note</f:facet>
-                            <!--<h:inputText disabled="true" value="#{noten.note}" />-->
-                            <h:outputText style="float: left;" value="#{noten.note}"/>
+                            <h:outputText value="#{noten.note}" style="float: left;#{noten.note >= 5 ? 'color:green': 'color:red'}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
