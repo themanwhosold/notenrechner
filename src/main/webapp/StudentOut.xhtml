@@ -21,17 +21,15 @@
                     <h:dataTable value="#{student.getNotenList()}" var="noten">
                         <h:column headerClass="columnCenter">
                             <f:facet name="header">Fach</f:facet>
-                            <h:outputText style="float: left;" value="#{noten.studienfachId.bezeichnung}"/>
+                            <h:outputText value="#{noten.studienfachId.bezeichnung}" style="float: left;#{noten.note >= 5 ? 'color:green': 'color:red'}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Note</f:facet>
-                            <!--<h:inputText disabled="true" value="#{noten.note}" />-->
-                            <h:outputText style="float: left;" value="#{noten.note}"/>
+                            <h:outputText value="#{noten.note}" style="float: left;#{noten.note >= 5 ? 'color:green': 'color:red'}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
-                            <c:set var="notenID" value="#{noten.idNoten}"/>
-                            <h:inputText id="wunschnote" value="#{noten.wunschnote}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
+                            <h:inputText id="wunschnote" value="#{noten.wunschnote}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)" style="#{noten.note >= 5 ? 'color:green': 'color:red'}">
                                 <f:validateDoubleRange minimum="0" maximum="15" for="wunschnote"/>
                             </h:inputText>
                         </h:column>
