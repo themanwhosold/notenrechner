@@ -6,31 +6,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Notenübersicht für Studierende</title>
+       
     </h:head>
     <h:body>
         <ui:composition template="templates/defaultTemplate.xhtml">
-            <ui:define name="top">Notenübersicht für Studierende</ui:define>
+            <ui:define name="title">Notenübersicht für Studierende</ui:define>
+            
             <ui:define name="content">
-                <c:set var="student" value="${outForStudents.getStudent(20171002)}"/>
+                <c:set var="student" value="${outForStudents.getStudent(20130000)}"/>
                 <h:outputText value="Student: #{student.getVorname()}, #{student.getNachname()}"/>
                 <br />
                 <h:outputText value="Matrikelnummer: #{student.getIdPersonen()}"/>
                 <h:form>
-                    <h:dataTable value="#{outForStudents.getNotenListSortedSemester(student.getIdPersonen())}" var="noten">
+                    <h:dataTable value="#{student.getNotenList()}" var="noten">
                         <h:column headerClass="columnCenter">
                             <f:facet name="header">Fach</f:facet>
-                            <h:outputText style="float: left;" value="#{noten.studienfachId.bezeichnung}"/>
+                            <h:outputText value="#{noten.studienfachId.bezeichnung}" style="float: left;#{noten.note >= 5 ? 'color:green': 'color:red'}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Note</f:facet>
-                            <!--<h:inputText disabled="true" value="#{noten.note}" />-->
-                            <h:outputText style="float: left;" value="#{noten.note}"/>
+                            <h:outputText value="#{noten.note}" style="float: left;#{noten.note >= 5 ? 'color:green': 'color:red'}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Wunschnote</f:facet>
-                            <c:set var="notenID" value="${noten.idNoten}"/>
-                            <h:inputText id="wunschnote" value="${noten.wunschnote}" onblur="${noten.setWunschnote(10)}" onchange="#{outForStudents.setWunschnote(notenID, 11)}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)">
+                            <h:inputText id="wunschnote" value="#{noten.wunschnote}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)" style="#{noten.note >= 5 ? 'color:green': 'color:red'}">
                                 <f:validateDoubleRange minimum="0" maximum="15" for="wunschnote"/>
                             </h:inputText>
                         </h:column>
@@ -42,6 +41,8 @@
                     </br>
                     <br />
                     <h:commandButton value="Wunschnoten speichern..." action="#{outForStudents.save()}" />
+                    <h:commandButton value="geschriebene Noten -> Wunschnoten" />
+                    <h:commandButton value="User speichern..." action="#{outForStudents.setStudent(student)}" />
                     <h:commandButton value="Endnote neu berechnen" onclick="#{outForStudents.getWunschEndnote(student.getIdPersonen())}"/>
                 </h:form>
             </ui:define>
