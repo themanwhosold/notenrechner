@@ -24,10 +24,62 @@ Zur Realisierung einer solchen Plattform werden im folgenden Technologien einges
 \item Objektorientiertes Programmieren 1 \& 2
 \item Algorithmen und Datenstrukturen
 \item Serverseitiges Programmieren
+\item Software Engineering 1 \& 2
 \end{itemize}
-erlernt wurden.
+erlernt wurden. 
+
+Details zu den eingesetzten Techniken finden sich in den folgenden Kapiteln.
 \chapter{Lasten- und Pflichtenheft}
-In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das Projekt \glqq Notenrechner\grqq\ ausgearbeitet, diese wurde im Projektverlauf wie in der Vorlesung gelernt in ein Lasten\- und Pflichtenheft umgearbeitet:
+\section{Anforderungsliste}
+In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das Projekt \glqq Notenrechner\grqq\ ausgearbeitet, diese behandelt zu allererst Anforderungen aus zwei Sichten, auf der einen Seite Anforderungen die die Verwaltung haben könnte, auf der anderen Seite Anforderungen der Studierenden. Diese Anforderungen wurde im Projektverlauf wie in der Vorlesung gelernt in ein Lasten- und Pflichtenheft umgearbeitet:
+\subsection{Hochschule}
+\begin{itemize}
+\item Ortsunabhängiger Aufruf
+\item Dozenten sollen von jedem Ort der Erde Noten einpflegen können.
+\item Dozenten können ihre Prüfungen aufrufen und auswerten
+\item Ein Admin (Studiengangsleiter) soll die Gewichting der Noten ändern können.
+\item Admin soll Fächer zwischen den Semestern verschieben können
+\item Statistik mit grafischer Aufarbeitung
+\begin{itemize}
+\item Aufruf von jedem, Einzelnoten können nur vom jeweiligen Studenten gesehen werden
+\item Nachprüfungen werden wie Erstversuch behandelt
+\item Möglichkeit Leistungsnachweise in die Prüfungsnote einrechnen oder nicht
+\end{itemize}
+\item Reminder für Dozenten zur Eingabe der Prüfungsnoten (Mail 4 Wochen nach Prüfungsende)
+\item Reminder für Studenten wenn neue Noten vorliegen (E-Mail)
+\item Studiengang kann per Drag\&Drop zusammengestellt werden (durch den Studiengangsleiter)
+\item Studiengang kann dupliziert und bearbeitet werden
+\item Authentifizierung: Über vorhandene User (JAAS mit LDAP)
+\begin{itemize}
+\item benötigte Rollen:
+\begin{itemize}
+\item Dozent/Prüfungsamt
+\begin{itemize}
+\item kann nur Noten eintragen
+\item seine Prüfungen einsehen
+\end{itemize}
+\item Studiengangsleiter (Admin)
+\begin{itemize}
+\item kann Gewichtung ändern
+\end{itemize}
+\item Student
+\begin{itemize}
+\item Einsicht, Wunsch-/Traumnoten
+\end{itemize}		
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\subsection{Student}
+\begin{itemize}
+\item Reminder wenn neue Noten da sind
+\item Wunschnoten können eingetragen werden und werden überschrieben wenn "echte" Noten vorhanden sind ODER "echte" Noten stehen neben den Traumnoten
+\item Statistik (farblich aufbereitet in der Notenübersicht, z.B. grün = über dem Durchschnitt \& bestanden, rot = durchgefallen, gelb = bestanden, aber unter dem Durchschnitt)
+\item Ortsunabhängiger Abruf
+\item Übersicht über nicht bestandene Klausuren bzw. unterpunktete Leistungsnachweise
+\item Zwischennoten (welche Noten hatte ich in ZP?), Anzeige welche Noten noch notwendig sind um zu bestehen (Leistungsnachweise)
+\end{itemize}
+\subsection{Zusammenfassung Anforderungen}
+Noch notwendig????
 \begin{itemize}
 \item 2 Frontends (Verwaltung \& Studierende)
 \item individualisierbare Notenliste/-berechnung pro Jahrgang
@@ -61,45 +113,108 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \subsection{Zielbestimmung}
 Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden.
 \subsection{Produkteinsatz}
-Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq erreichbar sein.
+Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq erreichbar sein. Die Authentifizierung soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
 \subsection{Produktübersicht}
-Es soll ein Webservice mit drei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten, es sind mindestens drei Rollen vorzusehen:
+Es soll ein Webservice mit mindestens zwei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten, es sind mindestens drei Rollen vorzusehen:
 \begin{itemize}
 \item Studierende
 \item Dozenten
 \item Administrator
 \end{itemize}
 Für die Speicherung der Noten ist eine geeignete performante Speichermethode vorzusehen (bspw. SQL oder NoSQL).
-Nach Möglichkeit soll für die Realisierung Software eingesetzt werden für die keine Lizensierungskosten anfallen.
+Nach Möglichkeit soll für die Realisierung Software eingesetzt werden für die keine Lizensierungskosten anfallen und deren Wartbarkeit und Sicherheit trotzdem auf absehbare Zeit gesichert ist.
 \subsection{Produktfunktionen}
+Es sind folgende Funktionen vorzusehen:
+\begin{itemize}
+\item Persistente Speicherung der Daten mithilfe einer geeigneten Technologie
+\item Eingabe von Prüfungsleistungen
+\item Für Studierende ist die Möglichkeit der Eingabe von \glqq Wunschnoten\grqq\ vorzusehen, diese sollen genau wie die \glqq echten\grqq\ Noten behandelt werden, d.h. gespeichert werden und es sollen aus diesen Werten die Zwischen- und Endnoten berechnet werden.
+\item Farbliche Markierung für Notenwerte die im Grenzbereich und unterhalb der Anforderungen liegen (niedrige Priorität), sodass für die Studierenden auf einen Blick zu erfassen ist wie ihre Leistungen einzustufen sind.
+\item Berechnung muss entsprechend der gesetzlichen Vorgaben umgesetzt werden
+\item Die Anwendung soll modular gehalten sein, d.h. es sollen komplett neue Studiengänge angelegt werden können
+\item Benutzeroberfläche soll Plattformunabhängig sein, dies umfasst auch mobile Endgeräte. Die Oberfläche ist so auszulegen, dass sie auch auf mobilen Endgeräten bedient werden kann.
+\item 
+\item Authentifizierungstechnologie muss vorhandenes Active Directory (AD) unterstützen
+\item Rollenbasiertes Zugriffsmodell, die Zuordnungen zu den Rollen sollen aus dem AD übernommen werden. 
+Es sind 3 Rollen mit den folgenden Berechtigungen vorzusehen:
+\begin{itemize}
+\item Administrator
+\begin{itemize}
+\item Anlegen von neuen Studiengängen (inkl. Eingabe der abzulegenden Prüfungsleistungen und Notengewichtung)
+\item Modifizieren von vorhandenen Studiengängen
+\item Eintragung von Noten (ohne Beschränkungen auf bestimmte Fächer)
+\item Anlegen von neuen Nutzern (sofern nicht automatisch realisiert)
+\item Vergabe der Berechtigungen für Dozenten (Zuteilung der Fächer)
+\end{itemize}
+\item Dozenten
+\begin{itemize}
+\item Eintragen von abgelegten Prüfungsleistungen für zugewiesene Fächer
+\item Abruf der aus den eingetragenen Prüfungsleistungen berechneten Statistiken
+\end{itemize}
+\item Studierende
+\begin{itemize}
+\item Eintragen von Wunschnoten, diese sind genauso zu behandeln wie eingetragene \glqq Echtnoten\grqq
+\item Abrufen bereits abgelegter Prüfungsleistungen und (daraus) berechneter Zwischen- und Endnoten
+\item Abruf statistischer Daten (Durchschnitt, Median, etc.) zu den eingepflegten Prüfungsleistungen
+\end{itemize}
+\end{itemize}
+\end{itemize}
 \subsection{Produktdaten}
 \subsection{Produktleistungen}
+Das Produkt stellt eine Plattform zur Verfügung auf der aus eingegeben Prüfungsleistungen Statistiken abgeleitet werden und eine geordnete und berechnete Ausgabe zur Verfügung gestellt wird.
 \subsection{Qualitätsanforderungen}
 Es ist sicherzustellen, dass die angebotene Software die Noten entsprechend der gesetzlichen Vorgaben richtig berechnet. Der Datenschutz muss in jeder Betriebssituation gewahrt sein.
+Es ist sicherzustellen das die benutzten Technologien \& Programme in den nächsten Jahren noch Weiterentwicklung und Support bekommen.
 \subsection{Ergänzungen}
 \section{Pflichtenheft}
 \subsection{Zielbestimmung}
 \subsubsection{Musskriterien}
+\begin{itemize}
+\item Authentifizierung (vorerst noch nicht per LDAP)
+\item Oberfläche für Studierende mit Abfrage der Noten und Möglichkeit zur Eingabe der Wunschnoten
+\item Oberfläche für Dozenten mit der Möglichkeit Prüfungsleistungen einzugeben
+\item Plattformunabhängigkeit
+\end{itemize}
 \subsubsection{Wunschkriterien}
+\begin{itemize}
+\item Farbliche Markierung der Prüfungsleistungen
+\item Mobile Oberfläche
+\item Eigene Anwendung zur Verwendung auf Desktop PCs
+\item Anlegen von komplett neuen Studiengängen mit eigenen Fächern und Gewichtungen der Prüfungsleistungen
+\item Bereits geschriebene Note automatisiert als Wunschnote eintragen (Oberfläche für Studierende)
+\item 
+\end{itemize}
 \subsubsection{Abgrenzungskriterien}
 \subsection{Produkteinsatz}
 \subsubsection{Anwendungsbereiche}
 \subsubsection{Zielgruppen}
+Zielgruppe der Anwendung sind im wesentlichen die Studierenden und die Dozenten der Hochschulen. Die Verwaltung der FHVR als Dienstherr der Verwaltungsinformatiker ist von eher untergeordneter Bedeutung für die Entwicklung, da diese einen zahlenmäßig sehr kleinen Teil der gesamten Nutzerschaft ausmacht.
 \subsubsection{Betriebsbedingungen}
 \subsection{Produktumgebung}
 \subsubsection{Software}
+Um die Kosten für Lizenzen und Support möglichst gering zu halten, wird der Einsatz von Linux als Serverbetriebssystem empfohlen, als Datenbank wird MySQL oder MariaDB empfohlen und als Applicationserver soll Wildfly in einer aktuellen Version zum Einsatz kommen.
 \subsubsection{Hardware}
+Das Produkt ist auf allen Plattformen lauffähig die die benötigten Softwareprodukte unterstützen, neben x86\_64 also bspw. auch SPARC und ARMv6/v7/v8
 \subsubsection{Orgware}
 \subsubsection{Produkt – Schnittstellen}
+\begin{itemize}
+\item LDAP als Schnittstelle zum vorhandenen Active Directory (AD)
+\end{itemize}
 \subsection{Produktfunktionen}
 \subsubsection{Produktspezifisch}
 \subsection{Produktdaten}
 \subsubsection{Produktspezifisch}
 \subsection{Produkt - Leistungen}
 \subsection{Benutzungsoberfläche}
+Als Benutzeroberfläche kommt im ersten Entwicklungsschritt die Web Technologie Java Server Faces (JSF) zum Einsatz. In weiteren Entwicklungsschritten ist angedacht eine (lokale) Java Application mit einer JavaFX Oberfläche zur Verfügung zu stellen.
 \subsection{Qualitäts-Zielbestimmung}
 \subsection{Globale Testszenarien/Testfälle}
 \subsection{Entwicklungsumgebung}
+Als Java (EE) - Entwicklungsumgebung kommt Netbeans in der jeweils aktuellsten Version zum Einsatz.
+
+Für die Entwicklung der Datenbankschemata und Skripte wird die MySQL Workbench in der Version 6.3 zum Einsatz kommen.
+
+Als Testumgebung wird eine virtuelle Maschine auf Linux Basis verwendet. 
 \subsection{Ergänzungen}
 \subsection{Glossar, Begriffslexikon}
 \chapter{verwendete Technologien}
@@ -144,10 +259,20 @@ geändert zu Version: \textbf{8.1 final}\\
 Es wurde auf ein gemeinsames Github-Repository entwickelt von dem sich jeder im Team einen eigenen Fork erstellt hatte, entwickelter Code wurde per Pull Request an den Eigner des Hauptrepositories geschickt und von diesem nach erfolgreichen CI-Tests in den Hauptzweig gemerged. Diese Vorgehensweise hat sich nach einigen anfänglichen Schwierigkeiten als die sicherste herausgestellt, da Code der zu Fehlern im Build-Prozess führt vor dem Zusammenführen erkannt und nachgebessert werden kann und somit nicht der komplette Master unbrauchbar wird.
 \section{Arbeitsverteilung}
 Scrum like
-Wöchentliche \glqq Sprint\grqq Meetings
+Wöchentliche \glqq Sprint\grqq Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden.
 \subsection{Protokolle der wöchentlichen Meetings}
+\subsubsection{Kickoff Meeting}
+Protokoll siehe Punkt 2.1 Anforderungsliste
+\subsubsection{2tes Meeting}
 
 \chapter{(realisierte) Funktionalitäten}
+Hier sollen die Ablaufdiagramme hin
+\section{Oberfläche für Studierende}
+\subsection{Funktionsumfang}
+\subsection{UML-Diagramm}
+\section{Oberfläche für Dozenten}
+\subsection{Funktionsumfang}
+\section{Oberfläche für den Administrator}
 \chapter{Einsatz der Software}
 \section{Systemvoraussetzungen}
 \section{Installation}

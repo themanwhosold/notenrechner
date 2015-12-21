@@ -302,6 +302,7 @@ public class OutForStudents implements Serializable {
      * @since 15.12.2015
      * @todo Native Query umbauen
      */
+    
     @Transactional
     public void setWunschnote(int notenID, int wunschNote) {
         //wunschNote = 5;
