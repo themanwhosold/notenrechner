@@ -13,17 +13,18 @@
 %leeres Datum
 \date{}
 \makeindex
+\setcounter{secnumdepth}{4}
 \begin{document}
 \maketitle
 \tableofcontents
 \chapter{Einleitung \& Motivation}
-Die folgende Gruppenarbeit aus dem Fach \glqq Software Engineering 2\grqq\ beschäftigt sich mit einem für den Studiengang \glqq Verwaltungsinformatik\grqq\ tatsächlich relevanten Problem, durch die Aufteilung unseres Studiengangs auf zwei Hochschulen (FHVR AIV \& Hochschule Hof) und die damit verbunden Aufteilung der Prüfungsleistungen ergibt sich die Notwendigkeit einer zentralen Plattform in die zum einen Noten eingetragen werden können (z.B. durch die Verwaltung oder auch berechtigte Dozenten) und zum anderen auch eingetragene Noten durch die Studierenden abgerufen werden können. Idealerweise soll bei dieser Gelegenheit auch eine Berechnung der Zwischen\- und Endnoten erfolgen um die im Studiengang kursierenden Exceltabellen durch eine rechtssichere und in jedem Fall richtig rechnende Plattform abzulösen.
+Die folgende Gruppenarbeit aus dem Fach \glqq Software Engineering 2\grqq\ beschäftigt sich mit einem für den Studiengang \glqq Verwaltungsinformatik\grqq\ tatsächlich relevanten Problem, durch die Aufteilung unseres Studiengangs auf zwei Hochschulen (FHVR AIV \& Hochschule Hof) und der damit verbundenen Aufteilung der Prüfungsleistungen, ergibt sich die Notwendigkeit einer zentralen Plattform, in die zum einen Noten eingetragen werden können (z.B. durch die Verwaltung oder auch berechtigte Dozenten) und zum anderen auch eingetragene Noten durch die Studierenden abgerufen werden können. Idealerweise soll bei dieser Gelegenheit auch eine Berechnung der Zwischen- und Endnoten erfolgen, um die im Studiengang kursierenden Exceltabellen durch eine rechtssichere und in jedem Fall richtig rechnende Plattform abzulösen.
 
 Zur Realisierung einer solchen Plattform werden im folgenden Technologien eingesetzt, die im Rahmen der Lehrveranstaltungen 
 \begin{itemize}
 \item Objektorientiertes Programmieren 1 \& 2
 \item Algorithmen und Datenstrukturen
-\item Serverseitiges Programmieren
+\item Serverseitiges Programmieren mit Java
 \item Software Engineering 1 \& 2
 \end{itemize}
 erlernt wurden. 
@@ -31,13 +32,13 @@ erlernt wurden.
 Details zu den eingesetzten Techniken finden sich in den folgenden Kapiteln.
 \chapter{Lasten- und Pflichtenheft}
 \section{Anforderungsliste}
-In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das Projekt \glqq Notenrechner\grqq\ ausgearbeitet, diese behandelt zu allererst Anforderungen aus zwei Sichten, auf der einen Seite Anforderungen die die Verwaltung haben könnte, auf der anderen Seite Anforderungen der Studierenden. Diese Anforderungen wurde im Projektverlauf wie in der Vorlesung gelernt in ein Lasten- und Pflichtenheft umgearbeitet:
+In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das Projekt \glqq Notenrechner\grqq\ ausgearbeitet. Diese behandelt zu allererst Anforderungen aus zwei Sichten, auf der einen Seite Anforderungen, die die Verwaltung haben könnte und auf der anderen Seite Anforderungen der Studierenden. Diese Anforderungen wurde im Projektverlauf, wie in der Vorlesung gelernt, in ein Lasten- und Pflichtenheft umgearbeitet:
 \subsection{Hochschule}
 \begin{itemize}
 \item Ortsunabhängiger Aufruf
-\item Dozenten sollen von jedem Ort der Erde Noten einpflegen können.
+\item Dozenten sollen von jedem Ort der Erde Noten einpflegen können
 \item Dozenten können ihre Prüfungen aufrufen und auswerten
-\item Ein Admin (Studiengangsleiter) soll die Gewichting der Noten ändern können.
+\item Ein Admin (Studiengangsleiter) soll die Gewichting der Noten ändern können
 \item Admin soll Fächer zwischen den Semestern verschieben können
 \item Statistik mit grafischer Aufarbeitung
 \begin{itemize}
@@ -61,18 +62,21 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \item Studiengangsleiter (Admin)
 \begin{itemize}
 \item kann Gewichtung ändern
+\item kann Personen hinzufügen/ändern
+\item kann Studiengänge hinzufügen/ändern
+\item kann Noten ändern (z.B. bei Fehlern)
 \end{itemize}
 \item Student
 \begin{itemize}
-\item Einsicht, Wunsch-/Traumnoten
+\item Einsicht Wunsch-/Traumnoten
 \end{itemize}		
 \end{itemize}
 \end{itemize}
 \end{itemize}
 \subsection{Student}
 \begin{itemize}
-\item Reminder wenn neue Noten da sind
-\item Wunschnoten können eingetragen werden und werden überschrieben wenn "echte" Noten vorhanden sind ODER "echte" Noten stehen neben den Traumnoten
+\item Reminder, wenn neue Noten eingetragen wurden
+\item Wunschnoten können eingetragen werden und werden überschrieben, wenn \glqq echte\grqq\ Noten vorhanden sind ODER \glqq echte\grqq\ Noten stehen neben den Traumnoten
 \item Statistik (farblich aufbereitet in der Notenübersicht, z.B. grün = über dem Durchschnitt \& bestanden, rot = durchgefallen, gelb = bestanden, aber unter dem Durchschnitt)
 \item Ortsunabhängiger Abruf
 \item Übersicht über nicht bestandene Klausuren bzw. unterpunktete Leistungsnachweise
@@ -99,9 +103,9 @@ Noch notwendig????
 \item Durchschnittsnote für alle sichtbar (kann bedenklich sein wenn nur zwei Studenten das Fach geschrieben haben)
 \item Authentifizierung notwendig über JAAS
 \item Desktop Client mit JavaFX (optional?)
-\item Umsetzung in "gesprochene Noten"
-\item Eintragung von "Traumnoten" der Studenten und anschließende Berechnung der "resultierenden/prognostizierenden" Endnote, die überschrieben werden durch Eintragung der echten Note durch den Dozenten
-\item Technologie fuer die Abhaengigkeitsverwaltung?
+\item Umsetzung in \glqq gesprochene Noten\grqq
+\item Eintragung von \glqq Traumnoten\grqq\ der Studenten und anschließende Berechnung der \glqq resultierenden/prognostizierenden\grqq\ Endnote, die überschrieben werden durch Eintragung der echten Note durch den Dozenten
+\item Technologie fuer die Abhängigkeitsverwaltung?
 \begin{itemize}
 \item Ant
 \item Maven
@@ -113,25 +117,25 @@ Noch notwendig????
 \subsection{Zielbestimmung}
 Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden.
 \subsection{Produkteinsatz}
-Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq erreichbar sein. Die Authentifizierung soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
+Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq\ erreichbar sein. Die Authentifizierung soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
 \subsection{Produktübersicht}
-Es soll ein Webservice mit mindestens zwei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten, es sind mindestens drei Rollen vorzusehen:
+Es soll ein Webservice mit mindestens zwei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten. Es sind mindestens drei Rollen vorzusehen:
 \begin{itemize}
 \item Studierende
 \item Dozenten
 \item Administrator
 \end{itemize}
 Für die Speicherung der Noten ist eine geeignete performante Speichermethode vorzusehen (bspw. SQL oder NoSQL).
-Nach Möglichkeit soll für die Realisierung Software eingesetzt werden für die keine Lizensierungskosten anfallen und deren Wartbarkeit und Sicherheit trotzdem auf absehbare Zeit gesichert ist.
+Nach Möglichkeit soll für die Realisierung Software eingesetzt werden, für die keine Lizensierungskosten anfallen und deren Wartbarkeit und Sicherheit trotzdem auf absehbare Zeit gesichert ist.
 \subsection{Produktfunktionen}
 Es sind folgende Funktionen vorzusehen:
 \begin{itemize}
 \item Persistente Speicherung der Daten mithilfe einer geeigneten Technologie
 \item Eingabe von Prüfungsleistungen
 \item Für Studierende ist die Möglichkeit der Eingabe von \glqq Wunschnoten\grqq\ vorzusehen, diese sollen genau wie die \glqq echten\grqq\ Noten behandelt werden, d.h. gespeichert werden und es sollen aus diesen Werten die Zwischen- und Endnoten berechnet werden.
-\item Farbliche Markierung für Notenwerte die im Grenzbereich und unterhalb der Anforderungen liegen (niedrige Priorität), sodass für die Studierenden auf einen Blick zu erfassen ist wie ihre Leistungen einzustufen sind.
+\item Farbliche Markierung für Notenwerte, die im Grenzbereich und unterhalb der Anforderungen liegen (niedrige Priorität), sodass für die Studierenden auf einen Blick zu erfassen ist, wie ihre Leistungen einzustufen sind
 \item Berechnung muss entsprechend der gesetzlichen Vorgaben umgesetzt werden
-\item Die Anwendung soll modular gehalten sein, d.h. es sollen komplett neue Studiengänge angelegt werden können
+\item Die Anwendung soll modular gehalten werden, d.h. es sollen komplett neue Studiengänge angelegt werden können
 \item Benutzeroberfläche soll Plattformunabhängig sein, dies umfasst auch mobile Endgeräte. Die Oberfläche ist so auszulegen, dass sie auch auf mobilen Endgeräten bedient werden kann.
 \item 
 \item Authentifizierungstechnologie muss vorhandenes Active Directory (AD) unterstützen
@@ -161,10 +165,10 @@ Es sind 3 Rollen mit den folgenden Berechtigungen vorzusehen:
 \end{itemize}
 \subsection{Produktdaten}
 \subsection{Produktleistungen}
-Das Produkt stellt eine Plattform zur Verfügung auf der aus eingegeben Prüfungsleistungen Statistiken abgeleitet werden und eine geordnete und berechnete Ausgabe zur Verfügung gestellt wird.
+Das Produkt stellt eine Plattform zur Verfügung, auf der aus eingegeben Prüfungsleistungen Statistiken abgeleitet werden, die eine geordnete und berechnete Ausgabe zur Verfügung stellt.
 \subsection{Qualitätsanforderungen}
 Es ist sicherzustellen, dass die angebotene Software die Noten entsprechend der gesetzlichen Vorgaben richtig berechnet. Der Datenschutz muss in jeder Betriebssituation gewahrt sein.
-Es ist sicherzustellen das die benutzten Technologien \& Programme in den nächsten Jahren noch Weiterentwicklung und Support bekommen.
+Es ist sicherzustellen, dass die benutzten Technologien und Programme in den nächsten Jahren noch Weiterentwicklung und Support bekommen.
 \subsection{Ergänzungen}
 \section{Pflichtenheft}
 \subsection{Zielbestimmung}
@@ -182,7 +186,6 @@ Es ist sicherzustellen das die benutzten Technologien \& Programme in den nächs
 \item Eigene Anwendung zur Verwendung auf Desktop PCs
 \item Anlegen von komplett neuen Studiengängen mit eigenen Fächern und Gewichtungen der Prüfungsleistungen
 \item Bereits geschriebene Note automatisiert als Wunschnote eintragen (Oberfläche für Studierende)
-\item 
 \end{itemize}
 \subsubsection{Abgrenzungskriterien}
 \subsection{Produkteinsatz}
@@ -194,8 +197,9 @@ Zielgruppe der Anwendung sind im wesentlichen die Studierenden und die Dozenten 
 \subsubsection{Software}
 Um die Kosten für Lizenzen und Support möglichst gering zu halten, wird der Einsatz von Linux als Serverbetriebssystem empfohlen, als Datenbank wird MySQL oder MariaDB empfohlen und als Applicationserver soll Wildfly in einer aktuellen Version zum Einsatz kommen.
 \subsubsection{Hardware}
-Das Produkt ist auf allen Plattformen lauffähig die die benötigten Softwareprodukte unterstützen, neben x86\_64 also bspw. auch SPARC und ARMv6/v7/v8
+Das Produkt ist auf allen Plattformen lauffähig, die die benötigten Softwareprodukte unterstützen, neben x86\_64 also bspw. auch SPARC und ARMv6/v7/v8.
 \subsubsection{Orgware}
+TODO: Sicherheitsanforderungen, Benutzerhandbücher
 \subsubsection{Produkt – Schnittstellen}
 \begin{itemize}
 \item LDAP als Schnittstelle zum vorhandenen Active Directory (AD)
@@ -210,11 +214,11 @@ Als Benutzeroberfläche kommt im ersten Entwicklungsschritt die Web Technologie 
 \subsection{Qualitäts-Zielbestimmung}
 \subsection{Globale Testszenarien/Testfälle}
 \subsection{Entwicklungsumgebung}
-Als Java (EE) - Entwicklungsumgebung kommt Netbeans in der jeweils aktuellsten Version zum Einsatz.
+Als Java (EE) - Entwicklungsumgebung kommt Netbeans in der Version 8.1 zum Einsatz.
 
 Für die Entwicklung der Datenbankschemata und Skripte wird die MySQL Workbench in der Version 6.3 zum Einsatz kommen.
 
-Als Testumgebung wird eine virtuelle Maschine auf Linux Basis verwendet. 
+Als Testumgebung wird eine virtuelle Maschine auf Suse Linux Basis verwendet. 
 \subsection{Ergänzungen}
 \subsection{Glossar, Begriffslexikon}
 \chapter{verwendete Technologien}
