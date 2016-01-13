@@ -11,7 +11,7 @@ import javax.enterprise.inject.Default;
 import javax.xml.ws.BindingType;
 
 /**
- *
+ * LoggedIn Produziert einen Benutzer, der für die Session bestehen bleibt
  * @author Schmidbauer
  **/
 

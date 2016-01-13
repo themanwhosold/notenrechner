@@ -75,7 +75,7 @@ public class User{
 
     /**
      * Holt Userid mit der sich der Benutzer eingeloggt hat
-     * @return
+     * @return ID des Benutzers
      */
     public int getUserId() {
 //        if (userId==0) return 1;
@@ -83,32 +83,32 @@ public class User{
     }
 
     /**
-     *
-     * @param userId
+     * Setzt die UserID auf den eingeloggten Benutzer
+     * @param userId ID des eingeloggten USers
      */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
     /**
-     *
-     * @return
+     * Holt PAsswort des BEnutzers ab
+     * @return Passwort des Users als String
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     *
-     * @param password
+     * Setzt PAsswort auf das in der DB gespeicherte Password
+     * @param password String des Passworts des Benutzers
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     *
-     * @return
+     * Erzeugt einen String mit sämtlichen Informationen des eingeloggten Users
+     * @return String mit Infos über den USer
      */
     @Override
     public String toString() {
