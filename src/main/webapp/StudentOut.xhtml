@@ -31,6 +31,8 @@
                             <f:facet name="header">Wunschnote</f:facet>
                             <h:inputText id="wunschnote" value="#{noten.wunschnote}" validatorMessage="Der eingegebene Wert liegt nicht im zulässigen Bereich (0-15 Punkte)" style="#{noten.note >= 5 ? 'color:green': 'color:red'}">
                                 <f:validateDoubleRange minimum="0" maximum="15" for="wunschnote"/>
+                                <!--siehe Java aktuell 01/16 S.23ff unter Umständen ist der zurückgegebene Wert falsch (String statt int)-->
+                                <f:convertNumber/>
                             </h:inputText>
                         </h:column>
                     </h:dataTable>
