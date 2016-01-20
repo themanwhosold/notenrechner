@@ -8,8 +8,10 @@
 \usepackage{amssymb}
 \usepackage{makeidx}
 \usepackage{graphicx}
+\usepackage{url}
 \author{Markus Österle \\ Maximilian Schreiber \\ Tobias Schmidbauer \\ Stefan Memmel \\ Christoph Kammerer}
-\title{Studienarbeit im Fach \\ \glqq Software Engineering 2\grqq \\ - \\ Thema: Notenrechner}
+\title{Studienarbeit im Fach \\ \glqq Software Engineering 2\grqq}
+\subtitle{Thema: Notenrechner}
 %leeres Datum
 \date{}
 \makeindex
@@ -234,10 +236,18 @@ geändert zu Version: \textbf{8.1 final}\\
 
 \subsection{SQL Editor - MySQL Workbench}
 \subsection{Versionsverwaltung - GIT}
-\section{Bibliotheksverwaltung mit Maven}
+\url{https://github.com/themanwhosold/notenrechner}
+\subsection{Bibliotheksverwaltung mit Maven}
+%TODO Markus schreibt
 \section{Test}
-\section{Unit Tests mit JUnit}
-\section{Continous Integration Tests mit Travis, Jenkins und Sonarqube}
+\subsection{Unit Tests mit JUnit}
+%TODO Tobias schreibt
+Als Unit-Test Framework wurde JUnit eingesetzt und Testpackages für jede Klasse erzeugt. In diesen Testklassen wurden Testfälle definiert und bei jedem Build auf korrektheit überprüft. Hierdurch wurde sichergestellt, dass neu hinzugekommene Funktionalitäten nicht die Funktionsfähigkeit bereits vorhandener Komponenten verändert.
+Weiterhin wurde für den Test der Java EE Webanwendung Mockito in Verbindung mit Arquillian eingesetzt, da zur Laufzeit die jeweilige Unit getestet werden muss. Hierdurch können die Schnittstellen der jeweiligen Objekte definiert und angesteuert werden.
+\subsection{Continous Integration Tests mit Travis, Jenkins und Sonarqube}
+\subsubsection{Travis}
+\subsubsection{Jenkins}
+\subsubsection{Sonarqube}
 \section{Übersicht über die final verwendeten Versionen}
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -274,6 +284,7 @@ Protokoll siehe Punkt 2.1 Anforderungsliste
 Hier sollen die Ablaufdiagramme hin
 \section{Oberfläche für Studierende}
 \subsection{Funktionsumfang}
+%TODO ausformulieren
 \subsection{UML-Diagramm}
 \section{Oberfläche für Dozenten}
 \subsection{Funktionsumfang}
@@ -282,6 +293,7 @@ Hier sollen die Ablaufdiagramme hin
 \section{Systemvoraussetzungen}
 \section{Installation}
 \chapter{Diagramme}
+Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in Originalgröße auf der 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_eigene_noten_autosortiert}
