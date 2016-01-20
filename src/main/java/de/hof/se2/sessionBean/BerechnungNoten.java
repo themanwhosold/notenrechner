@@ -121,7 +121,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     }
 
     /**
-     * Holt MEdian eines Studienfaches
+     * Holt Median eines Studienfaches
      *
      * @author max
      * @param idStudienfach
