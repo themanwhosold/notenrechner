@@ -307,11 +307,35 @@ Zur Abstimmung des Codes wurde von jedem Teamangehörigen ein Repository auf Git
 
 Nachdem im Gesamtprojekt eine gewisse Codequalität erreicht wurde, wurde der Code von einem Teammitglied, das nicht an der Entwicklung der jeweiligen Passagen beteiligt war refactored und überarbeitet.
 \subsection{Protokolle der wöchentlichen Meetings}
-Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden.
+Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden. Leider ist die Protokollierung dieser Meetings nur sehr lückenhaft erfolgt. Die vorhandenen Protokolle finden sich aber in Folge.
 \subsubsection{Kickoff Meeting}
 Protokoll siehe Punkt 2.1 Anforderungsliste
 \subsubsection{2tes Meeting}
-
+Beginn der Programmierarbeiten
+Verfeinerung der Anforderungen an die Maske für den Administrator:
+Maske für den Admin:
+\begin{itemize}
+	\item Neuen Studiengang anlegen
+	\item Wieviele Semester hat Studium
+	\item Welche Semester = Grundstudium, Ausschlußprinzip alle anderen gehören zum Hauptstudium
+	\item Stellenwert des Grundstudiums in der Endnote, Ausschlußprinzip -> Hauptstudium
+	\item Studienfächer zum Grundstudium hinzufuegen
+	\item zu vergebende Noten \& Art der Noten festlegen
+	\item Gewichtung festlegen (Noten untereinander \& Leistungsnachweise zu normalen Noten)
+	\item Art der Noten (FHVR Klausur, FH Klausur, FH Leistungsnachweis, FHVR Leistungsnachweis) vs. jede Note einzeln eintragen
+	-> Art der Noten (extra Tabelle), jeweils für Grund- und Hauptstudium
+		\begin{itemize}
+		\item FHVR Klausur
+		\item FH Klausur
+		\item FHVR Leistungsnachweis
+		\item FH Leistungsnachweis
+		\item FH Mündl. Prüfung
+		\item FHVR Mündl. Prüfung
+		\item FHVR Studienarbeit
+		\item Praxisbeurteilung
+		\end{itemize}
+	\item Notentyp | Studienjahr | Gewichtung GS | Gewichtung HS
+\end{itemize}
 \chapter{(realisierte) Funktionalitäten}
 Hier sollen die Ablaufdiagramme hin
 Realisierung der Statistik-Funktionen:
