@@ -336,6 +336,21 @@ Maske für den Admin:
 		\end{itemize}
 	\item Notentyp | Studienjahr | Gewichtung GS | Gewichtung HS
 \end{itemize}
+\subsection{weiteres Protokoll}
+\underline{Bisheriger Arbeitsstand:}
+\begin{itemize}
+	\item es fehlen noch große Teile der Dokumentation
+\item Stefan erstellt Diagramme (Stefan)
+\item Lasten-/Pflichtenheft (Markus)
+\item Voraussetzung/Installationsanleitung (Markus)
+\item Ergänzung der Javadocs (Tobias)
+\item Administratorseite:
+\item Anlegen eines neuen Studenten in einem vorhandenen Studiengang (Max)
+\item Notenberechnung:
+\item Durchschnittsnoten der Leistungsnachweise sind nicht korrekt
+\item Datenmodell müsste feingranularer werden (8 verschiedene Gewichtungen)			- mgl. Lösung zusätzliche Boolean Werte in der Notenliste
+\item Enum für Umrechnung von Notenpunkten in gesprochene Noten (Christoph)
+\end{itemize}
 \chapter{(realisierte) Funktionalitäten}
 Hier sollen die Ablaufdiagramme hin
 Realisierung der Statistik-Funktionen:
@@ -355,7 +370,7 @@ Realisierung der Berechnung der End- bzw. Zwischennoten:
 Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean BerechnungNoten bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
 Dazu ist die Methode getEndnote(int matrikelNr) in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel matrikelNr, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
 Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Daraufhin wird die Endnote ermittelt.
-Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteil werden kann.
+Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
 
 \section{Oberfläche für Studierende}
 \subsection{Funktionsumfang}
