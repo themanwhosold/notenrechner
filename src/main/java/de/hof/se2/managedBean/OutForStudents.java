@@ -323,7 +323,7 @@ public class OutForStudents implements Serializable {
      */
     @Transactional
     public void save() {
-        //em.persist(student);
+        em.persist(student);
         //ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         //ec.getRequestParameterMap().get("");
     }
