@@ -314,6 +314,25 @@ Protokoll siehe Punkt 2.1 Anforderungsliste
 
 \chapter{(realisierte) Funktionalitäten}
 Hier sollen die Ablaufdiagramme hin
+Realisierung der Statistik-Funktionen:
+Dazu wird eine zentrale Java Enterprise Bean genutzt. Die Session-Bean StatistikBean übernimmt die Analyse der empirischen Daten. Die Bean stellt alle gängigen statistischen Kennzahlen zu Verfügung.
+Folgende statistische Maßzahlen werden berechnet:
+- Median
+- arithmetisches Mittel
+- Beste und schlechteste Note
+- Varianz
+- Standartabweichung
+
+Die in StatistikBean implementierte Methode getStatistik(int idStudienfach) benötigt als Übergabeparameter die Id des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySql Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben gennanten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse Statistik zurück, die die Werte der Berechnungen enthält.
+
+
+Realisierung der Berechnung der End- bzw. Zwischennoten:
+
+Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean BerechnungNoten bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
+Dazu ist die Methode getEndnote(int matrikelNr) in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel matrikelNr, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
+Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Daraufhin wird die Endnote ermittelt.
+Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteil werden kann.
+
 \section{Oberfläche für Studierende}
 \subsection{Funktionsumfang}
 %TODO ausformulieren
