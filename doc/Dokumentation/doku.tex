@@ -41,14 +41,15 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \item Dozenten sollen von jedem Ort der Erde Noten einpflegen können
 \item Dozenten können ihre Prüfungen aufrufen und auswerten
 \item Ein Admin (Studiengangsleiter) soll die Gewichting der Noten ändern können
-\item Admin soll Fächer zwischen den Semestern verschieben können
+\item Admin soll Studiengänge modifizieren (wie z.B. Fächer zwischen den Semestern verschieben) und komplett neu anlegen können
+\item Admin soll die Fähigkeit besitzen, neue Studenten anzulegen bzw. bestehende Studenten zu modifizieren (z.B. Namen ändern)
 \item Statistik mit grafischer Aufarbeitung
 \begin{itemize}
-\item Aufruf von jedem, Einzelnoten können nur vom jeweiligen Studenten gesehen werden
+\item Aufruf von jedem, persönliche Einzelnoten können nur vom jeweiligen (angemeldeten) Studenten gesehen werden
 \item Nachprüfungen werden wie Erstversuch behandelt
 \item Möglichkeit Leistungsnachweise in die Prüfungsnote einrechnen oder nicht
 \end{itemize}
-\item Reminder für Dozenten zur Eingabe der Prüfungsnoten (Mail 4 Wochen nach Prüfungsende)
+\item Reminder (E-Mail Benachrichtigung) für Dozenten zur Eingabe der Prüfungsnoten (Mail 4 Wochen nach Prüfungsende)
 \item Reminder für Studenten wenn neue Noten vorliegen (E-Mail)
 \item Studiengang kann per Drag\&Drop zusammengestellt werden (durch den Studiengangsleiter)
 \item Studiengang kann dupliziert und bearbeitet werden
@@ -82,7 +83,7 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \item Statistik (farblich aufbereitet in der Notenübersicht, z.B. grün = über dem Durchschnitt \& bestanden, rot = durchgefallen, gelb = bestanden, aber unter dem Durchschnitt)
 \item Ortsunabhängiger Abruf
 \item Übersicht über nicht bestandene Klausuren bzw. unterpunktete Leistungsnachweise
-\item Zwischennoten (welche Noten hatte ich in ZP?), Anzeige welche Noten noch notwendig sind um zu bestehen (Leistungsnachweise)
+\item Zwischennoten (welche Noten hatte ich in der Zwischenprüfung?), Anzeige welche Noten noch notwendig sind um zu bestehen (Leistungsnachweise)
 \end{itemize}
 \subsection{Zusammenfassung Anforderungen}
 Noch notwendig????
@@ -105,7 +106,7 @@ Noch notwendig????
 \item Durchschnittsnote für alle sichtbar (kann bedenklich sein wenn nur zwei Studenten das Fach geschrieben haben)
 \item Authentifizierung notwendig über JAAS
 \item Desktop Client mit JavaFX (optional?)
-\item Umsetzung in \glqq gesprochene Noten\grqq\
+\item Umsetzung in \glqq gesprochene Noten\grqq\ (sehr gut, gut, usw...)
 \item Eintragung von \glqq Traumnoten\grqq\ der Studenten und anschließende Berechnung der \glqq resultierenden/prognostizierenden\grqq\ Endnote, die überschrieben werden durch Eintragung der echten Note durch den Dozenten
 \item Technologie fuer die Abhängigkeitsverwaltung?
 \begin{itemize}
@@ -117,7 +118,7 @@ Noch notwendig????
 \end{itemize}
 \section{Lastenheft}
 \subsection{Zielbestimmung}
-Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden.
+Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden. Die Software soll von überall abrufbar sein, maximal portierbar sein und somit auf möglichst vielen Plattformen abgerufen werden können.
 \subsection{Produkteinsatz}
 Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq\ erreichbar sein. Die Authentifizierung soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
 \subsection{Produktübersicht}
@@ -185,8 +186,8 @@ Es ist sicherzustellen, dass die benutzten Technologien und Programme in den nä
 \begin{itemize}
 \item Farbliche Markierung der Prüfungsleistungen
 \item Mobile Oberfläche
-\item Eigene Anwendung zur Verwendung auf Desktop PCs
-\item Anlegen von komplett neuen Studiengängen mit eigenen Fächern und Gewichtungen der Prüfungsleistungen
+\item Eigene Anwendung zur Verwendung auf Desktop PCs (Desktop Client)
+\item Anlegen von komplett neuen Studiengängen mit eigenen Fächern und Gewichtungen der Prüfungsleistungen durch den Administrator
 \item Bereits geschriebene Note automatisiert als Wunschnote eintragen (Oberfläche für Studierende)
 \end{itemize}
 \subsubsection{Abgrenzungskriterien}
@@ -223,8 +224,8 @@ Für die Entwicklung der Datenbankschemata und Skripte wird die MySQL Workbench 
 Als Testumgebung wird eine virtuelle Maschine auf Suse Linux Basis verwendet. 
 \subsection{Ergänzungen}
 \subsection{Glossar, Begriffslexikon}
-\chapter{verwendete Technologien}
-Im ersten Meeting des Teams wurden die zu verwendenden Softwareversionen festgelegt. Diese wurden im Verlaufe des Projekts nur noch aufgrund äußerer Begebenheiten (bekannte Fehler mit Fix in höherere Version, finale Version) angepasst. Die jeweils festgelegte Version und warum diese unter Umständen noch angepasst wurde, findet sich im jeweiligen Unterpunkt.
+\chapter{Verwendete Technologien}
+Im ersten Meeting (Kick-Off meeting) des Teams wurden die zu verwendenden Softwareversionen festgelegt. Diese wurden im Verlaufe des Projekts nur noch aufgrund äußerer Begebenheiten (bekannte Fehler mit Fix in höherere Version, finale Version) angepasst. Die jeweils festgelegte Version und warum diese unter Umständen noch angepasst wurde, findet sich im jeweiligen Unterpunkt.
 \section{Entwicklung}
 \subsection{Java SDK}
 Als Java Umgebung kam während der ganzen Projektdauer das Oracle Java SDK Version 8 Update 60 zum Einsatz.
@@ -236,6 +237,7 @@ geändert zu Version: \textbf{8.1 final}\\
 
 \subsection{SQL Editor - MySQL Workbench}
 \subsection{Versionsverwaltung - GIT}
+Als Versionsverwaltung und zum Austausch des aktuellen Versionsstand des Projektes wurde während des gesamten Projektes Git eingesetzt. Das zentrale Repository liegt auf dem webbasierten Online-Dienst Github:
 \url{https://github.com/themanwhosold/notenrechner}
 \subsection{Bibliotheksverwaltung mit Maven}
 %TODO Markus schreibt
@@ -270,7 +272,7 @@ Weiterhin wurde für den Test der Java EE Webanwendung Mockito in Verbindung mit
 \end{center}
 \chapter{Teamstruktur und Arbeitsverteilung}
 \section{Gemeinsame Codeentwicklung mit GIT}
-Es wurde gegen ein gemeinsames Github-Repository entwickelt, von dem sich jeder im Team einen eigenen Fork erstellt hat. Entwickelter Code wurde per Pull Request an den Eigner des Hauptrepositories geschickt und von diesem nach erfolgreichen CI-Tests in den Hauptzweig gemerged. Diese Vorgehensweise hat sich nach einigen anfänglichen Schwierigkeiten als die sicherste herausgestellt, da Code, der zu Fehlern im Build-Prozess führt, vor dem Zusammenführen erkannt und nachgebessert werden kann und somit nicht der komplette Master-Branch unbrauchbar wird.
+Es wurde gegen ein gemeinsames Github-Repository entwickelt, von dem sich jeder im Team einen eigenen Fork erstellt hat. Entwickelter Code wurde per Pull Request an den Eigner des Hauptrepositories geschickt und von diesem nach erfolgreichen CI-Tests in den Hauptzweig gemerged. Diese Vorgehensweise hat sich nach einigen anfänglichen Schwierigkeiten als die sicherste herausgestellt, da Code, der zu Fehlern im Build-Prozess führt, vor dem Zusammenführen erkannt und nachgebessert werden kann und somit nicht der komplette Master-Branch unbrauchbar bzw. fehlerhaft wird.
 \section{Arbeitsverteilung}
 Scrum like
 
