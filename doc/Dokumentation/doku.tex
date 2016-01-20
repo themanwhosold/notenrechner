@@ -250,26 +250,28 @@ Um einen möglichst fehlerfreien Master Zweig zu erhalten wurden Pull Requests n
 
 \subsubsection{Travis}
 Travis\footnote{\path{https://travis-ci.org/}} wird von Github als Tool für CI angeboten, das macht die Integration in die Github Oberfläche sehr einfach, man muss sich nicht mit Hooks und Anmeldeinformationen rumschlagen und bei Bearbeitung eines Pull Requests ist auf einen Blick der Status des Travis Builds sichtbar.
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 \centering
 \includegraphics[width=1\linewidth]{pics/screenTravis}
 \caption[Travis]{Screenshot eines Travis Builds}
 \label{fig:screenTravis}
 \end{figure}
-
 \subsubsection{Jenkins}
 Jenkins wurde als zweites CI Tool eingesetzt
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 \centering
 \includegraphics[width=1\linewidth]{pics/screenJenkins}
 \caption[Jenkins]{Jenkins Screenshot}
 \label{fig:screenJenkins}
 \end{figure}
-
 \subsubsection{Sonarqube}
 Zur Analyse der Codequalität wurde Sonarqube\footnote{\path{http://www.sonarqube.org/}}\footnote{\path{https://de.wikipedia.org/wiki/SonarQube}} eingesetzt, die Analyse wurde von Jenkins bei jedem Build angesteuert. Sonarqube ist auf dem selben Server installiert wie Jenkins und liefert keinerlei Werte zurück an Git (anders als Jenkins selbst).
-
-
+\begin{figure}[!hbtp]%
+\centering
+\includegraphics[width=1\linewidth]{pics/screenSonarqube}
+\caption[Sonarqube]{Sonarqube Screenshot}
+\label{fig:screenSonarqube}
+\end{figure}
 \section{Betrieb}
 %TODO Markus schreibt
 \subsection{Wildfly}
@@ -324,31 +326,31 @@ Hier sollen die Ablaufdiagramme hin
 \section{Installation}
 \chapter{Diagramme}
 Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in Originalgröße auf der 
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_eigene_noten_autosortiert}
 	\caption[Package Eigene Noten]{UML Klassendiagramm des Packages \glqq Eigene Noten\grqq}
 	\label{fig:package_eigene_noten}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_entity}
 	\caption[Package Entity]{UML Klassendiagramm des Packages \glqq Entity\grqq}
 	\label{fig:package_entity}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_managedBean}
 	\caption[Package Managed Bean]{UML Klassendiagramm des Packages \glqq Managed Bean\grqq}
 	\label{fig:package_managed_bean}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_sessionBean}
 	\caption[Package Session Bean]{UML Klassendiagramm des Packages \glqq Session Bean\grqq}
 	\label{fig:package_session_bean}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!hbtp]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_test}
 	\caption[Package Test]{UML Klassendiagramm des Packages \glqq Test\grqq}
