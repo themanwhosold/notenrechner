@@ -139,7 +139,6 @@ Es sind folgende Funktionen vorzusehen:
 \item Berechnung muss entsprechend der gesetzlichen Vorgaben umgesetzt werden
 \item Die Anwendung soll modular gehalten werden, d.h. es sollen komplett neue Studiengänge angelegt werden können
 \item Benutzeroberfläche soll Plattformunabhängig sein, dies umfasst auch mobile Endgeräte. Die Oberfläche ist so auszulegen, dass sie auch auf mobilen Endgeräten bedient werden kann.
-\item 
 \item Authentifizierungstechnologie muss vorhandenes Active Directory (AD) unterstützen
 \item Rollenbasiertes Zugriffsmodell, die Zuordnungen zu den Rollen sollen aus dem AD übernommen werden. 
 Es sind 3 Rollen mit den folgenden Berechtigungen vorzusehen:
@@ -248,6 +247,9 @@ Weiterhin wurde für den Test der Java EE Webanwendung Mockito in Verbindung mit
 \subsubsection{Travis}
 \subsubsection{Jenkins}
 \subsubsection{Sonarqube}
+\section{Betrieb}
+\subsection{Wildfly}
+\subsection{MySQL}
 \section{Übersicht über die final verwendeten Versionen}
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -272,10 +274,14 @@ Weiterhin wurde für den Test der Java EE Webanwendung Mockito in Verbindung mit
 \section{Gemeinsame Codeentwicklung mit GIT}
 Es wurde gegen ein gemeinsames Github-Repository entwickelt, von dem sich jeder im Team einen eigenen Fork erstellt hat. Entwickelter Code wurde per Pull Request an den Eigner des Hauptrepositories geschickt und von diesem nach erfolgreichen CI-Tests in den Hauptzweig gemerged. Diese Vorgehensweise hat sich nach einigen anfänglichen Schwierigkeiten als die sicherste herausgestellt, da Code, der zu Fehlern im Build-Prozess führt, vor dem Zusammenführen erkannt und nachgebessert werden kann und somit nicht der komplette Master-Branch unbrauchbar wird.
 \section{Arbeitsverteilung}
-Scrum like
+Es wurde angedacht das Projekt im Scrum Verfahren zu entwickeln. Jedoch wurde schnell klar, dass die Programmierfähigkeiten aller Teammitglieder und die Erfahrung mit Programmierobjekten nicht ausreichen um dies umzusetzen.
+Die im Kickoff-Meeting festgelegten Anforderungen wurden in einem Lasten- und Pflichtenheft festgehalten und dienten als Grundlage der Entwicklungsarbeiten. In den wöchentlichen Meetings wurden von den Teammitgliedern Themen ausgewählt und soweit möglich bis zum nächsten Meeting realisiert. Die Ergebnisse wurden vorgestellt und sofern noch Ergänzungsbedarf oder Fragen bestanden ergänzt oder zusammen mit einem anderen Mitglied weiterentwickelt.
 
-Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden.
+Zur Abstimmung des Codes wurde von jedem Teamangehörigen ein Repository auf Git verwaltet, nach erledigter Programmiertätigkeit wurde der geänderte Code per Pull Request in das Master Repository übertragen, wo es nach einem kurzen Review gemerged wurde.
+
+Nachdem im Gesamtprojekt eine gewisse Codequalität erreicht wurde, wurde der Code von einem Teammitglied, das nicht an der Entwicklung der jeweiligen Passagen beteiligt war refactored und überarbeitet.
 \subsection{Protokolle der wöchentlichen Meetings}
+Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden.
 \subsubsection{Kickoff Meeting}
 Protokoll siehe Punkt 2.1 Anforderungsliste
 \subsubsection{2tes Meeting}
@@ -324,4 +330,5 @@ Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in 
 	\caption[Package Test]{UML Klassendiagramm des Packages \glqq Test\grqq}
 	\label{fig:package_test}
 \end{figure}
+%TODO Datenbankschema mit aufnehmen...
 \end{document}
