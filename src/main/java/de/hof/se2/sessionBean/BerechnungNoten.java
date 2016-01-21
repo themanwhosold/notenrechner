@@ -56,8 +56,8 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
      * @throws IOException
      */
     public BerechnungNoten() throws IOException {
-        //this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
-        this.logBerechnungWriter = new LogWriter(new File("/home/markus/berechnungNotenLog"), Boolean.TRUE);
+        this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/Logging/berechnungNotenLog"),Boolean.TRUE);
+//        this.logBerechnungWriter = new LogWriter(new File("/home/markus/berechnungNotenLog"), Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();
     }
 
@@ -121,7 +121,7 @@ public class BerechnungNoten implements BerechnungNotenLocal, Serializable {
     }
 
     /**
-     * Holt MEdian eines Studienfaches
+     * Holt Median eines Studienfaches
      *
      * @author max
      * @param idStudienfach

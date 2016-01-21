@@ -28,7 +28,7 @@ public class Statistik {
     private Notenart notenart;
 
     /**
-     * Erzeungt eine Staristik inklusive aller Werte, die für eine Studienfach berechnet werden können
+     * Erzeungt eine Statistik inklusive aller Werte, die für eine Studienfach berechnet werden können
      * @param arithmetischesMittel arithmetisches Mittel eines Studienganges
      * @param standardabweichung Standardabweichung eines Studienganges 
      * @param median Median eines Studienganges
@@ -66,7 +66,7 @@ public class Statistik {
     }
 
     /**
-     * Holt MEdian eines Studienfaches ab
+     * Holt Median eines Studienfaches ab
      * @return Median des jeweiligen Studienfaches
      */
     public int getMedian() {

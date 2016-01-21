@@ -1,0 +1,10 @@
+Autor: Max
+-> kann nach Diskussion geloescht werden
+
+zu Dokumentation:
+- Auf Seite 10 ist ein leerer Punkt -> gefixt
+- Auf Seite 11 2.2.8 Ergaenzungen -> hat jemand noch Ideen?! -> Nope
+- Seite 12: Was ist gemeint mit Betriebsbedingungen?
+- Seite 13 + 14: noch viel Leeres...
+- Seite 15: MySql Abschnitt fehlt noch -> Punkte zu Betrieb fehlen auch noch...aufgenommen
+
