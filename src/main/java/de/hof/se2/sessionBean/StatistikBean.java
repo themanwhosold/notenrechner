@@ -17,8 +17,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.ejb.SessionContext;
 import javax.ejb.Local;
+import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -49,7 +49,8 @@ public class StatistikBean implements StatistikBeanLocal, Serializable {
      * @throws IOException
      */
     public StatistikBean() throws IOException {
-        this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/statistikLog"), Boolean.TRUE);
+        //this.logBerechnungWriter = new LogWriter(new File("/home/max/studium/statistikLog"), Boolean.TRUE);
+        this.logBerechnungWriter = new LogWriter(new File("/home/markus/statistikLog"), Boolean.TRUE);
         this.logBerechnung = logBerechnungWriter.newLog();
     }
 
