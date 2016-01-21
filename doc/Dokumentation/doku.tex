@@ -307,11 +307,50 @@ Zur Abstimmung des Codes wurde von jedem Teamangehörigen ein Repository auf Git
 
 Nachdem im Gesamtprojekt eine gewisse Codequalität erreicht wurde, wurde der Code von einem Teammitglied, das nicht an der Entwicklung der jeweiligen Passagen beteiligt war refactored und überarbeitet.
 \subsection{Protokolle der wöchentlichen Meetings}
-Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden.
+Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden. Leider ist die Protokollierung dieser Meetings nur sehr lückenhaft erfolgt. Die vorhandenen Protokolle finden sich aber in Folge.
 \subsubsection{Kickoff Meeting}
 Protokoll siehe Punkt 2.1 Anforderungsliste
 \subsubsection{2tes Meeting}
-
+Beginn der Programmierarbeiten
+Verfeinerung der Anforderungen an die Maske für den Administrator:
+Maske für den Admin:
+\begin{itemize}
+	\item Neuen Studiengang anlegen
+	\item Wieviele Semester hat Studium
+	\item Welche Semester = Grundstudium, Ausschlußprinzip alle anderen gehören zum Hauptstudium
+	\item Stellenwert des Grundstudiums in der Endnote, Ausschlußprinzip -> Hauptstudium
+	\item Studienfächer zum Grundstudium hinzufuegen
+	\item zu vergebende Noten \& Art der Noten festlegen
+	\item Gewichtung festlegen (Noten untereinander \& Leistungsnachweise zu normalen Noten)
+	\item Art der Noten (FHVR Klausur, FH Klausur, FH Leistungsnachweis, FHVR Leistungsnachweis) vs. jede Note einzeln eintragen
+	-> Art der Noten (extra Tabelle), jeweils für Grund- und Hauptstudium
+		\begin{itemize}
+		\item FHVR Klausur
+		\item FH Klausur
+		\item FHVR Leistungsnachweis
+		\item FH Leistungsnachweis
+		\item FH Mündl. Prüfung
+		\item FHVR Mündl. Prüfung
+		\item FHVR Studienarbeit
+		\item Praxisbeurteilung
+		\end{itemize}
+	\item Notentyp | Studienjahr | Gewichtung GS | Gewichtung HS
+\end{itemize}
+\subsection{weiteres Protokoll}
+\underline{Bisheriger Arbeitsstand:}
+\begin{itemize}
+	\item es fehlen noch große Teile der Dokumentation
+\item Stefan erstellt Diagramme (Stefan)
+\item Lasten-/Pflichtenheft (Markus)
+\item Voraussetzung/Installationsanleitung (Markus)
+\item Ergänzung der Javadocs (Tobias)
+\item Administratorseite:
+\item Anlegen eines neuen Studenten in einem vorhandenen Studiengang (Max)
+\item Notenberechnung:
+\item Durchschnittsnoten der Leistungsnachweise sind nicht korrekt
+\item Datenmodell müsste feingranularer werden (8 verschiedene Gewichtungen)			- mgl. Lösung zusätzliche Boolean Werte in der Notenliste
+\item Enum für Umrechnung von Notenpunkten in gesprochene Noten (Christoph)
+\end{itemize}
 \chapter{(realisierte) Funktionalitäten}
 Hier sollen die Ablaufdiagramme hin
 Realisierung der Statistik-Funktionen:
@@ -331,7 +370,7 @@ Realisierung der Berechnung der End- bzw. Zwischennoten:
 Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean BerechnungNoten bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
 Dazu ist die Methode getEndnote(int matrikelNr) in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel matrikelNr, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
 Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Daraufhin wird die Endnote ermittelt.
-Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteil werden kann.
+Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
 
 \section{Oberfläche für Studierende}
 \subsection{Funktionsumfang}
