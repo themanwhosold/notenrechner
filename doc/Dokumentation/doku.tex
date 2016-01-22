@@ -376,30 +376,32 @@ Maske für den Admin:
 Die erzeugten Diagramme zu unserer Software finden sich im Kapitel 7
 \section{Realisierung der Statistik-Funktionen}
 
-Dazu wird eine zentrale Java Enterprise Bean genutzt. Die Session-Bean StatistikBean übernimmt die Analyse der empirischen Daten. Die Bean stellt alle gängigen statistischen Kennzahlen zu Verfügung.
+Dazu wird eine zentrale Java Enterprise Bean genutzt. Die Session-Bean \path{StatistikBean} übernimmt die Analyse der empirischen Daten. Die Bean stellt alle gängigen statistischen Kennzahlen zu Verfügung.
 Folgende statistische Maßzahlen werden berechnet:
-- Median
-- arithmetisches Mittel
-- Beste und schlechteste Note
-- Varianz
-- Standartabweichung
+\begin{itemize}
+	\item Median
+	\item arithmetisches Mittel
+	\item Beste und schlechteste Note
+	\item Varianz
+	\item Standartabweichung
+\end{itemize}
 
-Die in StatistikBean implementierte Methode getStatistik(int idStudienfach) benötigt als Übergabeparameter die Id des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySql Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben gennanten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse Statistik zurück, die die Werte der Berechnungen enthält.
+Die in StatistikBean implementierte Methode \textit{getStatistik(int idStudienfach)} benötigt als Übergabeparameter die \textit{ID} des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySQL Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben genannten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse \path{Statistik} zurück, die die Werte der Berechnungen enthält.
 
 \section{Realisierung der Berechnung der End- bzw. Zwischennoten}
 
-Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean BerechnungNoten bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
-Dazu ist die Methode getEndnote(int matrikelNr) in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel matrikelNr, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
+Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean \path{BerechnungNoten} bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
+Dazu ist die Methode \textit{getEndnote(int matrikelNr)} in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel \textit{matrikelNr}, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
 Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Daraufhin wird die Endnote ermittelt.
 
-Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
+Die Methode \textit{getEndnote(int matrikelNr)} liefert ein Objekt der Klasse \path{Endnote} zurück, die die Werte der Berechnungen enthält. Die Klasse \path{Endnote} enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
 
 \section{Oberfläche für Studierende}
 Die Oberfläche für Studierende wurde als JSF Seite realisiert, auf dieser werden alle für den Studierenden in der Datenbank vorhandenen Noten dargestellt. Der Studierende hat die Möglichkeit seine Wunschnoten in separate Felder einzutragen und diese in die Datenbank zu speichern (leider nicht funktionsfähig).
 \section{Oberfläche für Dozenten}
 Die Oberfläche für Dozenten wurde wie die Oberfläche für Studierende mittels JSF Seite realisiert. Leider ziehen sich die Probleme dir wir bei der Realisierung des Schreibens der Daten in die Datenbank hatten bis hier durch, weshalb wir leider keine Daten die in die Oberfläche eingegeben wurden in die Datenbank speichern können.
 \section{Oberfläche für Administratoren}
-Die Web-Oberfläche für die Administartoren wurde mittels JSF Seiten realisiert. Die Seiten sind mit dem JSF-Template templates/adminTemplate.xhtml implementiert. Die Bedienoberfläche hat das Ziel, die Funktionalitäten und Berechtigungen eines Administartors abzubilden und bereitzustellen. Dazu wurden die JSF-Seiten adminSeite.xhtml, studentenVerwalten.xhtml und neuenStudentenAnlegen.xhtml geschrieben. Im Hintergrund der Seiten arbeitet die Managed-Bean mit den Klassennamen AdminManagedBean, die für den Kontrollfluss auf den Seiten verantwortlicht ist. Geplant ist die Hauptfunktionen dieser Java-Bean in die Java-Enterprise Bean AdminSessionBean (bisher nur Stub-Klasse) auszulagern. Insgesamt wurden hier nicht alle geplanten Funktionen umgesetzt bzw. arbeiten nicht fehlerfrei.
+Die Web-Oberfläche für die Administratoren wurde mittels JSF Seiten realisiert. Die Seiten sind mit dem JSF-Template \path{templates/adminTemplate.xhtml} implementiert. Die Bedienoberfläche hat das Ziel, die Funktionalitäten und Berechtigungen eines Administrators abzubilden und bereitzustellen. Dazu wurden die JSF-Seiten \path{adminSeite.xhtml}, \path{studentenVerwalten.xhtml} und \path{neuenStudentenAnlegen.xhtml} geschrieben. Im Hintergrund der Seiten arbeitet die Managed-Bean mit den Klassennamen \path{AdminManagedBean}, die für den Kontrollfluss auf den Seiten verantwortlicht ist. Geplant ist die Hauptfunktionen dieser Java-Bean in die Java-Enterprise Bean \path{AdminSessionBean} (bisher nur Stub-Klasse) auszulagern. Insgesamt wurden hier nicht alle geplanten Funktionen umgesetzt bzw. arbeiten nicht fehlerfrei.
 \chapter{Einsatz der Software}
 \section{Systemvoraussetzungen}
 Die Software ist von den verwendeten Technologien her auf verschiedenen Betriebssystemen einsetzbar. Getestet wurde ein Einsatz auf Microsoft Windows 7 und Linux (Ubuntu 14.04 LTS \& OpenSuSE 13.2, Leap 42.1, Tumbleweed)
@@ -449,13 +451,13 @@ Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in 
 	\caption[Package Eigene Noten]{UML Klassendiagramm des Packages \glqq Eigene Noten\grqq}
 	\label{fig:package_eigene_noten}
 \end{figure}
-\begin{figure}[!hbtp]%
+\begin{figure}[!h]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_entity}
 	\caption[Package Entity]{UML Klassendiagramm des Packages \glqq Entity\grqq}
 	\label{fig:package_entity}
 \end{figure}
-\begin{figure}[!hbtp]%
+\begin{figure}[!h]%
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_managedBean}
 	\caption[Package Managed Bean]{UML Klassendiagramm des Packages \glqq Managed Bean\grqq}
@@ -467,28 +469,29 @@ Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in 
 	\caption[Package Session Bean]{UML Klassendiagramm des Packages \glqq Session Bean\grqq}
 	\label{fig:package_session_bean}
 \end{figure}
-\begin{figure}[!hbtp]%
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\linewidth]{Diagramme/generated/package_test}
 	\caption[Package Test]{UML Klassendiagramm des Packages \glqq Test\grqq}
 	\label{fig:package_test}
 \end{figure}
 \section{Datenbank Entity Relationship Diagramm}
-\begin{figure}[!hbtp]%
+\begin{figure}[!h]
 \centering
 \includegraphics[width=1\linewidth]{pics/dbERModell}
 \caption[ER Diagramm DB]{Entity Relationship Modell für die Datenbank}
 \label{fig:dbERModell}
 \end{figure}
+
 \section{Sequenzdiagramme}
-\begin{figure}
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.7\linewidth]{../VP/getBerechneteNoten}
 \caption[Sequenzdiagramm getBerechneteNoten()]{Sequenzdiagramm der Methode getBerechneteNoten()}
 \label{fig:getBerechneteNoten}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.7\linewidth]{../VP/getNotenGrundstudium}
 \caption[Sequenzdiagramm getNotenGrundstudium()]{Sequenzdiagramm der Methode getNotenGrundstudium()}
@@ -508,9 +511,6 @@ Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in 
 \caption[Sequenzdiagramm getAllNotenForStudent]{Sequenzdiagramm für Methode getAllNotenForStudent(int matrikelNr)}
 \label{fig:NotenStudent}
 \end{figure}
-
-
-%TODO Diagramme von Stefan
 \listoffigures
 \end{document}
 
