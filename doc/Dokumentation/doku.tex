@@ -40,7 +40,7 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \item Ortsunabhängiger Aufruf
 \item Dozenten sollen von jedem Ort der Erde Noten einpflegen können
 \item Dozenten können ihre Prüfungen aufrufen und auswerten
-\item Ein Admin (Studiengangsleiter) soll die Gewichting der Noten ändern können
+\item Ein Admin (Studiengangsleiter) soll die Gewichtung der Noten ändern können
 \item Admin soll Studiengänge modifizieren (wie z.B. Fächer zwischen den Semestern verschieben) und komplett neu anlegen können
 \item Admin soll die Fähigkeit besitzen, neue Studenten anzulegen bzw. bestehende Studenten zu modifizieren (z.B. Namen ändern)
 \item Statistik mit grafischer Aufarbeitung
@@ -86,11 +86,10 @@ In der ersten Sitzung unserer Projektgruppe wurde eine Anforderungsliste an das 
 \item Zwischennoten (welche Noten hatte ich in der Zwischenprüfung?), Anzeige welche Noten noch notwendig sind um zu bestehen (Leistungsnachweise)
 \end{itemize}
 \subsection{Zusammenfassung Anforderungen}
-Noch notwendig????
 \begin{itemize}
 \item 2 Frontends (Verwaltung \& Studierende)
 \item individualisierbare Notenliste/-berechnung pro Jahrgang
-\item Studiengangspezifisch, d.h. Programm nur für Vinf oder allgemeingültig?
+\item Studiengangspezifisch, d.h. Programm nur für VInf oder allgemeingültig?
 \item Wenn allgemeingültig müsste der Administrator in der Lage sein Studiengänge mit Spezifikation zu erstellen - kann schwierig werden
 
 \item Ablage der Noten in einer Datenbank -> Diskussionsbedarf, SQL oder NoSQL
@@ -118,11 +117,11 @@ Noch notwendig????
 \end{itemize}
 \section{Lastenheft}
 \subsection{Zielbestimmung}
-Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implemetiert werden. Die Software soll von überall abrufbar sein, maximal portierbar sein und somit auf möglichst vielen Plattformen abgerufen werden können.
+Es soll eine Software entwickelt werden, die eine einfache Eingabe und Berechnung von Noten gemäß der gesetzlichen Bestimmungen erlaubt. Die Software soll sowohl von der Verwaltung intern, als auch von den Studierenden benutzt werden. Ein geeignetes Berechtigungsmodell muss implementiert werden. Die Software soll von überall abrufbar sein, maximal portierbar sein und somit auf möglichst vielen Plattformen abgerufen werden können.
 \subsection{Produkteinsatz}
-Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq\ erreichbar sein. Die Authentifizierung soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
+Der Einsatz des Produktes ist auf einem zentralen Server der FHVR vorgesehen. Dieser Server soll nur über das \glqq FHVR Intranet\grqq\ oder nach vorhergehender Authentifizierung (bspw. VPN für Dozenten der Hochschule Hof) erreichbar sein. Die Authentifizierung (an der Anwendung) soll im Endausbau über bereits vorhandene AD (Active Directory) Konten realisiert werden.
 \subsection{Produktübersicht}
-Es soll ein Webservice mit mindestens zwei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten. Es sind mindestens drei Rollen vorzusehen:
+Es soll eine Webanwendung mit mindestens zwei voneinander getrennten Oberflächen geschaffen werden. Der Zugang zu den Oberflächen soll sich nach den Benutzern zugeordneten Rollen richten. Es sind mindestens drei Rollen vorzusehen:
 \begin{itemize}
 \item Studierende
 \item Dozenten
@@ -172,6 +171,7 @@ Das Produkt stellt eine Plattform zur Verfügung, auf der aus eingegeben Prüfun
 Es ist sicherzustellen, dass die angebotene Software die Noten entsprechend der gesetzlichen Vorgaben richtig berechnet. Der Datenschutz muss in jeder Betriebssituation gewahrt sein.
 Es ist sicherzustellen, dass die benutzten Technologien und Programme in den nächsten Jahren noch Weiterentwicklung und Support bekommen.
 \subsection{Ergänzungen}
+keine
 \section{Pflichtenheft}
 \subsection{Zielbestimmung}
 \subsubsection{Musskriterien}
@@ -196,24 +196,18 @@ Es ist sicherzustellen, dass die benutzten Technologien und Programme in den nä
 Notenbekanntgabe an der Fachhochschule für öffentliche Verwaltung und Rechtspflege in Bayern - Fachbereich Allgemeine Innere Verwaltung Hof
 \subsubsection{Zielgruppen}
 Zielgruppe der Anwendung sind im wesentlichen die Studierenden und die Dozenten der Hochschulen. Die Verwaltung der FHVR als Dienstherr der Verwaltungsinformatiker ist von eher untergeordneter Bedeutung für die Entwicklung, da diese einen zahlenmäßig sehr kleinen Teil der gesamten Nutzerschaft ausmacht.
-\subsubsection{Betriebsbedingungen}
 \subsection{Produktumgebung}
 \subsubsection{Software}
 Um die Kosten für Lizenzen und Support möglichst gering zu halten, wird der Einsatz von Linux als Serverbetriebssystem empfohlen, als Datenbank wird MySQL oder MariaDB empfohlen und als Applicationserver soll Wildfly in einer aktuellen Version zum Einsatz kommen.
 \subsubsection{Hardware}
 Das Produkt ist auf allen Plattformen lauffähig, die die benötigten Softwareprodukte unterstützen, neben x86\_64 also bspw. auch SPARC und ARMv6/v7/v8. Die Anwendung wäre also theoretisch auch auf einem Raspberry PI lauffähig, der aber aufgrund der Datenbank relativ schnell am Limit sein dürfte.
 \subsubsection{Orgware}
-Die Server auf denen die Software eingesetzt wird, insbesondere die die in direktem Kontakt zum Internet stehen sind gemäß Vorgaben des BSI zu härten. Insbesondere ist darauf zu achten, dass kein unberechtigter Zugriff auf persönlichen Daten der Studierenden stattfinden kann. HIerfür sind geeignete technische Maßnahmen zu treffen (Firewall, etc.)
+Die Server auf denen die Software eingesetzt wird, insbesondere die die in direktem Kontakt zum Internet stehen sind gemäß den Vorgaben des BSI zu härten. Insbesondere ist darauf zu achten, dass kein unberechtigter Zugriff auf persönlichen Daten der Studierenden stattfinden kann. Hierfür sind geeignete technische Maßnahmen zu treffen (Firewall, etc.).
 %TODO: Sicherheitsanforderungen, Benutzerhandbücher
 \subsubsection{Produkt – Schnittstellen}
 \begin{itemize}
 \item LDAP als Schnittstelle zum vorhandenen Active Directory (AD), somit ist eine sichere Authentifizierung (ohne zusätzlichen Aufwand, die Benutzerkonten sind ja schon vorhanden) sichergestellt
 \end{itemize}
-\subsection{Produktfunktionen}
-\subsubsection{Produktspezifisch}
-\subsection{Produktdaten}
-\subsubsection{Produktspezifisch}
-\subsection{Produkt - Leistungen}
 \subsection{Benutzungsoberfläche}
 Als Benutzeroberfläche kommt im ersten Entwicklungsschritt die Web Technologie Java Server Faces (JSF) zum Einsatz. In weiteren Entwicklungsschritten ist angedacht eine (lokale) Java Application mit einer JavaFX Oberfläche zur Verfügung zu stellen.
 \subsection{Qualitäts-Zielbestimmung}
@@ -235,7 +229,7 @@ Als Testumgebung wird eine virtuelle Maschine auf Suse Linux Basis verwendet.
 keine
 \subsection{Glossar, Begriffslexikon}
 \chapter{Verwendete Technologien}
-Im ersten Meeting (Kick-Off meeting) des Teams wurden die zu verwendenden Softwareversionen festgelegt. Diese wurden im Verlaufe des Projekts nur noch aufgrund äußerer Begebenheiten (bekannte Fehler mit Fix in höherere Version, finale Version) angepasst. Die jeweils festgelegte Version und warum diese unter Umständen noch angepasst wurde, findet sich im jeweiligen Unterpunkt.
+Im ersten Meeting (Kick-Off meeting) des Teams wurden die zu verwendenden Softwareversionen festgelegt. Diese wurden im Verlaufe des Projekts nur noch aufgrund äußerer Begebenheiten (bekannte Fehler mit Fix in höherere Version, finale Version) angepasst. Die initial festgelegten Produktversionen, sowie eventuelle Änderungen (mit Begründung) finden Sie im folgenden Abschnitt.
 \section{Entwicklung}
 \subsection{Java SDK}
 Als Java Umgebung kam während der ganzen Projektdauer das Oracle Java SDK Version 8 Update 60 zum Einsatz.
@@ -246,9 +240,9 @@ Grund: \textbf{erscheinen der finalen Version} \\
 geändert zu Version: \textbf{8.1 final}\\
 
 \subsection{SQL Editor - MySQL Workbench}
+Die MySQL Workbench wurde als grafische Tool für die Verwaltung der Datenbank eingesetzt, großer Vorteil der Workbench ist die Möglichkeit Diagramme direkt aus der Datenbank zu erzeugen und umgekehrt. Darüber hinaus senkt eine grafische Benutzeroberfläche die Hemmschwelle sich mit der Datenbank auseinanderzusetzen.
 \subsection{Versionsverwaltung - GIT}
-Als Versionsverwaltung und zum Austausch des aktuellen Versionsstand des Projektes wurde während des gesamten Projektes Git eingesetzt. Das zentrale Repository liegt auf Github:
-\url{https://github.com/themanwhosold/notenrechner}
+Als Versionsverwaltung und zum Austausch des aktuellen Versionsstand des Projektes wurde während des gesamten Projektes Git eingesetzt. Das zentrale Repository liegt auf Github unter \url{https://github.com/themanwhosold/notenrechner}
 \subsection{Bibliotheksverwaltung mit Maven}
 %TODO Markus schreibt
 Der Name \textit{Maven} kommt aus dem Jiddischen und bedeutet
@@ -256,14 +250,14 @@ Der Name \textit{Maven} kommt aus dem Jiddischen und bedeutet
 \textit{Maven} ist eigentlich ein Build Management Tool und hat einen wesentlichen größeren Funktionsumfang als der der für das Projekt benutzt wurde. Im Projekt wurden im wesentlichen die automatisch generierten Ziele (Deployment des MySQL Connectors, Triggern der Codeanalyse) und die Verwaltung der Abhängigkeiten eingesetzt.
 \section{Test}
 \subsection{Unit Tests mit JUnit}
-Als Unit-Test Framework wurde JUnit eingesetzt und Testpackages für jede Klasse erzeugt. In diesen Testklassen wurden Testfälle definiert und bei jedem Build auf korrektheit überprüft. Hierdurch wurde sichergestellt, dass neu hinzugekommene Funktionalitäten nicht die Funktionsfähigkeit bereits vorhandener Komponenten verändert.
+Als Unit-Test Framework wurde JUnit eingesetzt und Testpackages für jede Klasse erzeugt. In diesen Testklassen wurden Testfälle definiert und bei jedem Build auf Korrektheit überprüft. Hierdurch wurde sichergestellt, dass neu hinzugekommene Funktionalitäten nicht die Funktionsfähigkeit bereits vorhandener Komponenten veränderten.
 Weiterhin wurde für den Test der Java EE Webanwendung Mockito in Verbindung mit Arquillian eingesetzt, da zur Laufzeit die jeweilige Unit getestet werden muss. Hierdurch können die Schnittstellen der jeweiligen Objekte definiert und angesteuert werden.
 \subsection{Continous Integration Tests mit Travis, Jenkins und Sonarqube}
 %TODO Markus schreibt
 Um einen möglichst fehlerfreien Master Zweig zu erhalten wurden Pull Requests nur nach fehlerfreiem Durchlauf der beiden CI Tools Travis \& Jenkins in den Master Zweig übernommen.
 
 \subsubsection{Travis}
-Travis\footnote{\path{https://travis-ci.org/}} wird von Github als Tool für CI angeboten, das macht die Integration in die Github Oberfläche sehr einfach, man muss sich nicht mit Hooks und Anmeldeinformationen rumschlagen und bei Bearbeitung eines Pull Requests ist auf einen Blick der Status des Travis Builds sichtbar.
+Travis\footnote{\path{https://travis-ci.org/}} wird von Github als Tool für CI angeboten, das macht die Integration in die Github Oberfläche sehr einfach, man muss sich nicht mit Hooks und Anmeldeinformationen rumschlagen und bei Bearbeitung eines Pull Requests ist auf einen Blick der Status des Travis Builds sichtbar. Darüber hinaus integriert Travis auch die Ergebnisse (über Maven) der JUnit Tests in sein Ergebnis und schlägt fehl sobald hier Fehler auftreten.
 \begin{figure}[!hbtp]%
 \centering
 \includegraphics[width=1\linewidth]{pics/screenTravis}
@@ -321,7 +315,7 @@ Die Datenbank muss initial angelegt werden, hierfür gibt es im Verzeichnis \pat
 \section{Gemeinsame Codeentwicklung mit GIT}
 Es wurde gegen ein gemeinsames Github-Repository entwickelt, von dem sich jeder im Team einen eigenen Fork erstellt hat. Entwickelter Code wurde per Pull Request an den Eigner des Hauptrepositories geschickt und von diesem nach erfolgreichen CI-Tests in den Hauptzweig gemerged. Diese Vorgehensweise hat sich nach einigen anfänglichen Schwierigkeiten als die sicherste herausgestellt, da Code, der zu Fehlern im Build-Prozess führt, vor dem Zusammenführen erkannt und nachgebessert werden kann und somit nicht der komplette Master-Branch unbrauchbar bzw. fehlerhaft wird.
 \section{Arbeitsverteilung}
-Es wurde angedacht das Projekt im Scrum Verfahren zu entwickeln. Jedoch wurde schnell klar, dass die Programmierfähigkeiten aller Teammitglieder und die Erfahrung mit Programmierobjekten nicht ausreichen um dies umzusetzen.
+Es wurde angedacht das Projekt im Scrum Verfahren zu entwickeln. Jedoch wurde schnell klar, dass die Programmierfähigkeiten aller Teammitglieder und die Erfahrung mit Programmierprojekten nicht ausreichen um dies auch wirklich umzusetzen.
 Die im Kickoff-Meeting festgelegten Anforderungen wurden in einem Lasten- und Pflichtenheft festgehalten und dienten als Grundlage der Entwicklungsarbeiten. In den wöchentlichen Meetings wurden von den Teammitgliedern Themen ausgewählt und soweit möglich bis zum nächsten Meeting realisiert. Die Ergebnisse wurden vorgestellt und sofern noch Ergänzungsbedarf oder Fragen bestanden ergänzt oder zusammen mit einem anderen Mitglied weiterentwickelt.
 
 Zur Abstimmung des Codes wurde von jedem Teamangehörigen ein Repository auf Git verwaltet, nach erledigter Programmiertätigkeit wurde der geänderte Code per Pull Request in das Master Repository übertragen, wo es nach einem kurzen Review gemerged wurde.
@@ -386,7 +380,7 @@ Folgende statistische Maßzahlen werden berechnet:
 	\item Standartabweichung
 \end{itemize}
 
-Die in StatistikBean implementierte Methode \textit{getStatistik(int idStudienfach)} benötigt als Übergabeparameter die \textit{ID} des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySQL Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben genannten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse \path{Statistik} zurück, die die Werte der Berechnungen enthält.
+Die in \path{StatistikBean} implementierte Methode \textit{getStatistik(int idStudienfach)} benötigt als Übergabeparameter die \textit{ID} des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySQL Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben genannten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse \path{Statistik} zurück, die die Werte der Berechnungen enthält.
 
 \section{Realisierung der Berechnung der End- bzw. Zwischennoten}
 
@@ -397,11 +391,32 @@ Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Dar
 Die Methode \textit{getEndnote(int matrikelNr)} liefert ein Objekt der Klasse \path{Endnote} zurück, die die Werte der Berechnungen enthält. Die Klasse \path{Endnote} enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
 
 \section{Oberfläche für Studierende}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\linewidth]{pics/StudentenOberflaeche}
+\caption[Oberfläche für Studierende]{Screenshot der Oberfläche für Studierende}
+\label{fig:StudentenOberfläche}
+\end{figure}
 Die Oberfläche für Studierende wurde als JSF Seite realisiert, auf dieser werden alle für den Studierenden in der Datenbank vorhandenen Noten dargestellt. Der Studierende hat die Möglichkeit seine Wunschnoten in separate Felder einzutragen und diese in die Datenbank zu speichern (leider nicht funktionsfähig).
+\clearpage
 \section{Oberfläche für Dozenten}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{pics/DozentenOberflaeche}
+	\caption[Oberfläche für Dozenten]{Screenshot der Oberfläche für Dozenten}
+	\label{fig:DozentenOberfläche}
+\end{figure}
 Die Oberfläche für Dozenten wurde wie die Oberfläche für Studierende mittels JSF Seite realisiert. Leider ziehen sich die Probleme dir wir bei der Realisierung des Schreibens der Daten in die Datenbank hatten bis hier durch, weshalb wir leider keine Daten die in die Oberfläche eingegeben wurden in die Datenbank speichern können.
+\clearpage
 \section{Oberfläche für Administratoren}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{pics/AdminOberflaeche}
+	\caption[Startseite für Administratoren]{Screenshot der Startseite für die Administratoren}
+	\label{fig:AdministratorenOberfläche}
+\end{figure}
 Die Web-Oberfläche für die Administratoren wurde mittels JSF Seiten realisiert. Die Seiten sind mit dem JSF-Template \path{templates/adminTemplate.xhtml} implementiert. Die Bedienoberfläche hat das Ziel, die Funktionalitäten und Berechtigungen eines Administrators abzubilden und bereitzustellen. Dazu wurden die JSF-Seiten \path{adminSeite.xhtml}, \path{studentenVerwalten.xhtml} und \path{neuenStudentenAnlegen.xhtml} geschrieben. Im Hintergrund der Seiten arbeitet die Managed-Bean mit den Klassennamen \path{AdminManagedBean}, die für den Kontrollfluss auf den Seiten verantwortlicht ist. Geplant ist die Hauptfunktionen dieser Java-Bean in die Java-Enterprise Bean \path{AdminSessionBean} (bisher nur Stub-Klasse) auszulagern. Insgesamt wurden hier nicht alle geplanten Funktionen umgesetzt bzw. arbeiten nicht fehlerfrei.
+\clearpage
 \chapter{Einsatz der Software}
 \section{Systemvoraussetzungen}
 Die Software ist von den verwendeten Technologien her auf verschiedenen Betriebssystemen einsetzbar. Getestet wurde ein Einsatz auf Microsoft Windows 7 und Linux (Ubuntu 14.04 LTS \& OpenSuSE 13.2, Leap 42.1, Tumbleweed)
@@ -409,17 +424,22 @@ Die notwendigen weiteren Softwareversionen sind in Punkt 3.4 beschrieben, wobei 
 \section{Installation}
 Die für die Installation notwendigen Vorarbeiten sind unter 3.3.1 \& 3.3.2 bereits beschrieben, nach der dem deployen  des MySQL Connectors bzw. dem Ausführen des Maven Goals und dem Anlegen der notwendigen Tabellen in der DB kann die Anwendung deployed werden, dies kann auf der Weboberfläche des Applikationsservers passieren, die notwendige WAR-DAtei liegt unter \path{target/notenrechner-0.1.war}. Natürlich kann das Deployment auch komfortabel über die Netbeans Oberfläche vorgenommen werden.
 \chapter{Diagramme}
-Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in Originalgröße auf der 
+Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in Originalgröße in den Pfaden im Projektverzeichnis
+\begin{itemize}
+	\item \path{doc/Dokumentation/Diagramme/generated/}
+	\item \path{doc/Dokumentation/pics/}
+	\item \path{doc/VP/}
+\end{itemize} 
 \section{UML Diagramme}
 \begin{figure}[!hbtp]%
 \centering
-\includegraphics[width=1\linewidth]{pics/AdminE}
+\includegraphics[width=1\linewidth]{pics/Neu_StudiengangsleiterIn.eps}
 \caption[Admin]{UML Diagramm Administrationsoberfläche}
 \label{fig:AdminE}
 \end{figure}
 \begin{figure}[!hbtp]%
 \centering
-\includegraphics[width=1\linewidth]{pics/DozentIn}
+\includegraphics[width=1\linewidth]{pics/neu_dozentIn.eps}
 \caption[Oberfläche Dozenten]{UML Diagramm Oberfläche Dozenten}
 \label{fig:DozentIn}
 \end{figure}
