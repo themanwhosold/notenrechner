@@ -262,7 +262,7 @@ Weiterhin wurde für den Test der Java EE Webanwendung Mockito in Verbindung mit
 Um einen möglichst fehlerfreien Master Zweig zu erhalten wurden Pull Requests nur nach fehlerfreiem Durchlauf der beiden CI Tools Travis \& Jenkins in den Master Zweig übernommen.
 
 \subsubsection{Travis}
-Travis\footnote{\path{https://travis-ci.org/}} wird von Github als Tool für CI angeboten, das macht die Integration in die Github Oberfläche sehr einfach, man muss sich nicht mit Hooks und Anmeldeinformationen rumschlagen und bei Bearbeitung eines Pull Requests ist auf einen Blick der Status des Travis Builds sichtbar.
+Travis\footnote{\path{https://travis-ci.org/}} wird von Github als Tool für CI angeboten, das macht die Integration in die Github Oberfläche sehr einfach, man muss sich nicht mit Hooks und Anmeldeinformationen rumschlagen und bei Bearbeitung eines Pull Requests ist auf einen Blick der Status des Travis Builds sichtbar. Darüber hinaus integriert Travis auch die Ergebnisse (über Maven) der JUnit Tests in sein Ergebnis und schlägt fehl sobald hier Fehler auftreten.
 \begin{figure}[!hbtp]%
 \centering
 \includegraphics[width=1\linewidth]{pics/screenTravis}
