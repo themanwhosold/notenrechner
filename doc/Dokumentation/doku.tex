@@ -188,10 +188,12 @@ Es ist sicherzustellen, dass die benutzten Technologien und Programme in den nä
 \item Eigene Anwendung zur Verwendung auf Desktop PCs (Desktop Client)
 \item Anlegen von komplett neuen Studiengängen mit eigenen Fächern und Gewichtungen der Prüfungsleistungen durch den Administrator
 \item Bereits geschriebene Note automatisiert als Wunschnote eintragen (Oberfläche für Studierende)
+\item Oberfläche über die der Administrator komfortabel neue Studiengänge anlegen kann, am besten mit Drag \& Drop für die einzelnen Studienfächer (um die Zuordnung zu den Semestern so intuitiv wie möglich zu gestalten)
 \end{itemize}
 \subsubsection{Abgrenzungskriterien}
 \subsection{Produkteinsatz}
 \subsubsection{Anwendungsbereiche}
+Notenbekanntgabe an der Fachhochschule für öffentliche Verwaltung und Rechtspflege in Bayern - Fachbereich Allgemeine Innere Verwaltung Hof
 \subsubsection{Zielgruppen}
 Zielgruppe der Anwendung sind im wesentlichen die Studierenden und die Dozenten der Hochschulen. Die Verwaltung der FHVR als Dienstherr der Verwaltungsinformatiker ist von eher untergeordneter Bedeutung für die Entwicklung, da diese einen zahlenmäßig sehr kleinen Teil der gesamten Nutzerschaft ausmacht.
 \subsubsection{Betriebsbedingungen}
@@ -199,12 +201,13 @@ Zielgruppe der Anwendung sind im wesentlichen die Studierenden und die Dozenten 
 \subsubsection{Software}
 Um die Kosten für Lizenzen und Support möglichst gering zu halten, wird der Einsatz von Linux als Serverbetriebssystem empfohlen, als Datenbank wird MySQL oder MariaDB empfohlen und als Applicationserver soll Wildfly in einer aktuellen Version zum Einsatz kommen.
 \subsubsection{Hardware}
-Das Produkt ist auf allen Plattformen lauffähig, die die benötigten Softwareprodukte unterstützen, neben x86\_64 also bspw. auch SPARC und ARMv6/v7/v8.
+Das Produkt ist auf allen Plattformen lauffähig, die die benötigten Softwareprodukte unterstützen, neben x86\_64 also bspw. auch SPARC und ARMv6/v7/v8. Die Anwendung wäre also theoretisch auch auf einem Raspberry PI lauffähig, der aber aufgrund der Datenbank relativ schnell am Limit sein dürfte.
 \subsubsection{Orgware}
-TODO: Sicherheitsanforderungen, Benutzerhandbücher
+Die Server auf denen die Software eingesetzt wird, insbesondere die die in direktem Kontakt zum Internet stehen sind gemäß Vorgaben des BSI zu härten. Insbesondere ist darauf zu achten, dass kein unberechtigter Zugriff auf persönlichen Daten der Studierenden stattfinden kann. HIerfür sind geeignete technische Maßnahmen zu treffen (Firewall, etc.)
+%TODO: Sicherheitsanforderungen, Benutzerhandbücher
 \subsubsection{Produkt – Schnittstellen}
 \begin{itemize}
-\item LDAP als Schnittstelle zum vorhandenen Active Directory (AD)
+\item LDAP als Schnittstelle zum vorhandenen Active Directory (AD), somit ist eine sichere Authentifizierung (ohne zusätzlichen Aufwand, die Benutzerkonten sind ja schon vorhanden) sichergestellt
 \end{itemize}
 \subsection{Produktfunktionen}
 \subsubsection{Produktspezifisch}
@@ -214,14 +217,22 @@ TODO: Sicherheitsanforderungen, Benutzerhandbücher
 \subsection{Benutzungsoberfläche}
 Als Benutzeroberfläche kommt im ersten Entwicklungsschritt die Web Technologie Java Server Faces (JSF) zum Einsatz. In weiteren Entwicklungsschritten ist angedacht eine (lokale) Java Application mit einer JavaFX Oberfläche zur Verfügung zu stellen.
 \subsection{Qualitäts-Zielbestimmung}
+Die Software soll aus den gegebenen Noten die richtigen Zwischen- und Endnoten nach den jeweils gültigen Ausbildungsgesetzen errechnen. 
 \subsection{Globale Testszenarien/Testfälle}
+\begin{itemize}
+	\item Eintragen einer Wunschnote (Student)
+	\item Abruf der bereits eingetragenen Noten (Student)
+	\item Eintragen von Klausurergebnissen (Dozent)
+	\item Anlage eines neuen Jahrgangs (Administrator)
+\end{itemize}
 \subsection{Entwicklungsumgebung}
 Als Java (EE) - Entwicklungsumgebung kommt Netbeans in der Version 8.1 zum Einsatz.
 
 Für die Entwicklung der Datenbankschemata und Skripte wird die MySQL Workbench in der Version 6.3 zum Einsatz kommen.
 
-Als Testumgebung wird eine virtuelle Maschine auf Suse Linux Basis verwendet. 
+Als Testumgebung wird eine virtuelle Maschine auf Suse Linux Basis verwendet.
 \subsection{Ergänzungen}
+keine
 \subsection{Glossar, Begriffslexikon}
 \chapter{Verwendete Technologien}
 Im ersten Meeting (Kick-Off meeting) des Teams wurden die zu verwendenden Softwareversionen festgelegt. Diese wurden im Verlaufe des Projekts nur noch aufgrund äußerer Begebenheiten (bekannte Fehler mit Fix in höherere Version, finale Version) angepasst. Die jeweils festgelegte Version und warum diese unter Umständen noch angepasst wurde, findet sich im jeweiligen Unterpunkt.
@@ -242,7 +253,7 @@ Als Versionsverwaltung und zum Austausch des aktuellen Versionsstand des Projekt
 %TODO Markus schreibt
 Der Name \textit{Maven} kommt aus dem Jiddischen und bedeutet
 \glqq Sammler des Wissens\grqq \footnote{\url{https://de.wikipedia.org/wiki/Apache_Maven}}.
-\textit{Maven} ist eigentlich ein Build Management Tool und hat einen wesentlichen größeren Funktionsumfang als der der für das Projekt benutzt wurde.
+\textit{Maven} ist eigentlich ein Build Management Tool und hat einen wesentlichen größeren Funktionsumfang als der der für das Projekt benutzt wurde. Im Projekt wurden im wesentlichen die automatisch generierten Ziele (Deployment des MySQL Connectors, Triggern der Codeanalyse) und die Verwaltung der Abhängigkeiten eingesetzt.
 \section{Test}
 \subsection{Unit Tests mit JUnit}
 Als Unit-Test Framework wurde JUnit eingesetzt und Testpackages für jede Klasse erzeugt. In diesen Testklassen wurden Testfälle definiert und bei jedem Build auf korrektheit überprüft. Hierdurch wurde sichergestellt, dass neu hinzugekommene Funktionalitäten nicht die Funktionsfähigkeit bereits vorhandener Komponenten verändert.
@@ -260,7 +271,7 @@ Travis\footnote{\path{https://travis-ci.org/}} wird von Github als Tool für CI 
 \label{fig:screenTravis}
 \end{figure}
 \subsubsection{Jenkins}
-Jenkins wurde als zweites CI Tool eingesetzt
+Jenkins wurde als zweites CI Tool eingesetzt. Es wird von Github bei jedem Pullrequest und bei jedem Push auf unser \glqq Haupt- \grqq\ Repository getriggered. Nach erfolgreichem Build wird die Code Analyse von Sonarqube angestartet. Bei Interesse, Jenkins läuft auf dem Server \url{http://178.254.21.77:8080}. (Benutzername: dozent, Passwort: >`*N?HFAsm)
 \begin{figure}[!hbtp]%
 \centering
 \includegraphics[width=1\linewidth]{pics/screenJenkins}
@@ -268,7 +279,7 @@ Jenkins wurde als zweites CI Tool eingesetzt
 \label{fig:screenJenkins}
 \end{figure}
 \subsubsection{Sonarqube}
-Zur Analyse der Codequalität wurde Sonarqube\footnote{\path{http://www.sonarqube.org/}}\footnote{\path{https://de.wikipedia.org/wiki/SonarQube}} eingesetzt, die Analyse wurde von Jenkins bei jedem Build angesteuert. Sonarqube ist auf dem selben Server installiert wie Jenkins und liefert keinerlei Werte zurück an Git (anders als Jenkins selbst).
+Zur Analyse der Codequalität wurde Sonarqube\footnote{\path{http://www.sonarqube.org/}}\footnote{\path{https://de.wikipedia.org/wiki/SonarQube}} eingesetzt, die Analyse wurde von Jenkins bei jedem Build angesteuert. Sonarqube ist auf dem selben Server installiert wie Jenkins und liefert keinerlei Werte zurück an Git (anders als Jenkins selbst). Die Sonarqube Analyse kann aus Jenkins aufgerufen werden, Benutzerdaten sind die gleichen wie für Jenkins.
 \begin{figure}[!hbtp]%
 \centering
 \includegraphics[width=1\linewidth]{pics/screenSonarqube}
@@ -276,9 +287,16 @@ Zur Analyse der Codequalität wurde Sonarqube\footnote{\path{http://www.sonarqub
 \label{fig:screenSonarqube}
 \end{figure}
 \section{Betrieb}
-%TODO Markus schreibt
 \subsection{Wildfly}
+Es wird Wildfly\footnote{\url{http://wildfly.org}} in der Version 9.0.1 eingesetzt. Die Konfiguration wurde angepasst es muss die \textit{standalone-full.xml} aus \path{config/} eingesetzt werden. Darüber hinaus muss der MySQL Connector deployed sein, hierfür gibt es ein Maven Goal \textit{mvn wildfly:deploy-artifact} wodurch der Connector automatisiert deployed wird.
 \subsection{MySQL}
+Die Software funktioniert sowohl mit der MySQL Community Version\footnote{\url{http://dev.mysql.com/}}, als auch mit dem MySQL-Fork MariaDB\footnote{\url{https://mariadb.org}} wie sie beispielsweise standardmäßig von SuSE mitgeliefert wird.
+Die Datenbank muss initial angelegt werden, hierfür gibt es im Verzeichnis \path{scripts/} einige Skripte:
+\begin{enumerate}
+	\item \path{createDB.sql} um die Datenbank initial anzulegen
+	\item \path{TestdatenEinschreiben.sql} um einige Testdaten für frühe Versuche anzulegen
+	\item \path{ErzeugeAktuellenStudiengang.sql} um einen kompletten Studiengang mit Daten anzulegen.
+\end{enumerate}
 \section{Übersicht über die final verwendeten Versionen}
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -291,7 +309,7 @@ Zur Analyse der Codequalität wurde Sonarqube\footnote{\path{http://www.sonarqub
 \hline 
 \rule[-1ex]{0pt}{2.5ex} Netbeans & 8.1 \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex} MySQL &  \\ 
+\rule[-1ex]{0pt}{2.5ex} MySQL oder MariaDB & > 5.7 bzw. >10.1 \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex} MySQL Workbench & 6.3 \\ 
 \hline
@@ -310,11 +328,7 @@ Zur Abstimmung des Codes wurde von jedem Teamangehörigen ein Repository auf Git
 
 Nachdem im Gesamtprojekt eine gewisse Codequalität erreicht wurde, wurde der Code von einem Teammitglied, das nicht an der Entwicklung der jeweiligen Passagen beteiligt war refactored und überarbeitet.
 \subsection{Protokolle der wöchentlichen Meetings}
-<<<<<<< HEAD
 Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden. Leider ist die Protokollierung dieser Meetings nur sehr lückenhaft erfolgt. Die vorhandenen Protokolle finden sich aber in Folge.
-=======
-Wöchentliche \glqq Sprint\grqq\ Meetings auf denen die Fortschritte, aufgetretene Probleme und Lösungen besprochen werden und bei Bedarf neue Aufgaben verteilt werden.
->>>>>>> Sequenzdiagramme ergänzt
 \subsubsection{Kickoff Meeting}
 Protokoll siehe Punkt 2.1 Anforderungsliste
 \subsubsection{2tes Meeting}
@@ -359,8 +373,9 @@ Maske für den Admin:
 \item Enum für Umrechnung von Notenpunkten in gesprochene Noten (Christoph)
 \end{itemize}
 \chapter{(realisierte) Funktionalitäten}
-Hier sollen die Ablaufdiagramme hin
-Realisierung der Statistik-Funktionen:
+Die erzeugten Diagramme zu unserer Software finden sich im Kapitel 7
+\section{Realisierung der Statistik-Funktionen}
+
 Dazu wird eine zentrale Java Enterprise Bean genutzt. Die Session-Bean StatistikBean übernimmt die Analyse der empirischen Daten. Die Bean stellt alle gängigen statistischen Kennzahlen zu Verfügung.
 Folgende statistische Maßzahlen werden berechnet:
 - Median
@@ -371,24 +386,24 @@ Folgende statistische Maßzahlen werden berechnet:
 
 Die in StatistikBean implementierte Methode getStatistik(int idStudienfach) benötigt als Übergabeparameter die Id des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySql Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben gennanten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse Statistik zurück, die die Werte der Berechnungen enthält.
 
-
-Realisierung der Berechnung der End- bzw. Zwischennoten:
+\section{Realisierung der Berechnung der End- bzw. Zwischennoten}
 
 Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean BerechnungNoten bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
 Dazu ist die Methode getEndnote(int matrikelNr) in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel matrikelNr, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
 Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Daraufhin wird die Endnote ermittelt.
 
 Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
+
 \section{Oberfläche für Studierende}
-\subsection{Funktionsumfang}
-%TODO ausformulieren
-\subsection{UML-Diagramm}
+Die Oberfläche für Studierende wurde als JSF Seite realisiert, auf dieser werden alle für den Studierenden in der Datenbank vorhandenen Noten dargestellt. Der Studierende hat die Möglichkeit seine Wunschnoten in separate Felder einzutragen und diese in die Datenbank zu speichern (leider nicht funktionsfähig).
 \section{Oberfläche für Dozenten}
-\subsection{Funktionsumfang}
-\section{Oberfläche für den Administrator}
+Die Oberfläche für Dozenten wurde wie die Oberfläche für Studierende mittels JSF Seite realisiert. Leider ziehen sich die Probleme dir wir bei der Realisierung des Schreibens der Daten in die Datenbank hatten bis hier durch, weshalb wir leider keine Daten die in die Oberfläche eingegeben wurden in die Datenbank speichern können.
 \chapter{Einsatz der Software}
 \section{Systemvoraussetzungen}
+Die Software ist von den verwendeten Technologien her auf verschiedenen Betriebssystemen einsetzbar. Getestet wurde ein Einsatz auf Microsoft Windows 7 und Linux (Ubuntu 14.04 LTS \& OpenSuSE 13.2, Leap 42.1, Tumbleweed)
+Die notwendigen weiteren Softwareversionen sind in Punkt 3.4 beschrieben, wobei Java EE im Java SDK integriert ist und Netbeans \& die MySQL Workbench für die bloße Ausführung nicht benötigt wird.
 \section{Installation}
+Die für die Installation notwendigen Vorarbeiten sind unter 3.3.1 \& 3.3.2 bereits beschrieben, nach der dem deployen  des MySQL Connectors bzw. dem Ausführen des Maven Goals und dem Anlegen der notwendigen Tabellen in der DB kann die Anwendung deployed werden, dies kann auf der Weboberfläche des Applikationsservers passieren, die notwendige WAR-DAtei liegt unter \path{target/notenrechner-0.1.war}. Natürlich kann das Deployment auch komfortabel über die Netbeans Oberfläche vorgenommen werden.
 \chapter{Diagramme}
 Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in Originalgröße auf der 
 \section{UML Diagramme}
