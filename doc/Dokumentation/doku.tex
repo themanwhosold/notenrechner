@@ -253,7 +253,7 @@ Als Versionsverwaltung und zum Austausch des aktuellen Versionsstand des Projekt
 %TODO Markus schreibt
 Der Name \textit{Maven} kommt aus dem Jiddischen und bedeutet
 \glqq Sammler des Wissens\grqq \footnote{\url{https://de.wikipedia.org/wiki/Apache_Maven}}.
-\textit{Maven} ist eigentlich ein Build Management Tool und hat einen wesentlichen größeren Funktionsumfang als der der für das Projekt benutzt wurde.
+\textit{Maven} ist eigentlich ein Build Management Tool und hat einen wesentlichen größeren Funktionsumfang als der der für das Projekt benutzt wurde. Im Projekt wurden im wesentlichen die automatisch generierten Ziele (Deployment des MySQL Connectors, Triggern der Codeanalyse) und die Verwaltung der Abhängigkeiten eingesetzt.
 \section{Test}
 \subsection{Unit Tests mit JUnit}
 Als Unit-Test Framework wurde JUnit eingesetzt und Testpackages für jede Klasse erzeugt. In diesen Testklassen wurden Testfälle definiert und bei jedem Build auf korrektheit überprüft. Hierdurch wurde sichergestellt, dass neu hinzugekommene Funktionalitäten nicht die Funktionsfähigkeit bereits vorhandener Komponenten verändert.
@@ -288,7 +288,7 @@ Zur Analyse der Codequalität wurde Sonarqube\footnote{\path{http://www.sonarqub
 \end{figure}
 \section{Betrieb}
 \subsection{Wildfly}
-Es kommt Wildfly\footnote{\url{http://wildfly.org}} in der Version 9.0.1 eingesetzt. Die Konfiguration wurde angepasst es muss die \textit{standalone-full.xml} aus \path{config/} eingesetzt werden. Darüber hinaus muss der MySQL Connector deployed sein, hierfür gibt es ein Maven Goal \textit{mvn wildfly:deploy-artifact} wodurch der Connector automatisiert deployed wird.
+Es wird Wildfly\footnote{\url{http://wildfly.org}} in der Version 9.0.1 eingesetzt. Die Konfiguration wurde angepasst es muss die \textit{standalone-full.xml} aus \path{config/} eingesetzt werden. Darüber hinaus muss der MySQL Connector deployed sein, hierfür gibt es ein Maven Goal \textit{mvn wildfly:deploy-artifact} wodurch der Connector automatisiert deployed wird.
 \subsection{MySQL}
 Die Software funktioniert sowohl mit der MySQL Community Version\footnote{\url{http://dev.mysql.com/}}, als auch mit dem MySQL-Fork MariaDB\footnote{\url{https://mariadb.org}} wie sie beispielsweise standardmäßig von SuSE mitgeliefert wird.
 Die Datenbank muss initial angelegt werden, hierfür gibt es im Verzeichnis \path{scripts/} einige Skripte:
@@ -374,8 +374,8 @@ Maske für den Admin:
 \end{itemize}
 \chapter{(realisierte) Funktionalitäten}
 Die erzeugten Diagramme zu unserer Software finden sich im Kapitel 7
+\section{Realisierung der Statistik-Funktionen}
 
-Realisierung der Statistik-Funktionen:
 Dazu wird eine zentrale Java Enterprise Bean genutzt. Die Session-Bean StatistikBean übernimmt die Analyse der empirischen Daten. Die Bean stellt alle gängigen statistischen Kennzahlen zu Verfügung.
 Folgende statistische Maßzahlen werden berechnet:
 - Median
@@ -386,24 +386,24 @@ Folgende statistische Maßzahlen werden berechnet:
 
 Die in StatistikBean implementierte Methode getStatistik(int idStudienfach) benötigt als Übergabeparameter die Id des zu analysierenden Studienfaches. Daraufhin werden alle Noten des jeweiligen Studiengangs aus der MySql Datenbank abgefragt. Diese Liste von Noten werden im folgenden analysiert und die oben gennanten statistischen Kennzahlen berechnet. Die Methode liefert ein Objekt der Klasse Statistik zurück, die die Werte der Berechnungen enthält.
 
-
-Realisierung der Berechnung der End- bzw. Zwischennoten:
+\section{Realisierung der Berechnung der End- bzw. Zwischennoten}
 
 Die Logik zur Berechnung der Noten stellt die Java Enterprise Bean BerechnungNoten bereit. Die Berechnung findet für jeden Studenten individuell auf Basis der in der Datenbank persitierten Daten statt. 
 Dazu ist die Methode getEndnote(int matrikelNr) in der Bean implementiert. Diese erwartet als Übergabeparameter den Primärschlüssel matrikelNr, um die Noten des jeweiligen Studenten aus der Datenbank abzufragen. Daraufhin werden die Noten zusammengerechnet und die Zwischen- und Endnote zu ermitteln.
 Zunächst wird eine Zwischennote (Note nach der Zwischenprüfung) berechnet. Daraufhin wird die Endnote ermittelt.
 
 Die Methode getEndnote(int matrikelNr) liefert ein Objekt der Klasse Endnote zurück, die die Werte der Berechnungen enthält. Die Klasse Endnote enthält immer zwingend eine Zwischenprüfungsnote. Dadurch ist gewährleistet, dass auch die Zwischenprüfungsnote dem Studenten mitgeteilt werden kann.
+
 \section{Oberfläche für Studierende}
-\subsection{Funktionsumfang}
-%TODO ausformulieren
-\subsection{UML-Diagramm}
+Die Oberfläche für Studierende wurde als JSF Seite realisiert, auf dieser werden alle für den Studierenden in der Datenbank vorhandenen Noten dargestellt. Der Studierende hat die Möglichkeit seine Wunschnoten in separate Felder einzutragen und diese in die Datenbank zu speichern (leider nicht funktionsfähig).
 \section{Oberfläche für Dozenten}
-\subsection{Funktionsumfang}
-\section{Oberfläche für den Administrator}
+Die Oberfläche für Dozenten wurde wie die Oberfläche für Studierende mittels JSF Seite realisiert. Leider ziehen sich die Probleme dir wir bei der Realisierung des Schreibens der Daten in die Datenbank hatten bis hier durch, weshalb wir leider keine Daten die in die Oberfläche eingegeben wurden in die Datenbank speichern können.
 \chapter{Einsatz der Software}
 \section{Systemvoraussetzungen}
+Die Software ist von den verwendeten Technologien her auf verschiedenen Betriebssystemen einsetzbar. Getestet wurde ein Einsatz auf Microsoft Windows 7 und Linux (Ubuntu 14.04 LTS \& OpenSuSE 13.2, Leap 42.1, Tumbleweed)
+Die notwendigen weiteren Softwareversionen sind in Punkt 3.4 beschrieben, wobei Java EE im Java SDK integriert ist und Netbeans \& die MySQL Workbench für die bloße Ausführung nicht benötigt wird.
 \section{Installation}
+Die für die Installation notwendigen Vorarbeiten sind unter 3.3.1 \& 3.3.2 bereits beschrieben, nach der dem deployen  des MySQL Connectors bzw. dem Ausführen des Maven Goals und dem Anlegen der notwendigen Tabellen in der DB kann die Anwendung deployed werden, dies kann auf der Weboberfläche des Applikationsservers passieren, die notwendige WAR-DAtei liegt unter \path{target/notenrechner-0.1.war}. Natürlich kann das Deployment auch komfortabel über die Netbeans Oberfläche vorgenommen werden.
 \chapter{Diagramme}
 Auf den folgenden Seiten finden sich einige UML Diagramme, diese finden sich in Originalgröße auf der 
 \section{UML Diagramme}
